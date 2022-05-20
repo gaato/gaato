@@ -15,7 +15,7 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
-Homepage: https://gaato.net/
+Homepage: https://gaato.net
 
 Qiita: https://qiita.com/gaato
 
