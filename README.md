@@ -16,6 +16,7 @@ Here are some ideas to get you started:
 -->
 
 Homepage: https://gaato.net/
+
 Qiita: https://qiita.com/gaato
 
 ![GitHub Stats Card](https://github-readme-stats.vercel.app/api?username=gaato)
