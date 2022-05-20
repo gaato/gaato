@@ -15,5 +15,7 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
+Qiita: https://qiita.com/gaato
+
 ![GitHub Stats Card](https://github-readme-stats.vercel.app/api?username=gaato)
 ![Top Languages Card](https://github-readme-stats.vercel.app/api/top-langs/?username=gaato)
