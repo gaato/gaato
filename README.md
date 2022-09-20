@@ -22,6 +22,7 @@ Here are some ideas to get you started:
 - Shell: Zsh
 - Editor: VSCode
 - Main language: Python
+- OS: Windows, macOS, Debian, ...
 
 ![GitHub Stats Card](https://github-readme-stats.vercel.app/api?username=gaato)
 ![Top Languages Card](https://github-readme-stats.vercel.app/api/top-langs/?username=gaato)
