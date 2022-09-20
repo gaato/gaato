@@ -15,9 +15,13 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
-Homepage: https://gaato.net
+## Profile
 
-Qiita: https://qiita.com/gaato
+- Homepage: https://gaato.net
+- Qiita: https://qiita.com/gaato
+- Shell: Zsh
+- Editor: VSCode
+- Main language: Python
 
 ![GitHub Stats Card](https://github-readme-stats.vercel.app/api?username=gaato)
 ![Top Languages Card](https://github-readme-stats.vercel.app/api/top-langs/?username=gaato)
