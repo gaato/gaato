@@ -17,12 +17,14 @@ Here are some ideas to get you started:
 
 ## Profile
 
-- Homepage: https://gaato.net
+- Website: https://gaato.net
 - Qiita: https://qiita.com/gaato
 - Shell: Zsh
 - Editor: VSCode, nano
 - Language: Python, C, C++, JavaScript, Go, Nim, ...
 - OS: Windows, macOS, Debian, ...
 
-![GitHub Stats Card](https://github-readme-stats.vercel.app/api?username=gaato)
-![Top Languages Card](https://github-readme-stats.vercel.app/api/top-langs/?username=gaato)
+![](https://github-readme-stats.vercel.app/api?username=gaato&count_private=true&show_icons=true)
+![](https://github-readme-stats.vercel.app/api/top-langs/?username=gaato&layout=compact)
+![](https://github-profile-trophy.vercel.app/?username=gaato)
+![](https://github-readme-streak-stats.herokuapp.com/?user=gaato)
