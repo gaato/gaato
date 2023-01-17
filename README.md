@@ -20,9 +20,9 @@ Here are some ideas to get you started:
 - Website: https://gaato.net
 - Qiita: https://qiita.com/gaato
 - Shell: Zsh
-- Editor: VSCode, nano
+- Editor: Neovim, VSCode
 - Language: Python, C, C++, JavaScript, Go, Nim, ...
-- OS: Windows, macOS, Debian, ...
+- OS: MX Linux, macOS, Windows
 
 ![](https://github-readme-stats.vercel.app/api?username=gaato&count_private=true&show_icons=true)
 ![](https://github-readme-stats.vercel.app/api/top-langs/?username=gaato&layout=compact)
