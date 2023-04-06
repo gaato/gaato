@@ -22,8 +22,8 @@ Here are some ideas to get you started:
 - Website: https://gaato.net
 - Qiita: https://qiita.com/gaato
 - Shell: Zsh
-- Editor: Neovim, VSCode
-- Language: Python, C, C++, JavaScript, Go, Nim, ...
+- Editor: VSCode, Neovim
+- Language: Python >>>>> C > C++ > JavaScript >>> Go > Nim
 - OS: MX Linux, macOS, Windows
 
 ![](https://github-readme-stats.vercel.app/api?username=gaato&count_private=true&show_icons=true)
