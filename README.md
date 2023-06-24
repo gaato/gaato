@@ -23,7 +23,7 @@ Here are some ideas to get you started:
 - Qiita: https://qiita.com/gaato
 - Shell: Zsh
 - Editor: VSCode, Neovim
-- Language: Python >>>>> C > C++ > JavaScript >>> Nim > Go > OCaml
+- Language: Python, JavaScript, Nim, Go, C, C++, ...
 - OS: MX Linux, macOS, Windows
 
 ![](https://github-readme-stats.vercel.app/api?username=gaato&count_private=true&show_icons=true)
