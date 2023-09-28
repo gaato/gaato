@@ -22,9 +22,9 @@ Here are some ideas to get you started:
 - Website: https://gaato.net
 - Qiita: https://qiita.com/gaato
 - Shell: Zsh
-- Editor: VSCode, Neovim
+- Editor: VSCode, Doom Emacs
 - Language: Python, JavaScript, Nim, Go, C, C++, ...
-- OS: MX Linux, macOS, Windows
+- OS: Pop!_OS, macOS, Windows
 
 ![](https://github-readme-stats.vercel.app/api?username=gaato&count_private=true&show_icons=true)
 ![](https://github-readme-stats.vercel.app/api/top-langs/?username=gaato&layout=compact)
