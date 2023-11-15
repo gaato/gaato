@@ -2,6 +2,12 @@
 
 `Initial commit` をしましょう。
 
+[![](https://komarev.com/ghpvc/?username=gaato&color=blueviolet)](https://github.com/gaato)
+[![](https://qiita-badge.apiapi.app/s/gaato/contributions.svg)](https://qiita.com/gaato)
+[![](https://img.shields.io/twitter/follow/gaato__?label=Twitter&logo=twitter&style=flat)](https://x.com/gaato)
+[![](https://img.shields.io/github/followers/gaato?label=GitHub&logo=github&style=flat)
+](https://github.com/gaato)
+
 <picture>
   <source
     srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=gaato&show_icons=true&theme=dark"
