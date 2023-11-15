@@ -26,7 +26,7 @@ Here are some ideas to get you started:
 - Language: Python, JavaScript, Nim, Go, C, C++, ...
 - OS: Pop!_OS, macOS, Windows
 
-![](https://github-readme-stats.vercel.app/api?username=gaato&count_private=true&show_icons=true)
+<!-- ![](https://github-readme-stats.vercel.app/api?username=gaato&count_private=true&show_icons=true) -->
 ![](https://github-readme-stats.vercel.app/api/top-langs/?username=gaato&layout=compact)
-![](https://github-profile-trophy.vercel.app/?username=gaato)
+<!-- ![](https://github-profile-trophy.vercel.app/?username=gaato) -->
 ![](https://github-readme-streak-stats.herokuapp.com/?user=gaato)
