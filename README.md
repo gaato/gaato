@@ -2,31 +2,36 @@
 
 `Initial commit` をしましょう。
 
-<!--
-**gaato/gaato** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+<picture>
+  <source
+    srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=gaato&show_icons=true&theme=dark"
+    media="(prefers-color-scheme: dark)"
+  />
+  <source
+    srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=gaato&show_icons=true"
+    media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
+  />
+  <img align="right" src="https://github-readme-stats.vercel.app/api/top-langs/?username=gaato&show_icons=true" />
+</picture>
 
 ## Profile
 
 - Website: https://gaato.net
 - Qiita: https://qiita.com/gaato
 - Shell: Zsh
-- Editor: VSCode, Doom Emacs
-- Language: Python, JavaScript, Nim, Go, C, C++, ...
+- Editor: VS Code, Nano
+- Natural Language: Japanese (Native), English (B1), Indonesian (A2)
+- Programming Language: Python, JavaScript, Nim, Go, C, C++, ...
 - OS: Pop!_OS, macOS, Windows
 
-<!-- ![](https://github-readme-stats.vercel.app/api?username=gaato&count_private=true&show_icons=true) -->
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=gaato&layout=compact)
-<!-- ![](https://github-profile-trophy.vercel.app/?username=gaato) -->
-![](https://github-readme-streak-stats.herokuapp.com/?user=gaato)
+<picture>
+  <source
+    srcset="https://github-readme-streak-stats.herokuapp.com/?user=gaato&theme=dark"
+    media="(prefers-color-scheme: dark)"
+  />
+  <source
+    srcset="https://github-readme-streak-stats.herokuapp.com/?user=gaato&theme=default"
+    media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
+  />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=gaato&theme=default" />
+</picture>
