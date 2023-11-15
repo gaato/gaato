@@ -14,16 +14,6 @@
   <img align="right" src="https://github-readme-stats.vercel.app/api/top-langs/?username=gaato&show_icons=true" />
 </picture>
 
-## Profile
-
-- Website: https://gaato.net
-- Qiita: https://qiita.com/gaato
-- Shell: Zsh
-- Editor: VS Code, Nano
-- Natural Language: Japanese (Native), English (B1), Indonesian (A2)
-- Programming Language: Python, JavaScript, Nim, Go, C, C++, ...
-- OS: Pop!_OS, macOS, Windows
-
 <picture>
   <source
     srcset="https://github-readme-streak-stats.herokuapp.com/?user=gaato&theme=dark"
@@ -35,3 +25,13 @@
   />
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=gaato&theme=default" />
 </picture>
+
+## Profile
+
+- Website: https://gaato.net
+- Qiita: https://qiita.com/gaato
+- Shell: Zsh
+- Editor: VS Code, Nano
+- Natural Language: Japanese (Native), English (B1), Indonesian (A2)
+- Programming Language: Python, JavaScript, Nim, Go, C, C++, ...
+- OS: Pop!_OS, macOS, Windows
