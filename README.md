@@ -37,4 +37,4 @@
 - Editor: VS Code, Doom Emacs, Nano
 - Natural Language: Japanese (Native), English (B1), Indonesian (A2)
 - Programming Language: Python, JavaScript, Nim, Go, C, C++, ...
-- OS: Pop!_OS, macOS, Windows
+- OS: Linux Mint, macOS, Windows
