@@ -31,10 +31,10 @@
 
 ## Profile
 
-- Website: https://gaato.net
-- Qiita: https://qiita.com/gaato
-- Shell: Zsh
-- Editor: VS Code, Doom Emacs, Nano
-- Human Language: Japanese (Native), English (B1), Indonesian (A2)
-- Computer Language: Python, JavaScript, Nim, Go, C, C++, ...
-- OS: Linux Mint, macOS, Windows
+- **Website**: https://gaato.net
+- **Qiita**: https://qiita.com/gaato
+- **Shell**: Zsh
+- **Editor**: VS Code, Doom Emacs, Nano
+- **Human Language**: Japanese (Native), English (B1), Indonesian (A2)
+- **Computer Language**: Python, JavaScript, Nim, Go, C, C++, ...
+- **OS**: Linux Mint, macOS, Windows
