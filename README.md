@@ -35,6 +35,6 @@
 - Qiita: https://qiita.com/gaato
 - Shell: Zsh
 - Editor: VS Code, Doom Emacs, Nano
-- Natural Language: Japanese (Native), English (B1), Indonesian (A2)
-- Programming Language: Python, JavaScript, Nim, Go, C, C++, ...
+- Human Language: Japanese (Native), English (B1), Indonesian (A2)
+- Computer Language: Python, JavaScript, Nim, Go, C, C++, ...
 - OS: Linux Mint, macOS, Windows
