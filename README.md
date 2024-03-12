@@ -19,14 +19,14 @@
 
 <picture>
   <source
-    srcset="https://github-readme-streak-stats.herokuapp.com/?user=gaato&theme=dark"
+    srcset="https://github-readme-streak-stats.herokuapp.com/?user=gaato&mode=weekly&theme=dark"
     media="(prefers-color-scheme: dark)"
   />
   <source
-    srcset="https://github-readme-streak-stats.herokuapp.com/?user=gaato&theme=default"
+    srcset="https://github-readme-streak-stats.herokuapp.com/?user=gaato&mode=weekly&theme=default"
     media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
   />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=gaato&theme=default" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=gaato&mode=weekly&theme=default" />
 </picture>
 
 ## Profile
