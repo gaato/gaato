@@ -4,9 +4,6 @@
   <a href="https://github.com/gaato">
     <img src="https://komarev.com/ghpvc/?username=gaato&color=blueviolet" alt="profile views" />
   </a>
-  <a href="https://qiita.com/gaato">
-    <img src="https://qiita-badge.apiapi.app/s/gaato/contributions.svg" alt="Qiita contributions" />
-  </a>
 </p>
 
 <p align="center"><em>`Initial commit` をしましょう。</em></p>
