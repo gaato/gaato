@@ -22,4 +22,4 @@
 - **Editor**: VS Code, Nano
 - **Human Language**: Japanese (Native), English (B1), Indonesian (A2)
 - **Computer Language**: Python, JavaScript, Nim, Go, C, C++, HTML, ...
-- **OS**: Linux Mint, macOS, Windows
+- **OS**: Arch Linux
