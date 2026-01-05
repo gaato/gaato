@@ -8,4 +8,4 @@
   <a href="https://github.com/gaato">GitHub</a>
 </p>
 
-<p align="center"><em>i use arch btw</em></p>
+<p align="center"><em>Initial commitをしましょう</em></p>
