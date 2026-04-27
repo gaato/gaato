@@ -1,15 +1,30 @@
+///|
 let columns : Int = 40
+
+///|
 let rows : Int = 10
+
+///|
 let cell : Int = 12
+
+///|
 let gap : Int = 2
+
+///|
 let offset_x : Int = 84
+
+///|
 let offset_y : Int = 32
+
+///|
 let frame_count : Int = 8
 
+///|
 fn point(x : Int, y : Int) -> Int {
   y * columns + x
 }
 
+///|
 fn contains(cells : Array[Int], value : Int) -> Bool {
   let mut found = false
   for i = 0; i < cells.length(); i = i + 1 {
@@ -20,12 +35,14 @@ fn contains(cells : Array[Int], value : Int) -> Bool {
   found
 }
 
+///|
 fn add_unique(cells : Array[Int], value : Int) -> Unit {
   if !contains(cells, value) {
     cells.push(value)
   }
 }
 
+///|
 fn alive(cells : Array[Int], x : Int, y : Int) -> Bool {
   if x < 0 || x >= columns || y < 0 || y >= rows {
     false
@@ -34,6 +51,7 @@ fn alive(cells : Array[Int], x : Int, y : Int) -> Bool {
   }
 }
 
+///|
 fn neighbors(cells : Array[Int], x : Int, y : Int) -> Int {
   let mut count = 0
   for dy = -1; dy <= 1; dy = dy + 1 {
@@ -46,12 +64,14 @@ fn neighbors(cells : Array[Int], x : Int, y : Int) -> Int {
   count
 }
 
+///|
 fn step(cells : Array[Int]) -> Array[Int] {
   let next : Array[Int] = []
   for y = 0; y < rows; y = y + 1 {
     for x = 0; x < columns; x = x + 1 {
       let n = neighbors(cells, x, y)
-      if (alive(cells, x, y) && (n == 2 || n == 3)) || (!alive(cells, x, y) && n == 3) {
+      if (alive(cells, x, y) && (n == 2 || n == 3)) ||
+        (!alive(cells, x, y) && n == 3) {
         next.push(point(x, y))
       }
     }
@@ -59,19 +79,39 @@ fn step(cells : Array[Int]) -> Array[Int] {
   next
 }
 
+///|
 fn seed() -> Array[Int] {
   let cells : Array[Int] = []
-  let gliders : Array[Int] = [point(5, 2), point(6, 3), point(4, 4), point(5, 4), point(6, 4), point(28, 2), point(29, 3), point(27, 4), point(28, 4), point(29, 4)]
+  let gliders : Array[Int] = [
+    point(5, 2),
+    point(6, 3),
+    point(4, 4),
+    point(5, 4),
+    point(6, 4),
+    point(28, 2),
+    point(29, 3),
+    point(27, 4),
+    point(28, 4),
+    point(29, 4),
+  ]
   for i = 0; i < gliders.length(); i = i + 1 {
     add_unique(cells, gliders[i])
   }
-  let blinkers : Array[Int] = [point(15, 5), point(16, 5), point(17, 5), point(34, 5), point(35, 5), point(36, 5)]
+  let blinkers : Array[Int] = [
+    point(15, 5),
+    point(16, 5),
+    point(17, 5),
+    point(34, 5),
+    point(35, 5),
+    point(36, 5),
+  ]
   for i = 0; i < blinkers.length(); i = i + 1 {
     add_unique(cells, blinkers[i])
   }
   cells
 }
 
+///|
 fn key_times() -> String {
   let mut result = "0"
   for i = 1; i <= frame_count; i = i + 1 {
@@ -80,50 +120,80 @@ fn key_times() -> String {
   result
 }
 
-fn opacity_values(index : Int) -> String {
-  let mut result = if index == 0 { "1" } else { "0" }
+///|
+fn frames() -> Array[Array[Int]] {
+  let result : Array[Array[Int]] = []
+  let mut cells = seed()
+  for _frame = 0; _frame < frame_count; _frame = _frame + 1 {
+    result.push(cells)
+    cells = step(cells)
+  }
+  result
+}
+
+///|
+fn animated_opacity(encoded : Int, snapshots : Array[Array[Int]]) -> String {
+  let mut result = if contains(snapshots[0], encoded) { "1" } else { "0" }
   for i = 1; i <= frame_count; i = i + 1 {
     let frame = if i == frame_count { 0 } else { i }
-    let value = if frame == index { "1" } else { "0" }
+    let value = if contains(snapshots[frame], encoded) { "1" } else { "0" }
     result = result + ";" + value
   }
   result
 }
 
-fn print_cell(encoded : Int, fill : String) -> Unit {
+///|
+fn print_cell(encoded : Int, snapshots : Array[Array[Int]]) -> Unit {
   let x = encoded % columns
   let y = encoded / columns
-  println("<rect x=\"\{offset_x + x * (cell + gap)}\" y=\"\{offset_y + y * (cell + gap)}\" width=\"\{cell}\" height=\"\{cell}\" rx=\"2\" fill=\"\{fill}\"/>")
+  let initial_opacity = if contains(snapshots[0], encoded) { "1" } else { "0" }
+  println(
+    "<rect x=\"\{offset_x + x * (cell + gap)}\" y=\"\{offset_y + y * (cell + gap)}\" width=\"\{cell}\" height=\"\{cell}\" rx=\"2\" fill=\"#234f47\" opacity=\"\{initial_opacity}\">",
+  )
+  println(
+    "<animate attributeName=\"opacity\" values=\"\{animated_opacity(encoded, snapshots)}\" keyTimes=\"\{key_times()}\" dur=\"4.8s\" calcMode=\"discrete\" repeatCount=\"indefinite\"/>",
+  )
+  println("</rect>")
 }
 
-fn print_frame(cells : Array[Int], index : Int) -> Unit {
-  let initial_opacity = if index == 0 { "1" } else { "0" }
-  println("<g opacity=\"\{initial_opacity}\">")
-  println("<animate attributeName=\"opacity\" values=\"\{opacity_values(index)}\" keyTimes=\"\{key_times()}\" dur=\"4.8s\" repeatCount=\"indefinite\"/>")
-  for i = 0; i < cells.length(); i = i + 1 {
-    print_cell(cells[i], if i % 3 == 0 { "#b1442f" } else { "#2d675c" })
+///|
+fn print_cells(snapshots : Array[Array[Int]]) -> Unit {
+  let emitted : Array[Int] = []
+  for frame = 0; frame < snapshots.length(); frame = frame + 1 {
+    for i = 0; i < snapshots[frame].length(); i = i + 1 {
+      add_unique(emitted, snapshots[frame][i])
+    }
   }
-  println("</g>")
+  for i = 0; i < emitted.length(); i = i + 1 {
+    print_cell(emitted[i], snapshots)
+  }
 }
 
+///|
 fn main {
-  println("<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 180\" role=\"img\" aria-labelledby=\"title desc\">")
+  println(
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 180\" role=\"img\" aria-labelledby=\"title desc\">",
+  )
   println("<title id=\"title\">Animated cellular automaton pattern</title>")
-  println("<desc id=\"desc\">A looping Conway Life pattern generated by MoonBit for the profile README.</desc>")
+  println(
+    "<desc id=\"desc\">A looping Conway Life pattern generated by MoonBit for the profile README.</desc>",
+  )
   println("<rect width=\"720\" height=\"180\" rx=\"18\" fill=\"#f7f5ee\"/>")
   println("<g opacity=\"0.06\" fill=\"#211f1b\">")
   for y = 0; y <= rows; y = y + 1 {
-    println("<rect x=\"\{offset_x}\" y=\"\{offset_y + y * (cell + gap) - gap / 2}\" width=\"\{columns * (cell + gap) - gap}\" height=\"1\"/>")
+    println(
+      "<rect x=\"\{offset_x}\" y=\"\{offset_y + y * (cell + gap) - gap / 2}\" width=\"\{columns * (cell + gap) - gap}\" height=\"1\"/>",
+    )
   }
   for x = 0; x <= columns; x = x + 1 {
-    println("<rect x=\"\{offset_x + x * (cell + gap) - gap / 2}\" y=\"\{offset_y}\" width=\"1\" height=\"\{rows * (cell + gap) - gap}\"/>")
+    println(
+      "<rect x=\"\{offset_x + x * (cell + gap) - gap / 2}\" y=\"\{offset_y}\" width=\"1\" height=\"\{rows * (cell + gap) - gap}\"/>",
+    )
   }
   println("</g>")
-  let mut cells = seed()
-  for frame = 0; frame < frame_count; frame = frame + 1 {
-    print_frame(cells, frame)
-    cells = step(cells)
-  }
-  println("<text x=\"360\" y=\"164\" text-anchor=\"middle\" fill=\"#686257\" font-family=\"-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif\" font-size=\"13\">B3/S23 · generated with MoonBit</text>")
+  print_cells(frames())
+  println(
+    "<text x=\"360\" y=\"164\" text-anchor=\"middle\" fill=\"#686257\" font-family=\"-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif\" font-size=\"13\">B3/S23 · generated with MoonBit</text>",
+  )
   println("</svg>")
 }
