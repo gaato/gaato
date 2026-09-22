@@ -1,5 +1,3 @@
 supported_targets = "js+native"
 
-options(
-  "is-main": true,
-)
+pkgtype(kind: "executable")

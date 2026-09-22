@@ -1,0 +1,10 @@
+import {
+  "moonbitlang/async",
+  "moonbitlang/async/http",
+  "moonbitlang/async/fs",
+  "moonbitlang/core/env",
+  "moonbitlang/core/json",
+  "gaato/profile-readme/src/activity",
+}
+
+pkgtype(kind: "executable")

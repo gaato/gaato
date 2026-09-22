@@ -1,0 +1,68 @@
+name: Update activity
+
+on:
+  schedule:
+    # 06:17 JST, daily
+    - cron: "17 21 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - src/**
+      - moon.mod
+      - moonbit-version
+      - .github/workflows/activity.yml
+
+concurrency:
+  group: update-activity
+  cancel-in-progress: false
+
+jobs:
+  toolchain:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          sparse-checkout: moonbit-version
+          sparse-checkout-cone-mode: false
+      # Image tags cannot contain "+": 0.10.14+7d59c7ec9 -> 0.10.14-7d59c7ec9
+      - id: tag
+        run: echo "tag=$(tr '+' '-' < moonbit-version)" >> "$GITHUB_OUTPUT"
+
+  update:
+    needs: toolchain
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/gaato/moonbit:${{ needs.toolchain.outputs.tag }}
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Update registry index
+        run: moon update
+
+      - name: Test
+        run: moon test src/activity
+
+      - name: Generate activity card
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: moon run src/activity_svg
+
+      - name: Commit and push if changed
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/activity.json assets/activity.svg
+          if git diff --cached --quiet; then
+            echo "no changes"
+            exit 0
+          fi
+          git commit -m "Update activity card"
+          git push

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 720 320" width="720" height="320" role="img" aria-labelledby="title desc">
+<title id="title">Recent activity</title>
+<desc id="desc">Repositories committed to, upstream pull requests and latest articles, regenerated daily from GitHub and RSS.</desc>
+<rect width="720" height="320" rx="18" fill="#f7f5ee"/>
+<line x1="360" y1="28" x2="360" y2="276" stroke="#e6e2d6" stroke-width="1"/>
+<text x="24" y="36" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11"><tspan font-weight="600" letter-spacing="1.5" fill="#234f47">WORKING ON</tspan><tspan dx="10" fill="#686257">commits, last 90 days</tspan></text>
+<text x="24" y="66" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="13" font-weight="400" fill="#211f1b">discord.mbt</text>
+<rect x="152" y="56" width="156" height="10" rx="2" fill="#b92381"/>
+<text x="314" y="66" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">247</text>
+<text x="24" y="88" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="13" font-weight="400" fill="#211f1b">mbt-sdk</text>
+<rect x="152" y="78" width="28" height="10" rx="2" fill="#b92381"/>
+<text x="186" y="88" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">45</text>
+<text x="24" y="110" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="13" font-weight="400" fill="#211f1b">gaato.net</text>
+<rect x="152" y="100" width="25" height="10" rx="2" fill="#3178c6"/>
+<text x="183" y="110" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">40</text>
+<text x="24" y="132" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="13" font-weight="400" fill="#211f1b">cordnim</text>
+<rect x="152" y="122" width="21" height="10" rx="2" fill="#ffc200"/>
+<text x="179" y="132" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">34</text>
+<text x="24" y="154" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="13" font-weight="400" fill="#211f1b">nekosama</text>
+<rect x="152" y="144" width="18" height="10" rx="2" fill="#b92381"/>
+<text x="176" y="154" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">30</text>
+<text x="24" y="176" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="13" font-weight="400" fill="#211f1b">lab.gaato.net</text>
+<rect x="152" y="166" width="18" height="10" rx="2" fill="#3178c6"/>
+<text x="176" y="176" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">30</text>
+<circle cx="28" cy="198" r="4" fill="#b92381"/>
+<text x="37" y="202" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">MoonBit</text>
+<circle cx="98" cy="198" r="4" fill="#3178c6"/>
+<text x="107" y="202" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">TypeScript</text>
+<circle cx="186" cy="198" r="4" fill="#ffc200"/>
+<text x="195" y="202" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">Nim</text>
+<text x="372" y="36" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11"><tspan font-weight="600" letter-spacing="1.5" fill="#234f47">UPSTREAM</tspan><tspan dx="10" fill="#686257">pull requests, last 365 days</tspan></text>
+<text x="372" y="66" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="13" font-weight="400" fill="#211f1b">moonbitlang</text>
+<text x="476" y="66" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">async, moon</text>
+<text x="696" y="66" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">5</text>
+<text x="372" y="88" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="13" font-weight="400" fill="#211f1b">aquaproj</text>
+<text x="476" y="88" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">aqua-registry</text>
+<text x="696" y="88" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">3</text>
+<text x="372" y="110" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="13" font-weight="400" fill="#211f1b">togatoga</text>
+<text x="476" y="110" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">karukan</text>
+<text x="696" y="110" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">3</text>
+<text x="372" y="132" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="13" font-weight="400" fill="#211f1b">openSUSE</text>
+<text x="476" y="132" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">opi, sdbootutil</text>
+<text x="696" y="132" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">2</text>
+<text x="372" y="154" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="13" font-weight="400" fill="#211f1b">rancher</text>
+<text x="476" y="154" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">rke2-packaging</text>
+<text x="696" y="154" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">1</text>
+<text x="372" y="188" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11"><tspan font-weight="600" letter-spacing="1.5" fill="#234f47">WRITING</tspan><tspan dx="10" fill="#686257">latest</tspan></text>
+<text x="372" y="218" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">2026-09-11</text>
+<a href="https://zenn.dev/gaato/articles/sdbootutil-devicetree-bls"><text x="448" y="218" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="13" font-weight="400" fill="#211f1b">ARM ボードの UEFI ブートで Device…</text>
+</a>
+<text x="372" y="240" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">2026-08-30</text>
+<a href="https://gaato.net/articles/math-problems-2019-2020/"><text x="448" y="240" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="13" font-weight="400" fill="#211f1b">2019–2020年に作った数学の問題</text>
+</a>
+<text x="372" y="262" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">2026-07-06</text>
+<a href="https://gaato.net/articles/stuck-ctrl-was-the-mouse/"><text x="448" y="262" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="13" font-weight="400" fill="#211f1b">Ctrlが押しっぱなしになる犯人はマウス…</text>
+</a>
+<text x="360" y="304" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="11" font-weight="400" fill="#686257">updated 2026-09-22 · generated with MoonBit</text>
+</svg>

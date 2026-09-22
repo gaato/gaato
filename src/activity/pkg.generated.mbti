@@ -1,0 +1,77 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "gaato/profile-readme/src/activity"
+
+import {
+  "moonbitlang/core/json",
+}
+
+// Values
+pub let contributions_query : String
+
+pub fn escape_xml(String) -> String
+
+pub fn jst_date(Int64) -> String
+
+pub fn latest_posts(Array[Array[Post]], limit~ : Int) -> Array[Post]
+
+pub fn parse_contributions(Json, login~ : String, max_repos? : Int, max_owners? : Int) -> (Array[Repo], Array[Upstream]) raise
+
+pub fn parse_rfc2822(StringView) -> Int64?
+
+pub fn parse_rss(String, source~ : String) -> Array[Post]
+
+pub fn render(Activity, login~ : String) -> String
+
+pub fn text_width(String, Double) -> Double
+
+pub fn truncate_to_width(String, Double, Double) -> String
+
+pub fn unescape_xml(String) -> String
+
+pub fn utc_midnight_days_ago(Int64, Int) -> String
+
+pub fn utc_timestamp(Int64) -> String
+
+// Errors
+
+// Types and methods
+pub(all) struct Activity {
+  generated_on : String
+  repo_days : Int
+  upstream_days : Int
+  repos : Array[Repo]
+  upstream : Array[Upstream]
+  posts : Array[Post]
+} derive(ToJson, @json.FromJson)
+pub fn Activity::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub fn Activity::to_json(Self) -> Json
+
+pub(all) struct Post {
+  title : String
+  url : String
+  date : String
+  source : String
+} derive(ToJson, @json.FromJson)
+pub fn Post::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub fn Post::to_json(Self) -> Json
+
+pub(all) struct Repo {
+  name : String
+  commits : Int
+  language : String
+  color : String
+} derive(ToJson, @json.FromJson)
+pub fn Repo::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub fn Repo::to_json(Self) -> Json
+
+pub(all) struct Upstream {
+  owner : String
+  repos : Array[String]
+  prs : Int
+} derive(ToJson, @json.FromJson)
+pub fn Upstream::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub fn Upstream::to_json(Self) -> Json
+
+// Type aliases
+
+// Traits

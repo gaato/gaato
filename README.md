@@ -5,6 +5,10 @@
 </p>
 
 <p align="center">
+  <img src="./assets/activity.svg" alt="Recent activity: repositories committed to, upstream pull requests and latest articles" width="720">
+</p>
+
+<p align="center">
   <a href="https://gaato.net">gaato.net</a>
   ·
   <a href="https://qiita.com/gaato">Qiita</a>
