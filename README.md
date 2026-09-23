@@ -17,13 +17,13 @@ Commits, last 90 days.
 
 ### Upstream
 
-Pull requests, last 365 days.
+PRs created in the last 365 days, currently open or merged.
 
 - [moonbitlang](https://github.com/moonbitlang) — 5 PRs in [async](https://github.com/moonbitlang/async), [moon](https://github.com/moonbitlang/moon)
-- [aquaproj](https://github.com/aquaproj) — 3 PRs in [aqua-registry](https://github.com/aquaproj/aqua-registry)
-- [togatoga](https://github.com/togatoga) — 3 PRs in [karukan](https://github.com/togatoga/karukan)
 - [openSUSE](https://github.com/openSUSE) — 2 PRs in [opi](https://github.com/openSUSE/opi), [sdbootutil](https://github.com/openSUSE/sdbootutil)
-- [rancher](https://github.com/rancher) — 1 PR in [rke2-packaging](https://github.com/rancher/rke2-packaging)
+- [systemd](https://github.com/systemd) — 1 PR in [systemd](https://github.com/systemd/systemd)
+- [aquaproj](https://github.com/aquaproj) — 1 PR in [aqua-registry](https://github.com/aquaproj/aqua-registry)
+- [nim-lang](https://github.com/nim-lang) — 1 PR in [packages](https://github.com/nim-lang/packages)
 
 ### Writing
 

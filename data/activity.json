@@ -50,20 +50,6 @@
       "prs": 5
     },
     {
-      "owner": "aquaproj",
-      "repos": [
-        "aqua-registry"
-      ],
-      "prs": 3
-    },
-    {
-      "owner": "togatoga",
-      "repos": [
-        "karukan"
-      ],
-      "prs": 3
-    },
-    {
       "owner": "openSUSE",
       "repos": [
         "opi",
@@ -72,9 +58,23 @@
       "prs": 2
     },
     {
-      "owner": "rancher",
+      "owner": "systemd",
       "repos": [
-        "rke2-packaging"
+        "systemd"
+      ],
+      "prs": 1
+    },
+    {
+      "owner": "aquaproj",
+      "repos": [
+        "aqua-registry"
+      ],
+      "prs": 1
+    },
+    {
+      "owner": "nim-lang",
+      "repos": [
+        "packages"
       ],
       "prs": 1
     }
