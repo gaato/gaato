@@ -1,11 +1,11 @@
 {
-  "generated_on": "2026-09-23",
+  "generated_on": "2026-09-24",
   "repo_days": 90,
   "upstream_days": 365,
   "repos": [
     {
       "name": "gaato/discord.mbt",
-      "commits": 249,
+      "commits": 269,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -43,50 +43,111 @@
   "upstream": [
     {
       "owner": "moonbitlang",
-      "repos": [
-        "async",
-        "moon"
-      ],
-      "prs": 5,
-      "open": 0,
-      "merged": 5
-    },
-    {
-      "owner": "openSUSE",
-      "repos": [
-        "opi",
-        "sdbootutil"
-      ],
-      "prs": 2,
-      "open": 0,
-      "merged": 2
+      "repo": "async",
+      "number": 628,
+      "title": "Make recursive mkdir succeed on an existing directory",
+      "url": "https://github.com/moonbitlang/async/pull/628",
+      "merged": true,
+      "date": "2026-09-21"
     },
     {
       "owner": "systemd",
-      "repos": [
-        "systemd"
-      ],
-      "prs": 1,
-      "open": 1,
-      "merged": 0
+      "repo": "systemd",
+      "number": 43791,
+      "title": "boot: measure Type #1 DeviceTrees into PCR 12",
+      "url": "https://github.com/systemd/systemd/pull/43791",
+      "merged": false,
+      "date": "2026-09-18"
+    },
+    {
+      "owner": "moonbitlang",
+      "repo": "moon",
+      "number": 2235,
+      "title": "fix(mooncake): prevent registry index pulls from hanging on large Git output",
+      "url": "https://github.com/moonbitlang/moon/pull/2235",
+      "merged": true,
+      "date": "2026-09-18"
+    },
+    {
+      "owner": "repology",
+      "repo": "repology-rules",
+      "number": 1235,
+      "title": "karukan: merge",
+      "url": "https://github.com/repology/repology-rules/pull/1235",
+      "merged": true,
+      "date": "2026-09-06"
+    },
+    {
+      "owner": "togatoga",
+      "repo": "karukan",
+      "number": 118,
+      "title": "docs: パッケージからのインストール手順を追加（openSUSE / AUR / FreeBSD）",
+      "url": "https://github.com/togatoga/karukan/pull/118",
+      "merged": false,
+      "date": "2026-09-06"
+    },
+    {
+      "owner": "openSUSE",
+      "repo": "opi",
+      "number": 223,
+      "title": "Add ChatGPT desktop app plugin",
+      "url": "https://github.com/openSUSE/opi/pull/223",
+      "merged": true,
+      "date": "2026-08-29"
+    },
+    {
+      "owner": "moonbitlang",
+      "repo": "async",
+      "number": 579,
+      "title": "Handle pre-aborted signals in Promise::from_async",
+      "url": "https://github.com/moonbitlang/async/pull/579",
+      "merged": true,
+      "date": "2026-08-27"
+    },
+    {
+      "owner": "moonbitlang",
+      "repo": "async",
+      "number": 578,
+      "title": "Fix empty JavaScript HTTP response bodies",
+      "url": "https://github.com/moonbitlang/async/pull/578",
+      "merged": true,
+      "date": "2026-08-27"
+    },
+    {
+      "owner": "moonbitlang",
+      "repo": "async",
+      "number": 500,
+      "title": "fix(js): keep scheduling rounds after Promise::from_async",
+      "url": "https://github.com/moonbitlang/async/pull/500",
+      "merged": true,
+      "date": "2026-07-15"
+    },
+    {
+      "owner": "openSUSE",
+      "repo": "sdbootutil",
+      "number": 394,
+      "title": "Add configurable devicetree entry support",
+      "url": "https://github.com/openSUSE/sdbootutil/pull/394",
+      "merged": true,
+      "date": "2026-06-14"
     },
     {
       "owner": "aquaproj",
-      "repos": [
-        "aqua-registry"
-      ],
-      "prs": 1,
-      "open": 0,
-      "merged": 1
+      "repo": "aqua-registry",
+      "number": 52789,
+      "title": "fix lychee release asset layouts",
+      "url": "https://github.com/aquaproj/aqua-registry/pull/52789",
+      "merged": true,
+      "date": "2026-04-28"
     },
     {
       "owner": "nim-lang",
-      "repos": [
-        "packages"
-      ],
-      "prs": 1,
-      "open": 0,
-      "merged": 1
+      "repo": "packages",
+      "number": 3237,
+      "title": "Add package dimslash",
+      "url": "https://github.com/nim-lang/packages/pull/3237",
+      "merged": true,
+      "date": "2026-02-19"
     }
   ],
   "posts": [

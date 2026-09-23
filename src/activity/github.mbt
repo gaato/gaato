@@ -21,6 +21,9 @@ pub let pull_requests_query : String =
   #|      nodes {
   #|        createdAt
   #|        state
+  #|        number
+  #|        title
+  #|        url
   #|        author { login }
   #|        repository { nameWithOwner owner { login } }
   #|      }
@@ -124,6 +127,9 @@ pub fn parse_pull_request_page(
       is {
         "createdAt": String(created_at),
         "state": String(state),
+        "number": Number(number, ..),
+        "title": String(title),
+        "url": String(url),
         "author": { "login": String(author), .. },
         "repository": {
           "nameWithOwner": String(name),
@@ -146,7 +152,18 @@ pub fn parse_pull_request_page(
     guard name.strip_prefix("\{owner}/") is Some(repo) else {
       fail("unexpected pull request repository: \{name}")
     }
-    result.push({ owner, repo: repo.to_owned(), merged: state == "MERGED", })
+    guard parse_iso8601_utc(created_at) is Some(unix) else {
+      fail("unexpected pull request timestamp: \{created_at}")
+    }
+    result.push({
+      owner,
+      repo: repo.to_owned(),
+      number: number.to_int(),
+      title,
+      url,
+      merged: state == "MERGED",
+      date: jst_date(unix),
+    })
   }
   let next = if has_next && !reached_cutoff {
     guard end_cursor is String(cursor) && cursor != "" && nodes.length() > 0 else {
@@ -160,44 +177,22 @@ pub fn parse_pull_request_page(
 }
 
 ///|
-/// Groups eligible PRs by external repository owner.
-pub fn group_upstream(
+/// Orders eligible PRs newest first. Ties break on repository then number so
+/// the rendered list is stable between runs.
+pub fn sort_upstream(
   prs : Array[UpstreamPullRequest],
-  max_owners? : Int = 5,
-) -> Array[Upstream] {
-  let by_owner : Map[String, Upstream] = Map([])
-  for pr in prs {
-    let merged_increment = if pr.merged { 1 } else { 0 }
-    let open_increment = if pr.merged { 0 } else { 1 }
-    match by_owner.get(pr.owner) {
-      Some(u) => {
-        if !u.repos.contains(pr.repo) {
-          u.repos.push(pr.repo)
-        }
-        by_owner[pr.owner] = {
-          ..u,
-          prs: u.prs + 1,
-          open: Some(u.open.unwrap_or(0) + open_increment),
-          merged: Some(u.merged.unwrap_or(0) + merged_increment),
-        }
-      }
-      None =>
-        by_owner[pr.owner] = {
-          owner: pr.owner,
-          repos: [pr.repo],
-          prs: 1,
-          open: Some(open_increment),
-          merged: Some(merged_increment),
-        }
-    }
-  }
-  let upstream = by_owner.values().collect()
-  upstream.sort_by((a, b) => {
-    if a.prs != b.prs {
-      b.prs - a.prs
-    } else {
+) -> Array[UpstreamPullRequest] {
+  let sorted = prs.copy()
+  sorted.sort_by((a, b) => {
+    if a.date != b.date {
+      b.date.compare(a.date)
+    } else if a.owner != b.owner {
       a.owner.compare(b.owner)
+    } else if a.repo != b.repo {
+      a.repo.compare(b.repo)
+    } else {
+      b.number - a.number
     }
   })
-  upstream[:upstream.length().min(max_owners)].to_owned()
+  sorted
 }

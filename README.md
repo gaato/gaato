@@ -18,7 +18,7 @@
 
 Commits, last 90 days.
 
-- [discord.mbt](https://github.com/gaato/discord.mbt) — 249 commits (MoonBit)
+- [discord.mbt](https://github.com/gaato/discord.mbt) — 269 commits (MoonBit)
 - [mbt-sdk](https://github.com/gaato/mbt-sdk) — 53 commits (MoonBit)
 - [gaato.net](https://github.com/gaato/gaato.net) — 40 commits (TypeScript)
 - [cordnim](https://github.com/gaato/cordnim) — 34 commits (Nim)
@@ -29,11 +29,17 @@ Commits, last 90 days.
 
 PRs created in the last 365 days, currently open or merged.
 
-- [moonbitlang](https://github.com/moonbitlang) — merged 5 in [async](https://github.com/moonbitlang/async), [moon](https://github.com/moonbitlang/moon)
-- [openSUSE](https://github.com/openSUSE) — merged 2 in [opi](https://github.com/openSUSE/opi), [sdbootutil](https://github.com/openSUSE/sdbootutil)
-- [systemd](https://github.com/systemd) — open 1 in [systemd](https://github.com/systemd/systemd)
-- [aquaproj](https://github.com/aquaproj) — merged 1 in [aqua-registry](https://github.com/aquaproj/aqua-registry)
-- [nim-lang](https://github.com/nim-lang) — merged 1 in [packages](https://github.com/nim-lang/packages)
+- 2026-09-21 · [moonbitlang/async#628](https://github.com/moonbitlang/async/pull/628) — Make recursive mkdir succeed on an existing directory (merged)
+- 2026-09-18 · [systemd/systemd#43791](https://github.com/systemd/systemd/pull/43791) — boot: measure Type #1 DeviceTrees into PCR 12 (open)
+- 2026-09-18 · [moonbitlang/moon#2235](https://github.com/moonbitlang/moon/pull/2235) — fix(mooncake): prevent registry index pulls from hanging on large Git output (merged)
+- 2026-09-06 · [repology/repology-rules#1235](https://github.com/repology/repology-rules/pull/1235) — karukan: merge (merged)
+- 2026-09-06 · [togatoga/karukan#118](https://github.com/togatoga/karukan/pull/118) — docs: パッケージからのインストール手順を追加（openSUSE / AUR / FreeBSD） (open)
+- 2026-08-29 · [openSUSE/opi#223](https://github.com/openSUSE/opi/pull/223) — Add ChatGPT desktop app plugin (merged)
+- 2026-08-27 · [moonbitlang/async#579](https://github.com/moonbitlang/async/pull/579) — Handle pre-aborted signals in Promise::from\_async (merged)
+- 2026-08-27 · [moonbitlang/async#578](https://github.com/moonbitlang/async/pull/578) — Fix empty JavaScript HTTP response bodies (merged)
+- 2026-07-15 · [moonbitlang/async#500](https://github.com/moonbitlang/async/pull/500) — fix(js): keep scheduling rounds after Promise::from\_async (merged)
+- 2026-06-14 · [openSUSE/sdbootutil#394](https://github.com/openSUSE/sdbootutil/pull/394) — Add configurable devicetree entry support (merged)
+- …and 2 more
 
 ### Writing
 
@@ -41,6 +47,6 @@ PRs created in the last 365 days, currently open or merged.
 - 2026-08-30 · [2019–2020年に作った数学の問題](https://gaato.net/articles/math-problems-2019-2020/) (gaato.net)
 - 2026-07-06 · [Ctrlが押しっぱなしになる犯人はマウスだった](https://gaato.net/articles/stuck-ctrl-was-the-mouse/) (gaato.net)
 
-Updated 2026-09-23
+Updated 2026-09-24
 
 <!-- activity:end -->

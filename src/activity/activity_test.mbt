@@ -74,6 +74,9 @@ test "upstream PRs include only recently opened open or merged PRs" {
             {
               "createdAt": "2026-09-22T10:00:00Z",
               "state": "OPEN",
+              "number": 12,
+              "title": "Add a timeout to the poller",
+              "url": "https://github.com/moonbitlang/async/pull/12",
               "author": { "login": "gaato" },
               "repository": {
                 "nameWithOwner": "moonbitlang/async",
@@ -83,6 +86,9 @@ test "upstream PRs include only recently opened open or merged PRs" {
             {
               "createdAt": "2026-09-20T10:00:00Z",
               "state": "MERGED",
+              "number": 34,
+              "title": "Fix moon test on Windows",
+              "url": "https://github.com/moonbitlang/moon/pull/34",
               "author": { "login": "gaato" },
               "repository": {
                 "nameWithOwner": "moonbitlang/moon",
@@ -92,6 +98,9 @@ test "upstream PRs include only recently opened open or merged PRs" {
             {
               "createdAt": "2026-09-19T10:00:00Z",
               "state": "CLOSED",
+              "number": 56,
+              "title": "Closed, so excluded",
+              "url": "https://github.com/openSUSE/opi/pull/56",
               "author": { "login": "gaato" },
               "repository": {
                 "nameWithOwner": "openSUSE/opi",
@@ -101,6 +110,9 @@ test "upstream PRs include only recently opened open or merged PRs" {
             {
               "createdAt": "2026-09-18T10:00:00Z",
               "state": "MERGED",
+              "number": 78,
+              "title": "Own repository, so excluded",
+              "url": "https://github.com/gaato/gaato.net/pull/78",
               "author": { "login": "gaato" },
               "repository": {
                 "nameWithOwner": "gaato/gaato.net",
@@ -110,6 +122,9 @@ test "upstream PRs include only recently opened open or merged PRs" {
             {
               "createdAt": "2026-09-17T10:00:00Z",
               "state": "OPEN",
+              "number": 90,
+              "title": "Someone else's PR, so excluded",
+              "url": "https://github.com/openSUSE/opi/pull/90",
               "author": { "login": "someone-else" },
               "repository": {
                 "nameWithOwner": "openSUSE/opi",
@@ -136,6 +151,9 @@ test "upstream PRs include only recently opened open or merged PRs" {
             {
               "createdAt": "2025-09-23T00:00:00Z",
               "state": "MERGED",
+              "number": 1,
+              "title": "Exactly on the cutoff",
+              "url": "https://github.com/moonbitlang/async/pull/1",
               "author": { "login": "gaato" },
               "repository": {
                 "nameWithOwner": "moonbitlang/async",
@@ -145,6 +163,9 @@ test "upstream PRs include only recently opened open or merged PRs" {
             {
               "createdAt": "2025-09-22T23:59:59Z",
               "state": "OPEN",
+              "number": 2,
+              "title": "Past the cutoff, so excluded",
+              "url": "https://github.com/systemd/systemd/pull/2",
               "author": { "login": "gaato" },
               "repository": {
                 "nameWithOwner": "systemd/systemd",
@@ -163,13 +184,33 @@ test "upstream PRs include only recently opened open or merged PRs" {
     login="gaato",
   )
   assert_true(end is None)
-  json_inspect(@activity.group_upstream(first_prs + second_prs), content=[
+  json_inspect(@activity.sort_upstream(first_prs + second_prs), content=[
     {
       "owner": "moonbitlang",
-      "repos": ["async", "moon"],
-      "prs": 3,
-      "open": 1,
-      "merged": 2,
+      "repo": "async",
+      "number": 12,
+      "title": "Add a timeout to the poller",
+      "url": "https://github.com/moonbitlang/async/pull/12",
+      "merged": false,
+      "date": "2026-09-22",
+    },
+    {
+      "owner": "moonbitlang",
+      "repo": "moon",
+      "number": 34,
+      "title": "Fix moon test on Windows",
+      "url": "https://github.com/moonbitlang/moon/pull/34",
+      "merged": true,
+      "date": "2026-09-20",
+    },
+    {
+      "owner": "moonbitlang",
+      "repo": "async",
+      "number": 1,
+      "title": "Exactly on the cutoff",
+      "url": "https://github.com/moonbitlang/async/pull/1",
+      "merged": true,
+      "date": "2025-09-23",
     },
   ])
 }
@@ -244,6 +285,24 @@ test "dates" {
     content="Some(\"2026-08-29\")",
   )
   debug_inspect(@activity.parse_rfc2822("garbage"), content="None")
+  debug_inspect(
+    @activity.parse_iso8601_utc("2026-09-22T13:26:49Z").map(@activity.jst_date),
+    content="Some(\"2026-09-22\")",
+  )
+  // 00:30 UTC is already the next day in JST.
+  debug_inspect(
+    @activity.parse_iso8601_utc("2026-09-22T00:30:00Z").map(@activity.jst_date),
+    content="Some(\"2026-09-22\")",
+  )
+  debug_inspect(
+    @activity.parse_iso8601_utc("2026-09-22T15:30:00Z").map(@activity.jst_date),
+    content="Some(\"2026-09-23\")",
+  )
+  debug_inspect(@activity.parse_iso8601_utc("2026-09-22"), content="None")
+  debug_inspect(
+    @activity.parse_iso8601_utc("2026-09-22T13:26:49+09:00"),
+    content="None",
+  )
 }
 
 ///|
@@ -272,10 +331,12 @@ test "render Markdown activity and preserve README outside its markers" {
     upstream: [
       {
         owner: "moonbitlang",
-        repos: ["async", "moon"],
-        prs: 5,
-        open: Some(1),
-        merged: Some(4),
+        repo: "async",
+        number: 12,
+        title: "Add a timeout to the poller",
+        url: "https://github.com/moonbitlang/async/pull/12",
+        merged: false,
+        date: "2026-09-22",
       },
     ],
     posts: [
@@ -298,7 +359,7 @@ test "render Markdown activity and preserve README outside its markers" {
   )
   assert_true(
     updated.contains(
-      "[moonbitlang](https://github.com/moonbitlang) — merged 4 · open 1 in [async](https://github.com/moonbitlang/async)",
+      "- 2026-09-22 · [moonbitlang/async#12](https://github.com/moonbitlang/async/pull/12) — Add a timeout to the poller (open)",
     ),
   )
   assert_true(
@@ -316,51 +377,82 @@ test "render Markdown activity and preserve README outside its markers" {
 }
 
 ///|
-test "saved activity without PR state counts still renders its total" {
-  let legacy : @activity.Upstream = @json.from_json({
-    "owner": "openSUSE",
-    "repos": ["opi"],
-    "prs": 2,
-  })
-  assert_true(legacy.open is None && legacy.merged is None)
-  let activity : @activity.Activity = {
-    generated_on: "2026-09-23",
-    repo_days: 90,
-    upstream_days: 365,
-    repos: [],
-    upstream: [legacy],
-    posts: [],
+/// Builds an upstream PR whose fields only matter through `number`.
+fn upstream_pr(
+  number : Int,
+  merged? : Bool = true,
+  date? : String = "2026-09-22",
+) -> @activity.UpstreamPullRequest {
+  {
+    owner: "openSUSE",
+    repo: "opi",
+    number,
+    title: "PR \{number}",
+    url: "https://github.com/openSUSE/opi/pull/\{number}",
+    merged,
+    date,
   }
-  assert_true(
-    @activity.render_markdown(activity, login="gaato").contains(
-      "[openSUSE](https://github.com/openSUSE) — 2 PRs in [opi](https://github.com/openSUSE/opi)",
-    ),
-  )
 }
 
 ///|
-test "single-state upstream owners include zero for the other state" {
-  let upstream = @activity.group_upstream([
-    { owner: "a", repo: "one", merged: false, },
-    { owner: "b", repo: "two", merged: true, },
-  ])
-  json_inspect(upstream, content=[
-    { "owner": "a", "repos": ["one"], "prs": 1, "open": 1, "merged": 0 },
-    { "owner": "b", "repos": ["two"], "prs": 1, "open": 0, "merged": 1 },
-  ])
-  let activity : @activity.Activity = {
+fn upstream_activity(
+  prs : Array[@activity.UpstreamPullRequest],
+) -> @activity.Activity {
+  {
     generated_on: "2026-09-23",
     repo_days: 90,
     upstream_days: 365,
     repos: [],
-    upstream,
+    upstream: prs,
     posts: [],
   }
+}
+
+///|
+test "each upstream PR renders with its state" {
+  let markdown = @activity.render_markdown(
+    upstream_activity([
+      upstream_pr(1, merged=true),
+      upstream_pr(2, merged=false, date="2026-09-21"),
+    ]),
+    login="gaato",
+  )
+  assert_true(
+    markdown.contains(
+      "- 2026-09-22 · [openSUSE/opi#1](https://github.com/openSUSE/opi/pull/1) — PR 1 (merged)",
+    ),
+  )
+  assert_true(
+    markdown.contains(
+      "- 2026-09-21 · [openSUSE/opi#2](https://github.com/openSUSE/opi/pull/2) — PR 2 (open)",
+    ),
+  )
+  assert_false(markdown.contains("more"))
+}
+
+///|
+test "upstream PRs beyond max_upstream are summarised, not dropped" {
+  let prs = []
+  for i in 1..<=12 {
+    prs.push(upstream_pr(i))
+  }
+  let activity = upstream_activity(prs)
   let markdown = @activity.render_markdown(activity, login="gaato")
-  assert_true(markdown.contains("[a](https://github.com/a) — open 1 in"))
-  assert_true(markdown.contains("[b](https://github.com/b) — merged 1 in"))
-  assert_false(markdown.contains("open 0"))
-  assert_false(markdown.contains("merged 0"))
+  assert_true(markdown.contains("/pull/10)"))
+  assert_false(markdown.contains("/pull/11)"))
+  assert_true(markdown.contains("- …and 2 more\n"))
+  // The saved activity still holds every PR, so the cap can change without
+  // fetching again.
+  assert_true(
+    @activity.render_markdown(activity, login="gaato", max_upstream=12).contains(
+      "/pull/12)",
+    ),
+  )
+  assert_false(
+    @activity.render_markdown(activity, login="gaato", max_upstream=12).contains(
+      "more",
+    ),
+  )
 }
 
 ///|

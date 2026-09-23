@@ -148,3 +148,30 @@ pub fn parse_rfc2822(text : StringView) -> Int64? {
     (hour * 3600 + minute * 60 + second - offset * 60).to_int64(),
   )
 }
+
+///|
+/// Parses an ISO 8601 UTC timestamp such as `2026-09-22T10:00:00Z` (as used by
+/// the GitHub API) into a Unix timestamp. Only the `Z` zone is understood.
+pub fn parse_iso8601_utc(text : StringView) -> Int64? {
+  guard text.length() == 20 &&
+    text[4] == '-' &&
+    text[7] == '-' &&
+    text[10] == 'T' &&
+    text[13] == ':' &&
+    text[16] == ':' &&
+    text[19] == 'Z' else {
+    return None
+  }
+  guard parse_number(text[:4]) is Some(year) &&
+    parse_number(text[5:7]) is Some(month) &&
+    parse_number(text[8:10]) is Some(day) &&
+    parse_number(text[11:13]) is Some(hour) &&
+    parse_number(text[14:16]) is Some(minute) &&
+    parse_number(text[17:19]) is Some(second) else {
+    return None
+  }
+  Some(
+    days_from_civil(year, month, day) * 86400L +
+    (hour * 3600 + minute * 60 + second).to_int64(),
+  )
+}

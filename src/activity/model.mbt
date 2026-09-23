@@ -8,22 +8,16 @@ pub(all) struct Repo {
 } derive(ToJson, FromJson)
 
 ///|
-/// Pull requests sent to repositories owned by someone else, grouped by owner.
-pub(all) struct Upstream {
-  owner : String
-  repos : Array[String]
-  prs : Int
-  open : Int?
-  merged : Int?
-} derive(ToJson, FromJson)
-
-///|
-/// An eligible pull request, used while grouping paginated GitHub results.
+/// A pull request sent to a repository owned by someone else.
 pub(all) struct UpstreamPullRequest {
   owner : String
   repo : String
+  number : Int
+  title : String
+  url : String
   merged : Bool
-}
+  date : String
+} derive(ToJson, FromJson)
 
 ///|
 /// A published article.
@@ -42,7 +36,7 @@ pub(all) struct Activity {
   repo_days : Int
   upstream_days : Int
   repos : Array[Repo]
-  upstream : Array[Upstream]
+  upstream : Array[UpstreamPullRequest]
   posts : Array[Post]
 } derive(ToJson, FromJson)
 
@@ -53,10 +47,10 @@ pub extend Repo with ToJson::{to_json}
 pub extend Repo with @json.FromJson::{from_json}
 
 ///|
-pub extend Upstream with ToJson::{to_json}
+pub extend UpstreamPullRequest with ToJson::{to_json}
 
 ///|
-pub extend Upstream with @json.FromJson::{from_json}
+pub extend UpstreamPullRequest with @json.FromJson::{from_json}
 
 ///|
 pub extend Post with ToJson::{to_json}

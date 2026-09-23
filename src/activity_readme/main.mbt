@@ -60,7 +60,7 @@ async fn fetch_contributions(token : String, now : Int64) -> Json {
 async fn fetch_upstream(
   token : String,
   now : Int64,
-) -> Array[@activity.Upstream] {
+) -> Array[@activity.UpstreamPullRequest] {
   let from = @activity.utc_midnight_days_ago(now, upstream_days)
   let prs : Array[@activity.UpstreamPullRequest] = []
   let mut cursor : String? = None
@@ -85,7 +85,7 @@ async fn fetch_upstream(
       None => break
     }
   }
-  @activity.group_upstream(prs)
+  @activity.sort_upstream(prs)
 }
 
 ///|

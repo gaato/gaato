@@ -8,11 +8,11 @@ import {
 // Values
 pub let contributions_query : String
 
-pub fn group_upstream(Array[UpstreamPullRequest], max_owners? : Int) -> Array[Upstream]
-
 pub fn jst_date(Int64) -> String
 
 pub fn latest_posts(Array[Array[Post]], limit~ : Int) -> Array[Post]
+
+pub fn parse_iso8601_utc(StringView) -> Int64?
 
 pub fn parse_pull_request_page(Json, from~ : String, login~ : String) -> (Array[UpstreamPullRequest], String?) raise
 
@@ -24,11 +24,13 @@ pub fn parse_rss(String, source~ : String) -> Array[Post]
 
 pub let pull_requests_query : String
 
-pub fn render_markdown(Activity, login~ : String) -> String
+pub fn render_markdown(Activity, login~ : String, max_upstream? : Int) -> String
+
+pub fn sort_upstream(Array[UpstreamPullRequest]) -> Array[UpstreamPullRequest]
 
 pub fn unescape_xml(String) -> String
 
-pub fn update_readme(String, Activity, login~ : String) -> String raise
+pub fn update_readme(String, Activity, login~ : String, max_upstream? : Int) -> String raise
 
 pub fn utc_midnight_days_ago(Int64, Int) -> String
 
@@ -42,7 +44,7 @@ pub(all) struct Activity {
   repo_days : Int
   upstream_days : Int
   repos : Array[Repo]
-  upstream : Array[Upstream]
+  upstream : Array[UpstreamPullRequest]
   posts : Array[Post]
 } derive(ToJson, @json.FromJson)
 pub fn Activity::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
@@ -66,21 +68,17 @@ pub(all) struct Repo {
 pub fn Repo::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
 pub fn Repo::to_json(Self) -> Json
 
-pub(all) struct Upstream {
-  owner : String
-  repos : Array[String]
-  prs : Int
-  open : Int?
-  merged : Int?
-} derive(ToJson, @json.FromJson)
-pub fn Upstream::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
-pub fn Upstream::to_json(Self) -> Json
-
 pub(all) struct UpstreamPullRequest {
   owner : String
   repo : String
+  number : Int
+  title : String
+  url : String
   merged : Bool
-}
+  date : String
+} derive(ToJson, @json.FromJson)
+pub fn UpstreamPullRequest::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub fn UpstreamPullRequest::to_json(Self) -> Json
 
 // Type aliases
 

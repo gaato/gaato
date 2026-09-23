@@ -59,7 +59,13 @@ fn short_name(name : String, login~ : String) -> String {
 
 ///|
 /// Renders the recent activity section as Markdown for the profile README.
-pub fn render_markdown(activity : Activity, login~ : String) -> String {
+/// `max_upstream` caps the pull request list; the rest is summarised in one
+/// trailing line, so the saved JSON can hold more than the README shows.
+pub fn render_markdown(
+  activity : Activity,
+  login~ : String,
+  max_upstream? : Int = 10,
+) -> String {
   let sb = StringBuilder()
   sb <+ "## Recent activity\n\n"
   sb <+ "### Working on\n\n"
@@ -82,25 +88,16 @@ pub fn render_markdown(activity : Activity, login~ : String) -> String {
   if activity.upstream.length() == 0 {
     sb <+ "- Nothing yet.\n"
   }
-  for upstream in activity.upstream {
-    sb <+ "- \{github_link(upstream.owner, upstream.owner)} — "
-    match (upstream.merged, upstream.open) {
-      (Some(merged), Some(open)) if merged > 0 && open > 0 =>
-        sb <+ "merged \{merged} · open \{open}"
-      (Some(merged), Some(_)) if merged > 0 => sb <+ "merged \{merged}"
-      (Some(_), Some(open)) if open > 0 => sb <+ "open \{open}"
-      _ => {
-        let unit = if upstream.prs == 1 { "PR" } else { "PRs" }
-        sb <+ "\{upstream.prs} \{unit}"
-      }
-    }
-    if upstream.repos.length() > 0 {
-      let repos = upstream.repos.map(repo => {
-        github_link(repo, "\{upstream.owner}/\{repo}")
-      })
-      sb <+ " in \{repos.join(", ")}"
-    }
-    sb <+ "\n"
+  let shown = activity.upstream[:activity.upstream.length().min(max_upstream)]
+  for pr in shown {
+    let state = if pr.merged { "merged" } else { "open" }
+    let label = "\{pr.owner}/\{pr.repo}#\{pr.number}"
+    sb <+
+      "- \{markdown_text(pr.date)} · \{markdown_link(label, pr.url)} — \{markdown_text(pr.title)} (\{state})\n"
+  }
+  let hidden = activity.upstream.length() - shown.length()
+  if hidden > 0 {
+    sb <+ "- …and \{hidden} more\n"
   }
   sb <+ "\n### Writing\n\n"
   if activity.posts.length() == 0 {
@@ -124,6 +121,7 @@ pub fn update_readme(
   readme : String,
   activity : Activity,
   login~ : String,
+  max_upstream? : Int = 10,
 ) -> String raise {
   guard readme.find(activity_start) is Some(start) else {
     fail("README activity start marker is missing")
@@ -141,7 +139,7 @@ pub fn update_readme(
   }
   readme[:content_start].to_owned() +
   "\n\n" +
-  render_markdown(activity, login~) +
+  render_markdown(activity, login~, max_upstream~) +
   "\n" +
   readme[end:].to_owned()
 }
