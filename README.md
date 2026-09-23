@@ -1,5 +1,15 @@
 <h1 align="center">がーと / gaato</h1>
 
+<p align="center"><em>Initial commit をしましょう</em></p>
+
+<p align="center">
+  <a href="https://gaato.net">gaato.net</a>
+  ·
+  <a href="https://qiita.com/gaato">Qiita</a>
+  ·
+  <a href="https://github.com/gaato">GitHub</a>
+</p>
+
 <!-- activity:start -->
 
 ## Recent activity
@@ -34,13 +44,3 @@ PRs created in the last 365 days, currently open or merged.
 Updated 2026-09-23 · generated with MoonBit
 
 <!-- activity:end -->
-
-<p align="center">
-  <a href="https://gaato.net">gaato.net</a>
-  ·
-  <a href="https://qiita.com/gaato">Qiita</a>
-  ·
-  <a href="https://github.com/gaato">GitHub</a>
-</p>
-
-<p align="center"><em>Initial commit をしましょう</em></p>
