@@ -47,7 +47,9 @@
         "async",
         "moon"
       ],
-      "prs": 5
+      "prs": 5,
+      "open": 0,
+      "merged": 5
     },
     {
       "owner": "openSUSE",
@@ -55,28 +57,36 @@
         "opi",
         "sdbootutil"
       ],
-      "prs": 2
+      "prs": 2,
+      "open": 0,
+      "merged": 2
     },
     {
       "owner": "systemd",
       "repos": [
         "systemd"
       ],
-      "prs": 1
+      "prs": 1,
+      "open": 1,
+      "merged": 0
     },
     {
       "owner": "aquaproj",
       "repos": [
         "aqua-registry"
       ],
-      "prs": 1
+      "prs": 1,
+      "open": 0,
+      "merged": 1
     },
     {
       "owner": "nim-lang",
       "repos": [
         "packages"
       ],
-      "prs": 1
+      "prs": 1,
+      "open": 0,
+      "merged": 1
     }
   ],
   "posts": [

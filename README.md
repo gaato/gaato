@@ -19,11 +19,11 @@ Commits, last 90 days.
 
 PRs created in the last 365 days, currently open or merged.
 
-- [moonbitlang](https://github.com/moonbitlang) — 5 PRs in [async](https://github.com/moonbitlang/async), [moon](https://github.com/moonbitlang/moon)
-- [openSUSE](https://github.com/openSUSE) — 2 PRs in [opi](https://github.com/openSUSE/opi), [sdbootutil](https://github.com/openSUSE/sdbootutil)
-- [systemd](https://github.com/systemd) — 1 PR in [systemd](https://github.com/systemd/systemd)
-- [aquaproj](https://github.com/aquaproj) — 1 PR in [aqua-registry](https://github.com/aquaproj/aqua-registry)
-- [nim-lang](https://github.com/nim-lang) — 1 PR in [packages](https://github.com/nim-lang/packages)
+- [moonbitlang](https://github.com/moonbitlang) — merged 5 in [async](https://github.com/moonbitlang/async), [moon](https://github.com/moonbitlang/moon)
+- [openSUSE](https://github.com/openSUSE) — merged 2 in [opi](https://github.com/openSUSE/opi), [sdbootutil](https://github.com/openSUSE/sdbootutil)
+- [systemd](https://github.com/systemd) — open 1 in [systemd](https://github.com/systemd/systemd)
+- [aquaproj](https://github.com/aquaproj) — merged 1 in [aqua-registry](https://github.com/aquaproj/aqua-registry)
+- [nim-lang](https://github.com/nim-lang) — merged 1 in [packages](https://github.com/nim-lang/packages)
 
 ### Writing
 
