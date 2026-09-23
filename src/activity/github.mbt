@@ -37,23 +37,21 @@ pub let pull_requests_query : String =
 let no_language_color : String = "#9a948a"
 
 ///|
-/// Extracts the recently committed repositories from `contributions_query`.
+/// Extracts the recently committed repositories from the `data` payload of
+/// `contributions_query`.
 pub fn parse_repositories(
-  response : Json,
+  data : Json,
   max_repos? : Int = 6,
 ) -> Array[Repo] raise {
-  guard response
+  guard data
     is {
-      "data": {
-        "user": {
-          "recent": { "commitContributionsByRepository": Array(commits), .. },
-          ..
-        },
+      "user": {
+        "recent": { "commitContributionsByRepository": Array(commits), .. },
         ..
       },
       ..
     } else {
-    fail("unexpected GraphQL response shape: \{response.stringify()}")
+    fail("unexpected GraphQL response shape: \{data.stringify()}")
   }
   let repos : Array[Repo] = []
   for entry in commits {
@@ -87,24 +85,22 @@ pub fn parse_repositories(
 }
 
 ///|
-/// Parses one newest-first page, retaining only PRs created within `from`.
-/// Returns the next cursor only when more in-window PRs may remain.
+/// Parses the `data` payload of one newest-first page, retaining only PRs
+/// created within `from`. Returns the next cursor only when more in-window PRs
+/// may remain.
 pub fn parse_pull_request_page(
-  response : Json,
+  data : Json,
   from~ : String,
   login~ : String,
 ) -> (Array[UpstreamPullRequest], String?) raise {
-  guard response
+  guard data
     is {
-      "data": {
-        "user": {
-          "pullRequests": {
-            "nodes": Array(nodes),
-            "pageInfo": {
-              "hasNextPage": has_next_json,
-              "endCursor": end_cursor,
-              ..
-            },
+      "user": {
+        "pullRequests": {
+          "nodes": Array(nodes),
+          "pageInfo": {
+            "hasNextPage": has_next_json,
+            "endCursor": end_cursor,
             ..
           },
           ..
@@ -113,7 +109,7 @@ pub fn parse_pull_request_page(
       },
       ..
     } else {
-    fail("unexpected pull request response shape: \{response.stringify()}")
+    fail("unexpected pull request response shape: \{data.stringify()}")
   }
   let has_next = match has_next_json {
     True => true

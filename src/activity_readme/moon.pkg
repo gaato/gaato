@@ -1,6 +1,9 @@
 import {
+  "gaato/github",
+  "gaato/http" @ghttp,
+  "gaato/http-async" @httpasync,
+  "gaato/sdk-runtime" @runtime,
   "moonbitlang/async",
-  "moonbitlang/async/http",
   "moonbitlang/async/fs",
   "moonbitlang/core/env",
   "moonbitlang/core/json",
@@ -8,3 +11,5 @@ import {
 }
 
 pkgtype(kind: "executable")
+
+supported_targets = "js + native + wasm"

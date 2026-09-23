@@ -1,32 +1,30 @@
 ///|
 let sample_response : Json = {
-  "data": {
-    "user": {
-      "recent": {
-        "commitContributionsByRepository": [
-          {
-            "repository": {
-              "nameWithOwner": "gaato/discord.mbt",
-              "primaryLanguage": { "name": "MoonBit", "color": "#b92381" },
-            },
-            "contributions": { "totalCount": 247 },
+  "user": {
+    "recent": {
+      "commitContributionsByRepository": [
+        {
+          "repository": {
+            "nameWithOwner": "gaato/discord.mbt",
+            "primaryLanguage": { "name": "MoonBit", "color": "#b92381" },
           },
-          {
-            "repository": {
-              "nameWithOwner": "gaato/zenn-content",
-              "primaryLanguage": null,
-            },
-            "contributions": { "totalCount": 15 },
+          "contributions": { "totalCount": 247 },
+        },
+        {
+          "repository": {
+            "nameWithOwner": "gaato/zenn-content",
+            "primaryLanguage": null,
           },
-          {
-            "repository": {
-              "nameWithOwner": "gaato/cordnim",
-              "primaryLanguage": { "name": "Nim", "color": "#ffc200" },
-            },
-            "contributions": { "totalCount": 34 },
+          "contributions": { "totalCount": 15 },
+        },
+        {
+          "repository": {
+            "nameWithOwner": "gaato/cordnim",
+            "primaryLanguage": { "name": "Nim", "color": "#ffc200" },
           },
-        ],
-      },
+          "contributions": { "totalCount": 34 },
+        },
+      ],
     },
   },
 }
@@ -67,73 +65,71 @@ test "upstream PRs include only recently opened open or merged PRs" {
     @activity.pull_requests_query.contains("field: CREATED_AT, direction: DESC"),
   )
   let first : Json = {
-    "data": {
-      "user": {
-        "pullRequests": {
-          "nodes": [
-            {
-              "createdAt": "2026-09-22T10:00:00Z",
-              "state": "OPEN",
-              "number": 12,
-              "title": "Add a timeout to the poller",
-              "url": "https://github.com/moonbitlang/async/pull/12",
-              "author": { "login": "gaato" },
-              "repository": {
-                "nameWithOwner": "moonbitlang/async",
-                "owner": { "login": "moonbitlang" },
-              },
+    "user": {
+      "pullRequests": {
+        "nodes": [
+          {
+            "createdAt": "2026-09-22T10:00:00Z",
+            "state": "OPEN",
+            "number": 12,
+            "title": "Add a timeout to the poller",
+            "url": "https://github.com/moonbitlang/async/pull/12",
+            "author": { "login": "gaato" },
+            "repository": {
+              "nameWithOwner": "moonbitlang/async",
+              "owner": { "login": "moonbitlang" },
             },
-            {
-              "createdAt": "2026-09-20T10:00:00Z",
-              "state": "MERGED",
-              "number": 34,
-              "title": "Fix moon test on Windows",
-              "url": "https://github.com/moonbitlang/moon/pull/34",
-              "author": { "login": "gaato" },
-              "repository": {
-                "nameWithOwner": "moonbitlang/moon",
-                "owner": { "login": "moonbitlang" },
-              },
+          },
+          {
+            "createdAt": "2026-09-20T10:00:00Z",
+            "state": "MERGED",
+            "number": 34,
+            "title": "Fix moon test on Windows",
+            "url": "https://github.com/moonbitlang/moon/pull/34",
+            "author": { "login": "gaato" },
+            "repository": {
+              "nameWithOwner": "moonbitlang/moon",
+              "owner": { "login": "moonbitlang" },
             },
-            {
-              "createdAt": "2026-09-19T10:00:00Z",
-              "state": "CLOSED",
-              "number": 56,
-              "title": "Closed, so excluded",
-              "url": "https://github.com/openSUSE/opi/pull/56",
-              "author": { "login": "gaato" },
-              "repository": {
-                "nameWithOwner": "openSUSE/opi",
-                "owner": { "login": "openSUSE" },
-              },
+          },
+          {
+            "createdAt": "2026-09-19T10:00:00Z",
+            "state": "CLOSED",
+            "number": 56,
+            "title": "Closed, so excluded",
+            "url": "https://github.com/openSUSE/opi/pull/56",
+            "author": { "login": "gaato" },
+            "repository": {
+              "nameWithOwner": "openSUSE/opi",
+              "owner": { "login": "openSUSE" },
             },
-            {
-              "createdAt": "2026-09-18T10:00:00Z",
-              "state": "MERGED",
-              "number": 78,
-              "title": "Own repository, so excluded",
-              "url": "https://github.com/gaato/gaato.net/pull/78",
-              "author": { "login": "gaato" },
-              "repository": {
-                "nameWithOwner": "gaato/gaato.net",
-                "owner": { "login": "gaato" },
-              },
+          },
+          {
+            "createdAt": "2026-09-18T10:00:00Z",
+            "state": "MERGED",
+            "number": 78,
+            "title": "Own repository, so excluded",
+            "url": "https://github.com/gaato/gaato.net/pull/78",
+            "author": { "login": "gaato" },
+            "repository": {
+              "nameWithOwner": "gaato/gaato.net",
+              "owner": { "login": "gaato" },
             },
-            {
-              "createdAt": "2026-09-17T10:00:00Z",
-              "state": "OPEN",
-              "number": 90,
-              "title": "Someone else's PR, so excluded",
-              "url": "https://github.com/openSUSE/opi/pull/90",
-              "author": { "login": "someone-else" },
-              "repository": {
-                "nameWithOwner": "openSUSE/opi",
-                "owner": { "login": "openSUSE" },
-              },
+          },
+          {
+            "createdAt": "2026-09-17T10:00:00Z",
+            "state": "OPEN",
+            "number": 90,
+            "title": "Someone else's PR, so excluded",
+            "url": "https://github.com/openSUSE/opi/pull/90",
+            "author": { "login": "someone-else" },
+            "repository": {
+              "nameWithOwner": "openSUSE/opi",
+              "owner": { "login": "openSUSE" },
             },
-          ],
-          "pageInfo": { "hasNextPage": true, "endCursor": "cursor-1" },
-        },
+          },
+        ],
+        "pageInfo": { "hasNextPage": true, "endCursor": "cursor-1" },
       },
     },
   }
@@ -144,37 +140,35 @@ test "upstream PRs include only recently opened open or merged PRs" {
   )
   debug_inspect(next, content="Some(\"cursor-1\")")
   let second : Json = {
-    "data": {
-      "user": {
-        "pullRequests": {
-          "nodes": [
-            {
-              "createdAt": "2025-09-23T00:00:00Z",
-              "state": "MERGED",
-              "number": 1,
-              "title": "Exactly on the cutoff",
-              "url": "https://github.com/moonbitlang/async/pull/1",
-              "author": { "login": "gaato" },
-              "repository": {
-                "nameWithOwner": "moonbitlang/async",
-                "owner": { "login": "moonbitlang" },
-              },
+    "user": {
+      "pullRequests": {
+        "nodes": [
+          {
+            "createdAt": "2025-09-23T00:00:00Z",
+            "state": "MERGED",
+            "number": 1,
+            "title": "Exactly on the cutoff",
+            "url": "https://github.com/moonbitlang/async/pull/1",
+            "author": { "login": "gaato" },
+            "repository": {
+              "nameWithOwner": "moonbitlang/async",
+              "owner": { "login": "moonbitlang" },
             },
-            {
-              "createdAt": "2025-09-22T23:59:59Z",
-              "state": "OPEN",
-              "number": 2,
-              "title": "Past the cutoff, so excluded",
-              "url": "https://github.com/systemd/systemd/pull/2",
-              "author": { "login": "gaato" },
-              "repository": {
-                "nameWithOwner": "systemd/systemd",
-                "owner": { "login": "systemd" },
-              },
+          },
+          {
+            "createdAt": "2025-09-22T23:59:59Z",
+            "state": "OPEN",
+            "number": 2,
+            "title": "Past the cutoff, so excluded",
+            "url": "https://github.com/systemd/systemd/pull/2",
+            "author": { "login": "gaato" },
+            "repository": {
+              "nameWithOwner": "systemd/systemd",
+              "owner": { "login": "systemd" },
             },
-          ],
-          "pageInfo": { "hasNextPage": true, "endCursor": "cursor-2" },
-        },
+          },
+        ],
+        "pageInfo": { "hasNextPage": true, "endCursor": "cursor-2" },
       },
     },
   }

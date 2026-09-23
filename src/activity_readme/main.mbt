@@ -14,91 +14,72 @@ let feeds : Array[(String, String)] = [
 ]
 
 ///|
+let user_agent : String = "gaato-profile-readme"
+
+///|
 let data_path : String = "data/activity.json"
 
 ///|
 let readme_path : String = "README.md"
 
 ///|
-fn header(name : String) -> @http.CaseInsensitiveString {
-  @http.CaseInsensitiveString(name)
-}
-
-///|
-async fn fetch_graphql(
-  token : String,
-  query : String,
-  variables : Json,
-) -> Json {
-  let body : Json = { "query": query, "variables": variables }
-  let (response, data) = @http.post(
-    "https://api.github.com/graphql",
-    body,
-    headers=Map::from_array([
-      (header("Authorization"), "bearer \{token}"),
-      (header("Content-Type"), "application/json"),
-      (header("User-Agent"), "gaato-profile-readme"),
-    ]),
-  )
-  let text = data.text()
-  if response.code != 200 {
-    fail("GraphQL request failed with HTTP \{response.code}: \{text}")
+/// Reports a parser failure the way the SDK reports one, so a query and a
+/// paginator page fail alike. The body stays empty: the payload that failed is
+/// already in the message, and there are no GraphQL errors to read back.
+fn[T] decoded(parse : () -> T raise) -> T raise @runtime.SdkError {
+  parse() catch {
+    error =>
+      raise @runtime.Decode(message=error.to_string(), body=Bytes::new(0))
   }
-  @json.parse(text)
 }
 
 ///|
-async fn fetch_contributions(token : String, now : Int64) -> Json {
-  fetch_graphql(token, @activity.contributions_query, {
+async fn fetch_repositories(
+  gh : @github.GitHub,
+  now : Int64,
+) -> Array[@activity.Repo] raise @runtime.SdkError {
+  let data = gh.graphql(query=@activity.contributions_query, variables={
     "login": login,
     "recentFrom": @activity.utc_midnight_days_ago(now, repo_days),
     "to": @activity.utc_timestamp(now),
   })
+  decoded(() => @activity.parse_repositories(data))
 }
 
 ///|
+/// The paginator stops where `parse_pull_request_page` returns no cursor, which
+/// is the 365-day cutoff or the end of the connection, whichever comes first.
 async fn fetch_upstream(
-  token : String,
+  gh : @github.GitHub,
   now : Int64,
-) -> Array[@activity.UpstreamPullRequest] {
+) -> Array[@activity.UpstreamPullRequest] raise @runtime.SdkError {
   let from = @activity.utc_midnight_days_ago(now, upstream_days)
   let prs : Array[@activity.UpstreamPullRequest] = []
-  let mut cursor : String? = None
-  for ;; {
-    let variables : Json = match cursor {
-      Some(value) => { "login": login, "cursor": value }
-      None => { "login": login }
-    }
-    let response = fetch_graphql(
-      token, @activity.pull_requests_query, variables,
-    )
-    let (page, next) = @activity.parse_pull_request_page(
-      response,
-      from~,
-      login~,
-    )
-    for pr in page {
-      prs.push(pr)
-    }
-    match next {
-      Some(value) => cursor = Some(value)
-      None => break
-    }
-  }
+  gh
+  .graphql_paginator(
+    data => {
+      decoded(() => @activity.parse_pull_request_page(data, from~, login~))
+    },
+    query=@activity.pull_requests_query,
+    variables={ "login": login },
+    cursor_variable="cursor",
+  )
+  .each(pr => prs.push(pr))
   @activity.sort_upstream(prs)
 }
 
 ///|
-async fn fetch_feed(url : String) -> String {
-  let (response, data) = @http.get(
-    url,
-    headers=Map::from_array([(header("User-Agent"), "gaato-profile-readme")]),
+async fn fetch_feed(
+  transport : @httpasync.AsyncTransport,
+  url : String,
+) -> String {
+  let response = transport.send(
+    @ghttp.Request::get(url).header("user-agent", user_agent),
   )
-  let text = data.text()
-  if response.code != 200 {
-    fail("feed request for \{url} failed with HTTP \{response.code}")
+  if response.status != 200 {
+    fail("feed request for \{url} failed with HTTP \{response.status}")
   }
-  text
+  response.text()
 }
 
 ///|
@@ -106,14 +87,22 @@ async fn build_activity() -> @activity.Activity {
   guard @env.get_env_var("GITHUB_TOKEN") is Some(token) && token != "" else {
     fail("GITHUB_TOKEN is not set")
   }
+  let transport = @httpasync.AsyncTransport::new()
+  let gh = @github.GitHub::new(
+    transport,
+    @httpasync.AsyncClock::new(),
+    token~,
+    user_agent~,
+  )
   let now = (@env.now() / 1000UL).reinterpret_as_int64()
-  let repos = @activity.parse_repositories(fetch_contributions(token, now))
-  let upstream = fetch_upstream(token, now)
+  let repos = fetch_repositories(gh, now)
+  let upstream = fetch_upstream(gh, now)
   let lists = []
   for feed in feeds {
     let (source, url) = feed
-    lists.push(@activity.parse_rss(fetch_feed(url), source~))
+    lists.push(@activity.parse_rss(fetch_feed(transport, url), source~))
   }
+  transport.close()
   {
     generated_on: @activity.jst_date(now),
     repo_days,
