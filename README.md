@@ -5,9 +5,9 @@
 <p align="center">
   <a href="https://gaato.net">gaato.net</a>
   ·
-  <a href="https://qiita.com/gaato">Qiita</a>
+  <a href="https://zenn.dev/gaato">Zenn</a>
   ·
-  <a href="https://github.com/gaato">GitHub</a>
+  <a href="https://qiita.com/gaato">Qiita</a>
 </p>
 
 <!-- activity:start -->
