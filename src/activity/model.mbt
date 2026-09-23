@@ -25,7 +25,7 @@ pub(all) struct Post {
 } derive(ToJson, FromJson)
 
 ///|
-/// Everything the activity card shows. `generated_on` and the two windows are
+/// Everything the README activity section shows. `generated_on` and the two windows are
 /// in JST calendar days.
 pub(all) struct Activity {
   generated_on : String

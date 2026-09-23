@@ -17,7 +17,7 @@ let feeds : Array[(String, String)] = [
 let data_path : String = "data/activity.json"
 
 ///|
-let svg_path : String = "assets/activity.svg"
+let readme_path : String = "README.md"
 
 ///|
 fn header(name : String) -> @http.CaseInsensitiveString {
@@ -91,24 +91,28 @@ async fn build_activity() -> @activity.Activity {
 }
 
 ///|
-async fn write_svg(activity : @activity.Activity) -> Unit {
-  @fs.write_file(svg_path, @activity.render(activity, login~))
+async fn write_readme(activity : @activity.Activity) -> Unit {
+  let readme = @fs.read_file(readme_path).text()
+  let updated = @activity.update_readme(readme, activity, login~)
+  if updated != readme {
+    @fs.write_file(readme_path, updated)
+  }
 }
 
 ///|
-/// `moon run src/activity_svg` fetches fresh data, writes `data/activity.json`
-/// and renders `assets/activity.svg`. `moon run src/activity_svg -- render`
-/// only re-renders the SVG from the saved JSON.
+/// `moon run src/activity_readme` fetches fresh data, writes `data/activity.json`
+/// and updates the marked README section. `moon run src/activity_readme -- render`
+/// only re-renders that section from the saved JSON.
 async fn main {
   let args = @env.args()
   if args.length() > 1 && args[1] == "render" {
     let saved = @json.parse(@fs.read_file(data_path).text())
-    write_svg(@json.from_json(saved))
-    println("rendered \{svg_path} from \{data_path}")
+    write_readme(@json.from_json(saved))
+    println("rendered \{readme_path} from \{data_path}")
   } else {
     let activity = build_activity()
     @fs.write_file(data_path, activity.to_json().stringify(indent=2) + "\n")
-    write_svg(activity)
-    println("wrote \{data_path} and \{svg_path}")
+    write_readme(activity)
+    println("wrote \{data_path} and \{readme_path}")
   }
 }

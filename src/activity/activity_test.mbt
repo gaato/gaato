@@ -173,21 +173,15 @@ test "dates" {
 }
 
 ///|
-test "text helpers" {
-  inspect(@activity.escape_xml("a<b&c\"d"), content="a&lt;b&amp;c&quot;d")
+test "RSS text decoding" {
   inspect(
     @activity.unescape_xml("&#x41;&#66;&amp;&unknown;&"),
     content="AB&&unknown;&",
   )
-  inspect(
-    @activity.truncate_to_width("日本語のタイトルです", 13.0, 60.0),
-    content="日本語の…",
-  )
-  inspect(@activity.truncate_to_width("short", 13.0, 60.0), content="short")
 }
 
 ///|
-test "render produces a well-formed card" {
+test "render Markdown activity and preserve README outside its markers" {
   let activity : @activity.Activity = {
     generated_on: "2026-09-22",
     repo_days: 90,
@@ -204,21 +198,71 @@ test "render produces a well-formed card" {
     upstream: [{ owner: "moonbitlang", repos: ["async", "moon"], prs: 5, }],
     posts: [
       {
-        title: "Ctrl & the mouse",
-        url: "https://gaato.net/articles/stuck-ctrl/?a=1&b=2",
+        title: "Ctrl & the [mouse] <2>\nnext",
+        url: "https://gaato.net/articles/stuck-ctrl/(test)?a=1&b=2",
         date: "2026-07-06",
         source: "gaato.net",
       },
     ],
   }
-  let svg = @activity.render(activity, login="gaato")
-  assert_true(svg.has_prefix("<svg xmlns=\"http://www.w3.org/2000/svg\""))
-  assert_true(svg.has_suffix("</svg>\n"))
-  assert_true(svg.contains(">discord.mbt</text>"))
-  assert_true(svg.contains(">Ctrl &amp; the mouse</text>"))
+  let readme = "# Intro\n\n<!-- activity:start -->\nold\n<!-- activity:end -->\n\nFooter\n"
+  let updated = @activity.update_readme(readme, activity, login="gaato")
+  assert_true(updated.has_prefix("# Intro\n\n<!-- activity:start -->\n\n"))
+  assert_true(updated.has_suffix("<!-- activity:end -->\n\nFooter\n"))
   assert_true(
-    svg.contains("href=\"https://gaato.net/articles/stuck-ctrl/?a=1&amp;b=2\""),
+    updated.contains(
+      "[discord.mbt](https://github.com/gaato/discord.mbt) — 247 commits (MoonBit)",
+    ),
   )
-  assert_true(svg.contains("updated 2026-09-22 · generated with MoonBit"))
-  assert_false(svg.contains("gaato/discord.mbt"))
+  assert_true(
+    updated.contains(
+      "[moonbitlang](https://github.com/moonbitlang) — 5 PRs in [async](https://github.com/moonbitlang/async)",
+    ),
+  )
+  assert_true(
+    updated.contains(
+      "[Ctrl & the \\[mouse\\] \\<2\\> next](https://gaato.net/articles/stuck-ctrl/\\(test\\)?a=1&b=2)",
+    ),
+  )
+  assert_true(updated.contains("Updated 2026-09-22 · generated with MoonBit"))
+  assert_false(updated.contains("\nold\n"))
+  inspect(
+    @activity.update_readme(updated, activity, login="gaato"),
+    content=updated,
+  )
+}
+
+///|
+test "empty activity and invalid README markers" {
+  let empty : @activity.Activity = {
+    generated_on: "2026-09-22",
+    repo_days: 90,
+    upstream_days: 365,
+    repos: [],
+    upstream: [],
+    posts: [],
+  }
+  let rendered = @activity.render_markdown(empty, login="gaato")
+  assert_true(
+    rendered.contains(
+      "### Working on\n\nCommits, last 90 days.\n\n- Nothing yet.",
+    ),
+  )
+  assert_true(
+    rendered.contains(
+      "### Upstream\n\nPull requests, last 365 days.\n\n- Nothing yet.",
+    ),
+  )
+  assert_true(rendered.contains("### Writing\n\n- Nothing yet."))
+  for
+    invalid in [
+      "no markers", "<!-- activity:start -->\nmissing end", "<!-- activity:end --><!-- activity:start -->",
+      "<!-- activity:start --><!-- activity:end --><!-- activity:start --><!-- activity:end -->",
+    ] {
+    try @activity.update_readme(invalid, empty, login="gaato") catch {
+      _ => ()
+    } noraise {
+      _ => fail("expected invalid README markers to fail")
+    }
+  }
 }

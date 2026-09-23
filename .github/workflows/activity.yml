@@ -49,20 +49,20 @@ jobs:
       - name: Test
         run: moon test src/activity
 
-      - name: Generate activity card
+      - name: Update README activity
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: moon run src/activity_svg
+        run: moon run src/activity_readme
 
       - name: Commit and push if changed
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/activity.json assets/activity.svg
+          git add data/activity.json README.md
           if git diff --cached --quiet; then
             echo "no changes"
             exit 0
           fi
-          git commit -m "Update activity card"
+          git commit -m "Update README activity"
           git push

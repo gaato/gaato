@@ -8,8 +8,6 @@ import {
 // Values
 pub let contributions_query : String
 
-pub fn escape_xml(String) -> String
-
 pub fn jst_date(Int64) -> String
 
 pub fn latest_posts(Array[Array[Post]], limit~ : Int) -> Array[Post]
@@ -20,13 +18,11 @@ pub fn parse_rfc2822(StringView) -> Int64?
 
 pub fn parse_rss(String, source~ : String) -> Array[Post]
 
-pub fn render(Activity, login~ : String) -> String
-
-pub fn text_width(String, Double) -> Double
-
-pub fn truncate_to_width(String, Double, Double) -> String
+pub fn render_markdown(Activity, login~ : String) -> String
 
 pub fn unescape_xml(String) -> String
+
+pub fn update_readme(String, Activity, login~ : String) -> String raise
 
 pub fn utc_midnight_days_ago(Int64, Int) -> String
 
