@@ -114,8 +114,7 @@ pub fn render_markdown(activity : Activity, login~ : String) -> String {
     }
     sb <+ "\n"
   }
-  sb <+
-    "\nUpdated \{markdown_text(activity.generated_on)} · generated with MoonBit\n"
+  sb <+ "\nUpdated \{markdown_text(activity.generated_on)}\n"
   sb.to_string()
 }
 

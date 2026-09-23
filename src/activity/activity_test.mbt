@@ -306,7 +306,8 @@ test "render Markdown activity and preserve README outside its markers" {
       "[Ctrl & the \\[mouse\\] \\<2\\> next](https://gaato.net/articles/stuck-ctrl/\\(test\\)?a=1&b=2)",
     ),
   )
-  assert_true(updated.contains("Updated 2026-09-22 · generated with MoonBit"))
+  assert_true(updated.contains("Updated 2026-09-22\n"))
+  assert_false(updated.contains("generated with MoonBit"))
   assert_false(updated.contains("\nold\n"))
   inspect(
     @activity.update_readme(updated, activity, login="gaato"),

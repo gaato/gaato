@@ -41,6 +41,6 @@ PRs created in the last 365 days, currently open or merged.
 - 2026-08-30 · [2019–2020年に作った数学の問題](https://gaato.net/articles/math-problems-2019-2020/) (gaato.net)
 - 2026-07-06 · [Ctrlが押しっぱなしになる犯人はマウスだった](https://gaato.net/articles/stuck-ctrl-was-the-mouse/) (gaato.net)
 
-Updated 2026-09-23 · generated with MoonBit
+Updated 2026-09-23
 
 <!-- activity:end -->
