@@ -27,18 +27,18 @@ Commits, last 90 days.
 
 ### Upstream
 
-PRs created in the last 365 days, currently open or merged.
+PRs created in the last 365 days, currently 🟣 merged or 🟢 open.
 
-- 2026-09-21 · [moonbitlang/async#628](https://github.com/moonbitlang/async/pull/628) — Make recursive mkdir succeed on an existing directory (merged)
-- 2026-09-18 · [systemd/systemd#43791](https://github.com/systemd/systemd/pull/43791) — boot: measure Type #1 DeviceTrees into PCR 12 (open)
-- 2026-09-18 · [moonbitlang/moon#2235](https://github.com/moonbitlang/moon/pull/2235) — fix(mooncake): prevent registry index pulls from hanging on large Git output (merged)
-- 2026-09-06 · [repology/repology-rules#1235](https://github.com/repology/repology-rules/pull/1235) — karukan: merge (merged)
-- 2026-09-06 · [togatoga/karukan#118](https://github.com/togatoga/karukan/pull/118) — docs: パッケージからのインストール手順を追加（openSUSE / AUR / FreeBSD） (open)
-- 2026-08-29 · [openSUSE/opi#223](https://github.com/openSUSE/opi/pull/223) — Add ChatGPT desktop app plugin (merged)
-- 2026-08-27 · [moonbitlang/async#579](https://github.com/moonbitlang/async/pull/579) — Handle pre-aborted signals in Promise::from\_async (merged)
-- 2026-08-27 · [moonbitlang/async#578](https://github.com/moonbitlang/async/pull/578) — Fix empty JavaScript HTTP response bodies (merged)
-- 2026-07-15 · [moonbitlang/async#500](https://github.com/moonbitlang/async/pull/500) — fix(js): keep scheduling rounds after Promise::from\_async (merged)
-- 2026-06-14 · [openSUSE/sdbootutil#394](https://github.com/openSUSE/sdbootutil/pull/394) — Add configurable devicetree entry support (merged)
+- 🟣 2026-09-21 · [moonbitlang/async#628](https://github.com/moonbitlang/async/pull/628) — Make recursive mkdir succeed on an existing directory
+- 🟢 2026-09-18 · [systemd/systemd#43791](https://github.com/systemd/systemd/pull/43791) — boot: measure Type #1 DeviceTrees into PCR 12
+- 🟣 2026-09-18 · [moonbitlang/moon#2235](https://github.com/moonbitlang/moon/pull/2235) — fix(mooncake): prevent registry index pulls from hanging on large Git output
+- 🟣 2026-09-06 · [repology/repology-rules#1235](https://github.com/repology/repology-rules/pull/1235) — karukan: merge
+- 🟢 2026-09-06 · [togatoga/karukan#118](https://github.com/togatoga/karukan/pull/118) — docs: パッケージからのインストール手順を追加（openSUSE / AUR / FreeBSD）
+- 🟣 2026-08-29 · [openSUSE/opi#223](https://github.com/openSUSE/opi/pull/223) — Add ChatGPT desktop app plugin
+- 🟣 2026-08-27 · [moonbitlang/async#579](https://github.com/moonbitlang/async/pull/579) — Handle pre-aborted signals in Promise::from\_async
+- 🟣 2026-08-27 · [moonbitlang/async#578](https://github.com/moonbitlang/async/pull/578) — Fix empty JavaScript HTTP response bodies
+- 🟣 2026-07-15 · [moonbitlang/async#500](https://github.com/moonbitlang/async/pull/500) — fix(js): keep scheduling rounds after Promise::from\_async
+- 🟣 2026-06-14 · [openSUSE/sdbootutil#394](https://github.com/openSUSE/sdbootutil/pull/394) — Add configurable devicetree entry support
 - …and 2 more
 
 ### Writing

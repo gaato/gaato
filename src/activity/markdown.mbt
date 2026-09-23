@@ -50,6 +50,15 @@ fn github_link(label : String, path : String) -> String {
 }
 
 ///|
+/// Pull request state, in GitHub's own colours: purple for merged, green for
+/// open. Rendering them at the start of the line keeps the markers in one
+/// column, so the mix is readable at a glance.
+let merged_marker : String = "\u{1F7E3}"
+
+///|
+let open_marker : String = "\u{1F7E2}"
+
+///|
 fn short_name(name : String, login~ : String) -> String {
   match name.strip_prefix("\{login}/") {
     Some(rest) => rest.to_owned()
@@ -84,16 +93,16 @@ pub fn render_markdown(
   }
   sb <+ "\n### Upstream\n\n"
   sb <+
-    "PRs created in the last \{activity.upstream_days} days, currently open or merged.\n\n"
+    "PRs created in the last \{activity.upstream_days} days, currently \{merged_marker} merged or \{open_marker} open.\n\n"
   if activity.upstream.length() == 0 {
     sb <+ "- Nothing yet.\n"
   }
   let shown = activity.upstream[:activity.upstream.length().min(max_upstream)]
   for pr in shown {
-    let state = if pr.merged { "merged" } else { "open" }
+    let state = if pr.merged { merged_marker } else { open_marker }
     let label = "\{pr.owner}/\{pr.repo}#\{pr.number}"
     sb <+
-      "- \{markdown_text(pr.date)} · \{markdown_link(label, pr.url)} — \{markdown_text(pr.title)} (\{state})\n"
+      "- \{state} \{markdown_text(pr.date)} · \{markdown_link(label, pr.url)} — \{markdown_text(pr.title)}\n"
   }
   let hidden = activity.upstream.length() - shown.length()
   if hidden > 0 {

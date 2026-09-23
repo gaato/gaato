@@ -359,7 +359,7 @@ test "render Markdown activity and preserve README outside its markers" {
   )
   assert_true(
     updated.contains(
-      "- 2026-09-22 · [moonbitlang/async#12](https://github.com/moonbitlang/async/pull/12) — Add a timeout to the poller (open)",
+      "- 🟢 2026-09-22 · [moonbitlang/async#12](https://github.com/moonbitlang/async/pull/12) — Add a timeout to the poller",
     ),
   )
   assert_true(
@@ -419,12 +419,12 @@ test "each upstream PR renders with its state" {
   )
   assert_true(
     markdown.contains(
-      "- 2026-09-22 · [openSUSE/opi#1](https://github.com/openSUSE/opi/pull/1) — PR 1 (merged)",
+      "- 🟣 2026-09-22 · [openSUSE/opi#1](https://github.com/openSUSE/opi/pull/1) — PR 1",
     ),
   )
   assert_true(
     markdown.contains(
-      "- 2026-09-21 · [openSUSE/opi#2](https://github.com/openSUSE/opi/pull/2) — PR 2 (open)",
+      "- 🟢 2026-09-21 · [openSUSE/opi#2](https://github.com/openSUSE/opi/pull/2) — PR 2",
     ),
   )
   assert_false(markdown.contains("more"))
@@ -473,7 +473,7 @@ test "empty activity and invalid README markers" {
   )
   assert_true(
     rendered.contains(
-      "### Upstream\n\nPRs created in the last 365 days, currently open or merged.\n\n- Nothing yet.",
+      "### Upstream\n\nPRs created in the last 365 days, currently 🟣 merged or 🟢 open.\n\n- Nothing yet.",
     ),
   )
   assert_true(rendered.contains("### Writing\n\n- Nothing yet."))
