@@ -8,8 +8,8 @@
 
 Commits, last 90 days.
 
-- [discord.mbt](https://github.com/gaato/discord.mbt) — 247 commits (MoonBit)
-- [mbt-sdk](https://github.com/gaato/mbt-sdk) — 45 commits (MoonBit)
+- [discord.mbt](https://github.com/gaato/discord.mbt) — 249 commits (MoonBit)
+- [mbt-sdk](https://github.com/gaato/mbt-sdk) — 53 commits (MoonBit)
 - [gaato.net](https://github.com/gaato/gaato.net) — 40 commits (TypeScript)
 - [cordnim](https://github.com/gaato/cordnim) — 34 commits (Nim)
 - [nekosama](https://github.com/gaato/nekosama) — 30 commits (MoonBit)
