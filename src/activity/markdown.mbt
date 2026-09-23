@@ -77,7 +77,8 @@ pub fn render_markdown(activity : Activity, login~ : String) -> String {
     sb <+ "\n"
   }
   sb <+ "\n### Upstream\n\n"
-  sb <+ "Pull requests, last \{activity.upstream_days} days.\n\n"
+  sb <+
+    "PRs created in the last \{activity.upstream_days} days, currently open or merged.\n\n"
   if activity.upstream.length() == 0 {
     sb <+ "- Nothing yet.\n"
   }

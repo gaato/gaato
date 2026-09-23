@@ -27,49 +27,13 @@ let sample_response : Json = {
           },
         ],
       },
-      "year": {
-        "pullRequestContributionsByRepository": [
-          {
-            "repository": {
-              "nameWithOwner": "moonbitlang/async",
-              "owner": { "login": "moonbitlang" },
-            },
-            "contributions": { "totalCount": 4 },
-          },
-          {
-            "repository": {
-              "nameWithOwner": "gaato/gaato.net",
-              "owner": { "login": "gaato" },
-            },
-            "contributions": { "totalCount": 5 },
-          },
-          {
-            "repository": {
-              "nameWithOwner": "moonbitlang/moon",
-              "owner": { "login": "moonbitlang" },
-            },
-            "contributions": { "totalCount": 1 },
-          },
-          {
-            "repository": {
-              "nameWithOwner": "systemd/systemd",
-              "owner": { "login": "systemd" },
-            },
-            "contributions": { "totalCount": 1 },
-          },
-        ],
-      },
     },
   },
 }
 
 ///|
-test "parse_contributions sorts repos and groups upstream by owner" {
-  let (repos, upstream) = @activity.parse_contributions(
-    sample_response,
-    login="gaato",
-    max_repos=2,
-  )
+test "parse_repositories sorts recent commits" {
+  let repos = @activity.parse_repositories(sample_response, max_repos=2)
   json_inspect(repos, content=[
     {
       "name": "gaato/discord.mbt",
@@ -84,20 +48,124 @@ test "parse_contributions sorts repos and groups upstream by owner" {
       "color": "#ffc200",
     },
   ])
-  json_inspect(upstream, content=[
-    { "owner": "moonbitlang", "repos": ["async", "moon"], "prs": 5 },
-    { "owner": "systemd", "repos": ["systemd"], "prs": 1 },
-  ])
 }
 
 ///|
-test "parse_contributions rejects an unexpected shape" {
-  try @activity.parse_contributions({ "errors": [] }, login="gaato") catch {
+test "parse_repositories rejects an unexpected shape" {
+  try @activity.parse_repositories({ "errors": [] }) catch {
     err =>
       assert_true(err.to_string().contains("unexpected GraphQL response shape"))
   } noraise {
     _ => fail("expected to fail")
   }
+}
+
+///|
+test "upstream PRs include only recently opened open or merged PRs" {
+  assert_true(@activity.pull_requests_query.contains("states: [OPEN, MERGED]"))
+  assert_true(
+    @activity.pull_requests_query.contains("field: CREATED_AT, direction: DESC"),
+  )
+  let first : Json = {
+    "data": {
+      "user": {
+        "pullRequests": {
+          "nodes": [
+            {
+              "createdAt": "2026-09-22T10:00:00Z",
+              "state": "OPEN",
+              "author": { "login": "gaato" },
+              "repository": {
+                "nameWithOwner": "moonbitlang/async",
+                "owner": { "login": "moonbitlang" },
+              },
+            },
+            {
+              "createdAt": "2026-09-20T10:00:00Z",
+              "state": "MERGED",
+              "author": { "login": "gaato" },
+              "repository": {
+                "nameWithOwner": "moonbitlang/moon",
+                "owner": { "login": "moonbitlang" },
+              },
+            },
+            {
+              "createdAt": "2026-09-19T10:00:00Z",
+              "state": "CLOSED",
+              "author": { "login": "gaato" },
+              "repository": {
+                "nameWithOwner": "openSUSE/opi",
+                "owner": { "login": "openSUSE" },
+              },
+            },
+            {
+              "createdAt": "2026-09-18T10:00:00Z",
+              "state": "MERGED",
+              "author": { "login": "gaato" },
+              "repository": {
+                "nameWithOwner": "gaato/gaato.net",
+                "owner": { "login": "gaato" },
+              },
+            },
+            {
+              "createdAt": "2026-09-17T10:00:00Z",
+              "state": "OPEN",
+              "author": { "login": "someone-else" },
+              "repository": {
+                "nameWithOwner": "openSUSE/opi",
+                "owner": { "login": "openSUSE" },
+              },
+            },
+          ],
+          "pageInfo": { "hasNextPage": true, "endCursor": "cursor-1" },
+        },
+      },
+    },
+  }
+  let (first_prs, next) = @activity.parse_pull_request_page(
+    first,
+    from="2025-09-23T00:00:00Z",
+    login="gaato",
+  )
+  debug_inspect(next, content="Some(\"cursor-1\")")
+  let second : Json = {
+    "data": {
+      "user": {
+        "pullRequests": {
+          "nodes": [
+            {
+              "createdAt": "2025-09-23T00:00:00Z",
+              "state": "MERGED",
+              "author": { "login": "gaato" },
+              "repository": {
+                "nameWithOwner": "moonbitlang/async",
+                "owner": { "login": "moonbitlang" },
+              },
+            },
+            {
+              "createdAt": "2025-09-22T23:59:59Z",
+              "state": "OPEN",
+              "author": { "login": "gaato" },
+              "repository": {
+                "nameWithOwner": "systemd/systemd",
+                "owner": { "login": "systemd" },
+              },
+            },
+          ],
+          "pageInfo": { "hasNextPage": true, "endCursor": "cursor-2" },
+        },
+      },
+    },
+  }
+  let (second_prs, end) = @activity.parse_pull_request_page(
+    second,
+    from="2025-09-23T00:00:00Z",
+    login="gaato",
+  )
+  assert_true(end is None)
+  json_inspect(@activity.group_upstream(first_prs + second_prs), content=[
+    { "owner": "moonbitlang", "repos": ["async", "moon"], "prs": 3 },
+  ])
 }
 
 ///|
@@ -250,7 +318,7 @@ test "empty activity and invalid README markers" {
   )
   assert_true(
     rendered.contains(
-      "### Upstream\n\nPull requests, last 365 days.\n\n- Nothing yet.",
+      "### Upstream\n\nPRs created in the last 365 days, currently open or merged.\n\n- Nothing yet.",
     ),
   )
   assert_true(rendered.contains("### Writing\n\n- Nothing yet."))

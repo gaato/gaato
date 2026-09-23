@@ -25,17 +25,12 @@ fn header(name : String) -> @http.CaseInsensitiveString {
 }
 
 ///|
-async fn fetch_contributions(token : String, now : Int64) -> Json {
-  let variables : Json = {
-    "login": login,
-    "recentFrom": @activity.utc_midnight_days_ago(now, repo_days),
-    "yearFrom": @activity.utc_midnight_days_ago(now, upstream_days),
-    "to": @activity.utc_timestamp(now),
-  }
-  let body : Json = {
-    "query": @activity.contributions_query,
-    "variables": variables,
-  }
+async fn fetch_graphql(
+  token : String,
+  query : String,
+  variables : Json,
+) -> Json {
+  let body : Json = { "query": query, "variables": variables }
   let (response, data) = @http.post(
     "https://api.github.com/graphql",
     body,
@@ -50,6 +45,47 @@ async fn fetch_contributions(token : String, now : Int64) -> Json {
     fail("GraphQL request failed with HTTP \{response.code}: \{text}")
   }
   @json.parse(text)
+}
+
+///|
+async fn fetch_contributions(token : String, now : Int64) -> Json {
+  fetch_graphql(token, @activity.contributions_query, {
+    "login": login,
+    "recentFrom": @activity.utc_midnight_days_ago(now, repo_days),
+    "to": @activity.utc_timestamp(now),
+  })
+}
+
+///|
+async fn fetch_upstream(
+  token : String,
+  now : Int64,
+) -> Array[@activity.Upstream] {
+  let from = @activity.utc_midnight_days_ago(now, upstream_days)
+  let prs : Array[@activity.UpstreamPullRequest] = []
+  let mut cursor : String? = None
+  for ;; {
+    let variables : Json = match cursor {
+      Some(value) => { "login": login, "cursor": value }
+      None => { "login": login }
+    }
+    let response = fetch_graphql(
+      token, @activity.pull_requests_query, variables,
+    )
+    let (page, next) = @activity.parse_pull_request_page(
+      response,
+      from~,
+      login~,
+    )
+    for pr in page {
+      prs.push(pr)
+    }
+    match next {
+      Some(value) => cursor = Some(value)
+      None => break
+    }
+  }
+  @activity.group_upstream(prs)
 }
 
 ///|
@@ -71,10 +107,8 @@ async fn build_activity() -> @activity.Activity {
     fail("GITHUB_TOKEN is not set")
   }
   let now = (@env.now() / 1000UL).reinterpret_as_int64()
-  let (repos, upstream) = @activity.parse_contributions(
-    fetch_contributions(token, now),
-    login~,
-  )
+  let repos = @activity.parse_repositories(fetch_contributions(token, now))
+  let upstream = fetch_upstream(token, now)
   let lists = []
   for feed in feeds {
     let (source, url) = feed

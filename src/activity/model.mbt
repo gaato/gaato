@@ -16,6 +16,13 @@ pub(all) struct Upstream {
 } derive(ToJson, FromJson)
 
 ///|
+/// An eligible pull request, used while grouping paginated GitHub results.
+pub(all) struct UpstreamPullRequest {
+  owner : String
+  repo : String
+}
+
+///|
 /// A published article.
 pub(all) struct Post {
   title : String
