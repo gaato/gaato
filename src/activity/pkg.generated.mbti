@@ -70,6 +70,8 @@ pub(all) struct Upstream {
   owner : String
   repos : Array[String]
   prs : Int
+  open : Int?
+  merged : Int?
 } derive(ToJson, @json.FromJson)
 pub fn Upstream::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
 pub fn Upstream::to_json(Self) -> Json
@@ -77,6 +79,7 @@ pub fn Upstream::to_json(Self) -> Json
 pub(all) struct UpstreamPullRequest {
   owner : String
   repo : String
+  merged : Bool
 }
 
 // Type aliases

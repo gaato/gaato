@@ -13,6 +13,8 @@ pub(all) struct Upstream {
   owner : String
   repos : Array[String]
   prs : Int
+  open : Int?
+  merged : Int?
 } derive(ToJson, FromJson)
 
 ///|
@@ -20,6 +22,7 @@ pub(all) struct Upstream {
 pub(all) struct UpstreamPullRequest {
   owner : String
   repo : String
+  merged : Bool
 }
 
 ///|

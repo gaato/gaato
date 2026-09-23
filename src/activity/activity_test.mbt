@@ -164,7 +164,13 @@ test "upstream PRs include only recently opened open or merged PRs" {
   )
   assert_true(end is None)
   json_inspect(@activity.group_upstream(first_prs + second_prs), content=[
-    { "owner": "moonbitlang", "repos": ["async", "moon"], "prs": 3 },
+    {
+      "owner": "moonbitlang",
+      "repos": ["async", "moon"],
+      "prs": 3,
+      "open": 1,
+      "merged": 2,
+    },
   ])
 }
 
@@ -263,7 +269,15 @@ test "render Markdown activity and preserve README outside its markers" {
       },
       { name: "gaato/cordnim", commits: 34, language: "Nim", color: "#ffc200", },
     ],
-    upstream: [{ owner: "moonbitlang", repos: ["async", "moon"], prs: 5, }],
+    upstream: [
+      {
+        owner: "moonbitlang",
+        repos: ["async", "moon"],
+        prs: 5,
+        open: Some(1),
+        merged: Some(4),
+      },
+    ],
     posts: [
       {
         title: "Ctrl & the [mouse] <2>\nnext",
@@ -284,7 +298,7 @@ test "render Markdown activity and preserve README outside its markers" {
   )
   assert_true(
     updated.contains(
-      "[moonbitlang](https://github.com/moonbitlang) — 5 PRs in [async](https://github.com/moonbitlang/async)",
+      "[moonbitlang](https://github.com/moonbitlang) — merged 4 · open 1 in [async](https://github.com/moonbitlang/async)",
     ),
   )
   assert_true(
@@ -298,6 +312,54 @@ test "render Markdown activity and preserve README outside its markers" {
     @activity.update_readme(updated, activity, login="gaato"),
     content=updated,
   )
+}
+
+///|
+test "saved activity without PR state counts still renders its total" {
+  let legacy : @activity.Upstream = @json.from_json({
+    "owner": "openSUSE",
+    "repos": ["opi"],
+    "prs": 2,
+  })
+  assert_true(legacy.open is None && legacy.merged is None)
+  let activity : @activity.Activity = {
+    generated_on: "2026-09-23",
+    repo_days: 90,
+    upstream_days: 365,
+    repos: [],
+    upstream: [legacy],
+    posts: [],
+  }
+  assert_true(
+    @activity.render_markdown(activity, login="gaato").contains(
+      "[openSUSE](https://github.com/openSUSE) — 2 PRs in [opi](https://github.com/openSUSE/opi)",
+    ),
+  )
+}
+
+///|
+test "single-state upstream owners include zero for the other state" {
+  let upstream = @activity.group_upstream([
+    { owner: "a", repo: "one", merged: false, },
+    { owner: "b", repo: "two", merged: true, },
+  ])
+  json_inspect(upstream, content=[
+    { "owner": "a", "repos": ["one"], "prs": 1, "open": 1, "merged": 0 },
+    { "owner": "b", "repos": ["two"], "prs": 1, "open": 0, "merged": 1 },
+  ])
+  let activity : @activity.Activity = {
+    generated_on: "2026-09-23",
+    repo_days: 90,
+    upstream_days: 365,
+    repos: [],
+    upstream,
+    posts: [],
+  }
+  let markdown = @activity.render_markdown(activity, login="gaato")
+  assert_true(markdown.contains("[a](https://github.com/a) — open 1 in"))
+  assert_true(markdown.contains("[b](https://github.com/b) — merged 1 in"))
+  assert_false(markdown.contains("open 0"))
+  assert_false(markdown.contains("merged 0"))
 }
 
 ///|

@@ -146,7 +146,7 @@ pub fn parse_pull_request_page(
     guard name.strip_prefix("\{owner}/") is Some(repo) else {
       fail("unexpected pull request repository: \{name}")
     }
-    result.push({ owner, repo: repo.to_owned(), })
+    result.push({ owner, repo: repo.to_owned(), merged: state == "MERGED", })
   }
   let next = if has_next && !reached_cutoff {
     guard end_cursor is String(cursor) && cursor != "" && nodes.length() > 0 else {
@@ -167,15 +167,28 @@ pub fn group_upstream(
 ) -> Array[Upstream] {
   let by_owner : Map[String, Upstream] = Map([])
   for pr in prs {
+    let merged_increment = if pr.merged { 1 } else { 0 }
+    let open_increment = if pr.merged { 0 } else { 1 }
     match by_owner.get(pr.owner) {
       Some(u) => {
         if !u.repos.contains(pr.repo) {
           u.repos.push(pr.repo)
         }
-        by_owner[pr.owner] = { ..u, prs: u.prs + 1, }
+        by_owner[pr.owner] = {
+          ..u,
+          prs: u.prs + 1,
+          open: Some(u.open.unwrap_or(0) + open_increment),
+          merged: Some(u.merged.unwrap_or(0) + merged_increment),
+        }
       }
       None =>
-        by_owner[pr.owner] = { owner: pr.owner, repos: [pr.repo], prs: 1, }
+        by_owner[pr.owner] = {
+          owner: pr.owner,
+          repos: [pr.repo],
+          prs: 1,
+          open: Some(open_increment),
+          merged: Some(merged_increment),
+        }
     }
   }
   let upstream = by_owner.values().collect()
