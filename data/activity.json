@@ -1,17 +1,23 @@
 {
-  "generated_on": "2026-09-24",
+  "generated_on": "2026-09-25",
   "repo_days": 90,
   "upstream_days": 365,
   "repos": [
     {
+      "name": "gaato/riscv-mbt",
+      "commits": 606,
+      "language": "MoonBit",
+      "color": "#b92381"
+    },
+    {
       "name": "gaato/discord.mbt",
-      "commits": 277,
+      "commits": 280,
       "language": "MoonBit",
       "color": "#b92381"
     },
     {
       "name": "gaato/mbt-sdk",
-      "commits": 62,
+      "commits": 64,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -29,13 +35,31 @@
     },
     {
       "name": "gaato/nekosama",
-      "commits": 30,
+      "commits": 31,
       "language": "MoonBit",
       "color": "#b92381"
     },
     {
       "name": "gaato/lab.gaato.net",
       "commits": 30,
+      "language": "TypeScript",
+      "color": "#3178c6"
+    },
+    {
+      "name": "gaato/dotfiles",
+      "commits": 27,
+      "language": "Emacs Lisp",
+      "color": "#c065db"
+    },
+    {
+      "name": "gaato/moonbit-docker",
+      "commits": 26,
+      "language": "Python",
+      "color": "#3572A5"
+    },
+    {
+      "name": "gaato/coderunbot",
+      "commits": 23,
       "language": "TypeScript",
       "color": "#3178c6"
     }
