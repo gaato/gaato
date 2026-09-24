@@ -41,7 +41,7 @@ let no_language_color : String = "#9a948a"
 /// `contributions_query`.
 pub fn parse_repositories(
   data : Json,
-  max_repos? : Int = 6,
+  max_repos? : Int = 10,
 ) -> Array[Repo] raise {
   guard data
     is {

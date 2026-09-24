@@ -14,17 +14,6 @@
 
 ## Recent activity
 
-### Working on
-
-Commits, last 90 days.
-
-- [discord.mbt](https://github.com/gaato/discord.mbt) — 277 commits (MoonBit)
-- [mbt-sdk](https://github.com/gaato/mbt-sdk) — 62 commits (MoonBit)
-- [gaato.net](https://github.com/gaato/gaato.net) — 40 commits (TypeScript)
-- [cordnim](https://github.com/gaato/cordnim) — 34 commits (Nim)
-- [nekosama](https://github.com/gaato/nekosama) — 30 commits (MoonBit)
-- [lab.gaato.net](https://github.com/gaato/lab.gaato.net) — 30 commits (TypeScript)
-
 ### Upstream
 
 PRs created in the last 365 days, currently 🟣 merged or 🟢 open.
@@ -39,7 +28,20 @@ PRs created in the last 365 days, currently 🟣 merged or 🟢 open.
 - 🟣 2026-08-27 · [moonbitlang/async#579](https://github.com/moonbitlang/async/pull/579) — Handle pre-aborted signals in Promise::from\_async
 - 🟣 2026-08-27 · [moonbitlang/async#578](https://github.com/moonbitlang/async/pull/578) — Fix empty JavaScript HTTP response bodies
 - 🟣 2026-07-15 · [moonbitlang/async#500](https://github.com/moonbitlang/async/pull/500) — fix(js): keep scheduling rounds after Promise::from\_async
-- …and 3 more
+- 🟣 2026-06-14 · [openSUSE/sdbootutil#394](https://github.com/openSUSE/sdbootutil/pull/394) — Add configurable devicetree entry support
+- 🟣 2026-04-28 · [aquaproj/aqua-registry#52789](https://github.com/aquaproj/aqua-registry/pull/52789) — fix lychee release asset layouts
+- 🟣 2026-02-19 · [nim-lang/packages#3237](https://github.com/nim-lang/packages/pull/3237) — Add package dimslash
+
+### Working on
+
+Commits, last 90 days.
+
+- [discord.mbt](https://github.com/gaato/discord.mbt) — 277 commits (MoonBit)
+- [mbt-sdk](https://github.com/gaato/mbt-sdk) — 62 commits (MoonBit)
+- [gaato.net](https://github.com/gaato/gaato.net) — 40 commits (TypeScript)
+- [cordnim](https://github.com/gaato/cordnim) — 34 commits (Nim)
+- [nekosama](https://github.com/gaato/nekosama) — 30 commits (MoonBit)
+- [lab.gaato.net](https://github.com/gaato/lab.gaato.net) — 30 commits (TypeScript)
 
 ### Writing
 

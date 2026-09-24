@@ -427,23 +427,23 @@ test "each upstream PR renders with its state" {
 ///|
 test "upstream PRs beyond max_upstream are summarised, not dropped" {
   let prs = []
-  for i in 1..<=12 {
+  for i in 1..<=22 {
     prs.push(upstream_pr(i))
   }
   let activity = upstream_activity(prs)
   let markdown = @activity.render_markdown(activity, login="gaato")
-  assert_true(markdown.contains("/pull/10)"))
-  assert_false(markdown.contains("/pull/11)"))
+  assert_true(markdown.contains("/pull/20)"))
+  assert_false(markdown.contains("/pull/21)"))
   assert_true(markdown.contains("- …and 2 more\n"))
   // The saved activity still holds every PR, so the cap can change without
   // fetching again.
   assert_true(
-    @activity.render_markdown(activity, login="gaato", max_upstream=12).contains(
-      "/pull/12)",
+    @activity.render_markdown(activity, login="gaato", max_upstream=22).contains(
+      "/pull/22)",
     ),
   )
   assert_false(
-    @activity.render_markdown(activity, login="gaato", max_upstream=12).contains(
+    @activity.render_markdown(activity, login="gaato", max_upstream=22).contains(
       "more",
     ),
   )

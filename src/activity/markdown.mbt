@@ -73,25 +73,11 @@ fn short_name(name : String, login~ : String) -> String {
 pub fn render_markdown(
   activity : Activity,
   login~ : String,
-  max_upstream? : Int = 10,
+  max_upstream? : Int = 20,
 ) -> String {
   let sb = StringBuilder()
   sb <+ "## Recent activity\n\n"
-  sb <+ "### Working on\n\n"
-  sb <+ "Commits, last \{activity.repo_days} days.\n\n"
-  if activity.repos.length() == 0 {
-    sb <+ "- Nothing yet.\n"
-  }
-  for repo in activity.repos {
-    let unit = if repo.commits == 1 { "commit" } else { "commits" }
-    sb <+
-      "- \{github_link(short_name(repo.name, login~), repo.name)} — \{repo.commits} \{unit}"
-    if repo.language != "" {
-      sb <+ " (\{markdown_text(repo.language)})"
-    }
-    sb <+ "\n"
-  }
-  sb <+ "\n### Upstream\n\n"
+  sb <+ "### Upstream\n\n"
   sb <+
     "PRs created in the last \{activity.upstream_days} days, currently \{merged_marker} merged or \{open_marker} open.\n\n"
   if activity.upstream.length() == 0 {
@@ -107,6 +93,20 @@ pub fn render_markdown(
   let hidden = activity.upstream.length() - shown.length()
   if hidden > 0 {
     sb <+ "- …and \{hidden} more\n"
+  }
+  sb <+ "\n### Working on\n\n"
+  sb <+ "Commits, last \{activity.repo_days} days.\n\n"
+  if activity.repos.length() == 0 {
+    sb <+ "- Nothing yet.\n"
+  }
+  for repo in activity.repos {
+    let unit = if repo.commits == 1 { "commit" } else { "commits" }
+    sb <+
+      "- \{github_link(short_name(repo.name, login~), repo.name)} — \{repo.commits} \{unit}"
+    if repo.language != "" {
+      sb <+ " (\{markdown_text(repo.language)})"
+    }
+    sb <+ "\n"
   }
   sb <+ "\n### Writing\n\n"
   if activity.posts.length() == 0 {
@@ -130,7 +130,7 @@ pub fn update_readme(
   readme : String,
   activity : Activity,
   login~ : String,
-  max_upstream? : Int = 10,
+  max_upstream? : Int = 20,
 ) -> String raise {
   guard readme.find(activity_start) is Some(start) else {
     fail("README activity start marker is missing")
