@@ -5,13 +5,13 @@
   "repos": [
     {
       "name": "gaato/discord.mbt",
-      "commits": 270,
+      "commits": 277,
       "language": "MoonBit",
       "color": "#b92381"
     },
     {
       "name": "gaato/mbt-sdk",
-      "commits": 53,
+      "commits": 62,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -41,6 +41,15 @@
     }
   ],
   "upstream": [
+    {
+      "owner": "moonbitlang",
+      "repo": "async",
+      "number": 636,
+      "title": "Only wake suspended coroutines",
+      "url": "https://github.com/moonbitlang/async/pull/636",
+      "merged": false,
+      "date": "2026-09-24"
+    },
     {
       "owner": "moonbitlang",
       "repo": "async",
