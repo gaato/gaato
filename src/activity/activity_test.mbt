@@ -183,6 +183,7 @@ test "upstream PRs include only recently opened open or merged PRs" {
       "owner": "moonbitlang",
       "repo": "async",
       "number": 12,
+      "reference": "moonbitlang/async#12",
       "title": "Add a timeout to the poller",
       "url": "https://github.com/moonbitlang/async/pull/12",
       "merged": false,
@@ -192,6 +193,7 @@ test "upstream PRs include only recently opened open or merged PRs" {
       "owner": "moonbitlang",
       "repo": "moon",
       "number": 34,
+      "reference": "moonbitlang/moon#34",
       "title": "Fix moon test on Windows",
       "url": "https://github.com/moonbitlang/moon/pull/34",
       "merged": true,
@@ -201,6 +203,7 @@ test "upstream PRs include only recently opened open or merged PRs" {
       "owner": "moonbitlang",
       "repo": "async",
       "number": 1,
+      "reference": "moonbitlang/async#1",
       "title": "Exactly on the cutoff",
       "url": "https://github.com/moonbitlang/async/pull/1",
       "merged": true,
@@ -327,12 +330,14 @@ test "render Markdown activity and preserve README outside its markers" {
         owner: "moonbitlang",
         repo: "async",
         number: 12,
+        reference: "moonbitlang/async#12",
         title: "Add a timeout to the poller",
         url: "https://github.com/moonbitlang/async/pull/12",
         merged: false,
         date: "2026-09-22",
       },
     ],
+    packaging: [],
     posts: [
       {
         title: "Ctrl & the [mouse] <2>\nnext",
@@ -381,6 +386,7 @@ fn upstream_pr(
     owner: "openSUSE",
     repo: "opi",
     number,
+    reference: "openSUSE/opi#\{number}",
     title: "PR \{number}",
     url: "https://github.com/openSUSE/opi/pull/\{number}",
     merged,
@@ -398,6 +404,7 @@ fn upstream_activity(
     upstream_days: 365,
     repos: [],
     upstream: prs,
+    packaging: [],
     posts: [],
   }
 }
@@ -457,6 +464,7 @@ test "empty activity and invalid README markers" {
     upstream_days: 365,
     repos: [],
     upstream: [],
+    packaging: [],
     posts: [],
   }
   let rendered = @activity.render_markdown(empty, login="gaato")
@@ -467,8 +475,12 @@ test "empty activity and invalid README markers" {
   )
   assert_true(
     rendered.contains(
-      "### Upstream\n\nPRs created in the last 365 days, currently 🟣 merged or 🟢 open.\n\n- Nothing yet.",
+      "### Upstream\n\nPRs and merge requests created in the last 365 days, currently 🟣 merged or 🟢 open.\n\n- Nothing yet.",
     ),
+  )
+  assert_true(rendered.contains("### Packaging\n\nopenSUSE packages"))
+  assert_true(
+    rendered.contains("in review.\n\n- Nothing yet.\n\n### Working on"),
   )
   assert_true(rendered.contains("### Writing\n\n- Nothing yet."))
   for
@@ -482,4 +494,240 @@ test "empty activity and invalid README markers" {
       _ => fail("expected invalid README markers to fail")
     }
   }
+}
+
+///|
+test "OBS request search asks for accepted or pending submit requests" {
+  inspect(
+    @activity.obs_submit_request_search("gaato"),
+    content="/search/request?match=%40creator%3D%27gaato%27%20and%20action%2F%40type%3D%27submit%27%20and%20(state%2F%40name%3D%27accepted%27%20or%20state%2F%40name%3D%27new%27%20or%20state%2F%40name%3D%27review%27)",
+  )
+}
+
+///|
+let sample_submit_requests : String =
+  #|<collection matches="5">
+  #|  <request id="1377001" creator="gaato">
+  #|    <action type="submit">
+  #|      <source project="devel:tools:scm" package="ghq" rev="3"/>
+  #|      <target project="openSUSE:Factory" package="ghq"/>
+  #|    </action>
+  #|    <state name="accepted" who="anag_factory" when="2026-09-08T14:53:30" created="2026-09-05T15:38:41">
+  #|      <comment/>
+  #|    </state>
+  #|    <review state="accepted" by_group="factory-staging">
+  #|      <history who="staging-bot" when="2026-09-06T15:07:40">
+  #|        <description>Review got accepted</description>
+  #|      </history>
+  #|    </review>
+  #|    <description>
+  #|
+  #|  Update to 1.8.0 &amp; fix &lt;build&gt;&#xD;
+  #|  - changelog line</description>
+  #|  </request>
+  #|  <request id="1377002" creator="gaato">
+  #|    <action type="delete">
+  #|      <target project="M17N" package="old"/>
+  #|    </action>
+  #|    <action type="submit">
+  #|      <source project="home:gaato:branches:M17N" package="karukan" rev="7"/>
+  #|      <target project="M17N" package="karukan"/>
+  #|    </action>
+  #|    <state name="review" who="gaato" when="2026-09-20T23:00:00" created="2026-09-20T16:00:00"/>
+  #|    <description>- Update to 0.3.0 and ship the
+  #|  fcitx5 addon separately
+  #|- Drop an obsolete patch</description>
+  #|  </request>
+  #|  <request id="1377003" creator="gaato">
+  #|    <action type="submit">
+  #|      <source project="home:gaato:branches:foo" package="bar" rev="1"/>
+  #|      <target project="home:gaato" package="bar"/>
+  #|    </action>
+  #|    <state name="accepted" who="gaato" when="2026-09-01T00:00:00" created="2026-09-01T00:00:00"/>
+  #|    <description>Own home project</description>
+  #|  </request>
+  #|  <request id="1377004" creator="gaato">
+  #|    <action type="submit">
+  #|      <source project="home:gaato" package="baz" rev="1"/>
+  #|      <target project="X11:Utilities" package="baz"/>
+  #|    </action>
+  #|    <state name="declined" who="someone" when="2026-09-02T00:00:00" created="2026-09-01T00:00:00"/>
+  #|    <description>Declined</description>
+  #|  </request>
+  #|  <request id="1200000" creator="gaato">
+  #|    <action type="submit">
+  #|      <source project="home:gaato" package="old" rev="1"/>
+  #|      <target project="X11:Utilities" package="old"/>
+  #|    </action>
+  #|    <state name="accepted" who="someone" when="2025-01-02T00:00:00" created="2025-01-01T00:00:00"/>
+  #|    <description>Too old</description>
+  #|  </request>
+  #|</collection>
+
+///|
+test "OBS submit requests are parsed by element path" {
+  let requests = @activity.parse_submit_requests(
+    sample_submit_requests,
+    from="2025-09-27T00:00:00Z",
+    login="gaato",
+  )
+  json_inspect(requests, content=[
+    {
+      "project": "openSUSE:Factory",
+      "pkg": "ghq",
+      "number": 1377001,
+      "url": "https://build.opensuse.org/request/show/1377001",
+      "accepted": true,
+      "date": "2026-09-06",
+    },
+    {
+      "project": "M17N",
+      "pkg": "karukan",
+      "number": 1377002,
+      "url": "https://build.opensuse.org/request/show/1377002",
+      "accepted": false,
+      "date": "2026-09-21",
+    },
+  ])
+}
+
+///|
+fn submit_request(
+  project : String,
+  pkg : String,
+  number : Int,
+  date : String,
+  accepted? : Bool = true,
+) -> @activity.SubmitRequest {
+  {
+    project,
+    pkg,
+    number,
+    url: "https://build.opensuse.org/request/show/\{number}",
+    accepted,
+    date,
+  }
+}
+
+///|
+test "packaging groups submit requests by package" {
+  let activity : @activity.Activity = {
+    ..upstream_activity([]),
+    packaging: [
+      submit_request("openSUSE:Factory", "ghq", 3, "2026-09-06"),
+      submit_request("devel:tools:scm", "ghq", 1, "2026-09-06"),
+      submit_request("M17N", "karukan", 10, "2026-03-02"),
+      submit_request("M17N", "karukan", 11, "2026-09-20"),
+      submit_request(
+        "openSUSE:Factory",
+        "karukan",
+        12,
+        "2026-09-22",
+        accepted=false,
+      ),
+    ],
+  }
+  let markdown = @activity.render_markdown(activity, login="gaato")
+  assert_true(
+    markdown.contains(
+      "### Packaging\n\nopenSUSE packages submitted through [OBS](https://build.opensuse.org) in the last 365 days, currently 🟣 accepted or 🟢 in review.\n\n" +
+      "- 🟢 2026-09-22 · [karukan](https://build.opensuse.org/package/show/openSUSE:Factory/karukan) — M17N [#10](https://build.opensuse.org/request/show/10) [#11](https://build.opensuse.org/request/show/11) → openSUSE:Factory [#12](https://build.opensuse.org/request/show/12)\n" +
+      "- 🟣 2026-09-06 · [ghq](https://build.opensuse.org/package/show/openSUSE:Factory/ghq) — devel:tools:scm [#1](https://build.opensuse.org/request/show/1) → openSUSE:Factory [#3](https://build.opensuse.org/request/show/3)\n\n### Working on",
+    ),
+  )
+  let capped = @activity.render_markdown(
+    activity,
+    login="gaato",
+    max_packages=1,
+  )
+  assert_false(capped.contains("[ghq]"))
+  assert_true(capped.contains("- …and 1 more\n\n### Working on"))
+}
+
+///|
+test "parse_submit_requests rejects an unexpected response" {
+  try
+    @activity.parse_submit_requests(
+      "<status code=\"unknown\"/>",
+      from="2025-09-27T00:00:00Z",
+      login="gaato",
+    )
+  catch {
+    err =>
+      assert_true(err.to_string().contains("unexpected OBS request response"))
+  } noraise {
+    _ => fail("expected to fail")
+  }
+}
+
+///|
+/// One GitLab merge request as the listing API returns it.
+fn mr(
+  iid : Int,
+  state : String,
+  reference : String,
+  author? : String = "gaato",
+) -> Json {
+  {
+    "iid": iid.to_double(),
+    "title": "MR \{iid}",
+    "state": state,
+    "created_at": "2026-02-02T14:16:10.363Z",
+    "web_url": "https://invent.kde.org/\{reference}",
+    "author": { "username": author },
+    "references": { "full": reference },
+  }
+}
+
+///|
+test "KDE merge requests become upstream entries" {
+  inspect(
+    @activity.gitlab_merge_requests_path(
+      "gaato",
+      from="2025-09-27T00:00:00Z",
+      page=2,
+    ),
+    content="/api/v4/merge_requests?scope=all&author_username=gaato&created_after=2025-09-27T00:00:00Z&per_page=100&page=2",
+  )
+  let prs = @activity.parse_gitlab_merge_requests(
+    [
+      mr(147, "merged", "frameworks/kholidays!147"),
+      mr(3, "opened", "plasma/sub/group/project!3"),
+      mr(4, "closed", "frameworks/kholidays!4"),
+      mr(5, "merged", "gaato/kholidays!5"),
+      mr(6, "merged", "frameworks/kholidays!6", author="someone"),
+    ],
+    login="gaato",
+  )
+  json_inspect(prs, content=[
+    {
+      "owner": "frameworks",
+      "repo": "kholidays",
+      "number": 147,
+      "reference": "frameworks/kholidays!147",
+      "title": "MR 147",
+      "url": "https://invent.kde.org/frameworks/kholidays!147",
+      "merged": true,
+      "date": "2026-02-02",
+    },
+    {
+      "owner": "plasma/sub/group",
+      "repo": "project",
+      "number": 3,
+      "reference": "plasma/sub/group/project!3",
+      "title": "MR 3",
+      "url": "https://invent.kde.org/plasma/sub/group/project!3",
+      "merged": false,
+      "date": "2026-02-02",
+    },
+  ])
+  let markdown = @activity.render_markdown(
+    upstream_activity(prs),
+    login="gaato",
+  )
+  assert_true(
+    markdown.contains(
+      "- 🟣 2026-02-02 · [frameworks/kholidays\\!147](https://invent.kde.org/frameworks/kholidays!147) — MR 147\n",
+    ),
+  )
 }

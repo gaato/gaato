@@ -52,6 +52,7 @@ jobs:
       - name: Update README activity
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          OBS_PASSWORD: ${{ secrets.OBS_PASSWORD }}
         run: moon run src/activity_readme
 
       - name: Commit and push if changed

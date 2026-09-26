@@ -67,32 +67,112 @@ fn short_name(name : String, login~ : String) -> String {
 }
 
 ///|
+/// The submit requests for one package, oldest first: the order an update
+/// moves through a devel project into openSUSE:Factory.
+priv struct PackageSubmissions {
+  pkg : String
+  requests : Array[SubmitRequest]
+}
+
+///|
+/// Groups submit requests by package, most recently submitted package first.
+fn group_by_package(
+  requests : Array[SubmitRequest],
+) -> Array[PackageSubmissions] {
+  let by_package : Map[String, Array[SubmitRequest]] = Map([])
+  for request in requests {
+    match by_package.get(request.pkg) {
+      Some(list) => list.push(request)
+      None => by_package.set(request.pkg, [request])
+    }
+  }
+  let groups : Array[PackageSubmissions] = []
+  for pkg, list in by_package {
+    list.sort_by((a, b) => {
+      if a.date != b.date {
+        a.date.compare(b.date)
+      } else {
+        a.number - b.number
+      }
+    })
+    groups.push({ pkg, requests: list, })
+  }
+  groups.sort_by((a, b) => {
+    let a_date = a.requests[a.requests.length() - 1].date
+    let b_date = b.requests[b.requests.length() - 1].date
+    if a_date != b_date {
+      b_date.compare(a_date)
+    } else {
+      a.pkg.compare(b.pkg)
+    }
+  })
+  groups
+}
+
+///|
+/// One package's line: its latest state and date, then each project it was
+/// submitted to, with consecutive requests to the same project sharing a name.
+fn render_package(sb : StringBuilder, group : PackageSubmissions) -> Unit {
+  let latest = group.requests[group.requests.length() - 1]
+  let state = if latest.accepted { merged_marker } else { open_marker }
+  let package_url = "\{obs_web_url}/package/show/\{latest.project}/\{group.pkg}"
+  sb <+
+    "- \{state} \{markdown_text(latest.date)} · \{markdown_link(group.pkg, package_url)} —"
+  let mut project = ""
+  for request in group.requests {
+    if request.project != project {
+      if project != "" {
+        sb <+ " →"
+      }
+      sb <+ " \{markdown_text(request.project)}"
+      project = request.project
+    }
+    sb <+ " \{markdown_link("#\{request.number}", request.url)}"
+  }
+  sb <+ "\n"
+}
+
+///|
 /// Renders the recent activity section as Markdown for the profile README.
-/// `max_upstream` caps the pull request list; the rest is summarised in one
-/// trailing line, so the saved JSON can hold more than the README shows.
+/// `max_upstream` and `max_packages` cap the pull request and package lists;
+/// the rest is summarised in one trailing line, so the saved JSON can hold more
+/// than the README shows.
 pub fn render_markdown(
   activity : Activity,
   login~ : String,
   max_upstream? : Int = 20,
+  max_packages? : Int = 10,
 ) -> String {
   let sb = StringBuilder()
   sb <+ "## Recent activity\n\n"
   sb <+ "### Upstream\n\n"
   sb <+
-    "PRs created in the last \{activity.upstream_days} days, currently \{merged_marker} merged or \{open_marker} open.\n\n"
+    "PRs and merge requests created in the last \{activity.upstream_days} days, currently \{merged_marker} merged or \{open_marker} open.\n\n"
   if activity.upstream.length() == 0 {
     sb <+ "- Nothing yet.\n"
   }
   let shown = activity.upstream[:activity.upstream.length().min(max_upstream)]
   for pr in shown {
     let state = if pr.merged { merged_marker } else { open_marker }
-    let label = "\{pr.owner}/\{pr.repo}#\{pr.number}"
     sb <+
-      "- \{state} \{markdown_text(pr.date)} · \{markdown_link(label, pr.url)} — \{markdown_text(pr.title)}\n"
+      "- \{state} \{markdown_text(pr.date)} · \{markdown_link(pr.reference, pr.url)} — \{markdown_text(pr.title)}\n"
   }
   let hidden = activity.upstream.length() - shown.length()
   if hidden > 0 {
     sb <+ "- …and \{hidden} more\n"
+  }
+  sb <+ "\n### Packaging\n\n"
+  sb <+
+    "openSUSE packages submitted through [OBS](\{obs_web_url}) in the last \{activity.upstream_days} days, currently \{merged_marker} accepted or \{open_marker} in review.\n\n"
+  let packages = group_by_package(activity.packaging)
+  if packages.length() == 0 {
+    sb <+ "- Nothing yet.\n"
+  }
+  for group in packages[:packages.length().min(max_packages)] {
+    render_package(sb, group)
+  }
+  if packages.length() > max_packages {
+    sb <+ "- …and \{packages.length() - max_packages} more\n"
   }
   sb <+ "\n### Working on\n\n"
   sb <+ "Commits, last \{activity.repo_days} days.\n\n"
@@ -131,6 +211,7 @@ pub fn update_readme(
   activity : Activity,
   login~ : String,
   max_upstream? : Int = 20,
+  max_packages? : Int = 10,
 ) -> String raise {
   guard readme.find(activity_start) is Some(start) else {
     fail("README activity start marker is missing")
@@ -148,7 +229,7 @@ pub fn update_readme(
   }
   readme[:content_start].to_owned() +
   "\n\n" +
-  render_markdown(activity, login~, max_upstream~) +
+  render_markdown(activity, login~, max_upstream~, max_packages~) +
   "\n" +
   readme[end:].to_owned()
 }

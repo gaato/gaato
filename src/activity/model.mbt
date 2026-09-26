@@ -8,14 +8,29 @@ pub(all) struct Repo {
 } derive(ToJson, FromJson)
 
 ///|
-/// A pull request sent to a repository owned by someone else.
+/// A pull request sent to a repository owned by someone else, on GitHub or on a
+/// GitLab instance, where it is called a merge request.
 pub(all) struct UpstreamPullRequest {
   owner : String
   repo : String
   number : Int
+  /// How the forge itself writes the reference: `owner/repo#1` on GitHub,
+  /// `group/project!1` on GitLab.
+  reference : String
   title : String
   url : String
   merged : Bool
+  date : String
+} derive(ToJson, FromJson)
+
+///|
+/// An OBS submit request to a project outside the profile owner's home.
+pub(all) struct SubmitRequest {
+  project : String
+  pkg : String
+  number : Int
+  url : String
+  accepted : Bool
   date : String
 } derive(ToJson, FromJson)
 
@@ -37,6 +52,7 @@ pub(all) struct Activity {
   upstream_days : Int
   repos : Array[Repo]
   upstream : Array[UpstreamPullRequest]
+  packaging : Array[SubmitRequest]
   posts : Array[Post]
 } derive(ToJson, FromJson)
 
@@ -51,6 +67,12 @@ pub extend UpstreamPullRequest with ToJson::{to_json}
 
 ///|
 pub extend UpstreamPullRequest with @json.FromJson::{from_json}
+
+///|
+pub extend SubmitRequest with ToJson::{to_json}
+
+///|
+pub extend SubmitRequest with @json.FromJson::{from_json}
 
 ///|
 pub extend Post with ToJson::{to_json}

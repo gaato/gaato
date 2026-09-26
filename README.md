@@ -16,7 +16,7 @@
 
 ### Upstream
 
-PRs created in the last 365 days, currently 🟣 merged or 🟢 open.
+PRs and merge requests created in the last 365 days, currently 🟣 merged or 🟢 open.
 
 - 🟢 2026-09-24 · [moonbitlang/async#636](https://github.com/moonbitlang/async/pull/636) — Only wake suspended coroutines
 - 🟣 2026-09-21 · [moonbitlang/async#628](https://github.com/moonbitlang/async/pull/628) — Make recursive mkdir succeed on an existing directory
@@ -31,6 +31,17 @@ PRs created in the last 365 days, currently 🟣 merged or 🟢 open.
 - 🟣 2026-06-14 · [openSUSE/sdbootutil#394](https://github.com/openSUSE/sdbootutil/pull/394) — Add configurable devicetree entry support
 - 🟣 2026-04-28 · [aquaproj/aqua-registry#52789](https://github.com/aquaproj/aqua-registry/pull/52789) — fix lychee release asset layouts
 - 🟣 2026-02-19 · [nim-lang/packages#3237](https://github.com/nim-lang/packages/pull/3237) — Add package dimslash
+- 🟣 2026-02-02 · [frameworks/kholidays\!147](https://invent.kde.org/frameworks/kholidays/-/merge_requests/147) — Update Japanese holidays for 2027
+- 🟣 2025-12-29 · [frameworks/kholidays\!142](https://invent.kde.org/frameworks/kholidays/-/merge_requests/142) — Update Japanese holidays for 2024-2026
+
+### Packaging
+
+openSUSE packages submitted through [OBS](https://build.opensuse.org) in the last 365 days, currently 🟣 accepted or 🟢 in review.
+
+- 🟣 2026-09-07 · [Mesa](https://build.opensuse.org/package/show/X11:XOrg/Mesa) — X11:XOrg [#1376056](https://build.opensuse.org/request/show/1376056)
+- 🟣 2026-09-06 · [ghq](https://build.opensuse.org/package/show/openSUSE:Factory/ghq) — devel:tools:scm [#1375962](https://build.opensuse.org/request/show/1375962) → openSUSE:Factory [#1376020](https://build.opensuse.org/request/show/1376020)
+- 🟣 2026-09-06 · [x11docker](https://build.opensuse.org/package/show/openSUSE:Factory/x11docker) — X11:Utilities [#1371679](https://build.opensuse.org/request/show/1371679) → openSUSE:Factory [#1375953](https://build.opensuse.org/request/show/1375953)
+- 🟣 2026-03-24 · [karukan](https://build.opensuse.org/package/show/openSUSE:Factory/karukan) — M17N [#1335631](https://build.opensuse.org/request/show/1335631) → openSUSE:Factory [#1342074](https://build.opensuse.org/request/show/1342074)
 
 ### Working on
 
@@ -53,6 +64,6 @@ Commits, last 90 days.
 - 2026-08-30 · [2019–2020年に作った数学の問題](https://gaato.net/articles/math-problems-2019-2020/) (gaato.net)
 - 2026-07-06 · [Ctrlが押しっぱなしになる犯人はマウスだった](https://gaato.net/articles/stuck-ctrl-was-the-mouse/) (gaato.net)
 
-Updated 2026-09-26
+Updated 2026-09-27
 
 <!-- activity:end -->

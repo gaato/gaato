@@ -155,6 +155,7 @@ pub fn parse_pull_request_page(
       owner,
       repo: repo.to_owned(),
       number: number.to_int(),
+      reference: "\{name}#\{number.to_int()}",
       title,
       url,
       merged: state == "MERGED",

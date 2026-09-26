@@ -1,5 +1,5 @@
 {
-  "generated_on": "2026-09-26",
+  "generated_on": "2026-09-27",
   "repo_days": 90,
   "upstream_days": 365,
   "repos": [
@@ -69,6 +69,7 @@
       "owner": "moonbitlang",
       "repo": "async",
       "number": 636,
+      "reference": "moonbitlang/async#636",
       "title": "Only wake suspended coroutines",
       "url": "https://github.com/moonbitlang/async/pull/636",
       "merged": false,
@@ -78,6 +79,7 @@
       "owner": "moonbitlang",
       "repo": "async",
       "number": 628,
+      "reference": "moonbitlang/async#628",
       "title": "Make recursive mkdir succeed on an existing directory",
       "url": "https://github.com/moonbitlang/async/pull/628",
       "merged": true,
@@ -87,6 +89,7 @@
       "owner": "systemd",
       "repo": "systemd",
       "number": 43791,
+      "reference": "systemd/systemd#43791",
       "title": "boot: measure Type #1 DeviceTrees into PCR 12",
       "url": "https://github.com/systemd/systemd/pull/43791",
       "merged": false,
@@ -96,6 +99,7 @@
       "owner": "moonbitlang",
       "repo": "moon",
       "number": 2235,
+      "reference": "moonbitlang/moon#2235",
       "title": "fix(mooncake): prevent registry index pulls from hanging on large Git output",
       "url": "https://github.com/moonbitlang/moon/pull/2235",
       "merged": true,
@@ -105,6 +109,7 @@
       "owner": "repology",
       "repo": "repology-rules",
       "number": 1235,
+      "reference": "repology/repology-rules#1235",
       "title": "karukan: merge",
       "url": "https://github.com/repology/repology-rules/pull/1235",
       "merged": true,
@@ -114,6 +119,7 @@
       "owner": "togatoga",
       "repo": "karukan",
       "number": 118,
+      "reference": "togatoga/karukan#118",
       "title": "docs: パッケージからのインストール手順を追加（openSUSE / AUR / FreeBSD）",
       "url": "https://github.com/togatoga/karukan/pull/118",
       "merged": false,
@@ -123,6 +129,7 @@
       "owner": "openSUSE",
       "repo": "opi",
       "number": 223,
+      "reference": "openSUSE/opi#223",
       "title": "Add ChatGPT desktop app plugin",
       "url": "https://github.com/openSUSE/opi/pull/223",
       "merged": true,
@@ -132,6 +139,7 @@
       "owner": "moonbitlang",
       "repo": "async",
       "number": 579,
+      "reference": "moonbitlang/async#579",
       "title": "Handle pre-aborted signals in Promise::from_async",
       "url": "https://github.com/moonbitlang/async/pull/579",
       "merged": true,
@@ -141,6 +149,7 @@
       "owner": "moonbitlang",
       "repo": "async",
       "number": 578,
+      "reference": "moonbitlang/async#578",
       "title": "Fix empty JavaScript HTTP response bodies",
       "url": "https://github.com/moonbitlang/async/pull/578",
       "merged": true,
@@ -150,6 +159,7 @@
       "owner": "moonbitlang",
       "repo": "async",
       "number": 500,
+      "reference": "moonbitlang/async#500",
       "title": "fix(js): keep scheduling rounds after Promise::from_async",
       "url": "https://github.com/moonbitlang/async/pull/500",
       "merged": true,
@@ -159,6 +169,7 @@
       "owner": "openSUSE",
       "repo": "sdbootutil",
       "number": 394,
+      "reference": "openSUSE/sdbootutil#394",
       "title": "Add configurable devicetree entry support",
       "url": "https://github.com/openSUSE/sdbootutil/pull/394",
       "merged": true,
@@ -168,6 +179,7 @@
       "owner": "aquaproj",
       "repo": "aqua-registry",
       "number": 52789,
+      "reference": "aquaproj/aqua-registry#52789",
       "title": "fix lychee release asset layouts",
       "url": "https://github.com/aquaproj/aqua-registry/pull/52789",
       "merged": true,
@@ -177,10 +189,89 @@
       "owner": "nim-lang",
       "repo": "packages",
       "number": 3237,
+      "reference": "nim-lang/packages#3237",
       "title": "Add package dimslash",
       "url": "https://github.com/nim-lang/packages/pull/3237",
       "merged": true,
       "date": "2026-02-19"
+    },
+    {
+      "owner": "frameworks",
+      "repo": "kholidays",
+      "number": 147,
+      "reference": "frameworks/kholidays!147",
+      "title": "Update Japanese holidays for 2027",
+      "url": "https://invent.kde.org/frameworks/kholidays/-/merge_requests/147",
+      "merged": true,
+      "date": "2026-02-02"
+    },
+    {
+      "owner": "frameworks",
+      "repo": "kholidays",
+      "number": 142,
+      "reference": "frameworks/kholidays!142",
+      "title": "Update Japanese holidays for 2024-2026",
+      "url": "https://invent.kde.org/frameworks/kholidays/-/merge_requests/142",
+      "merged": true,
+      "date": "2025-12-29"
+    }
+  ],
+  "packaging": [
+    {
+      "project": "M17N",
+      "pkg": "karukan",
+      "number": 1335631,
+      "url": "https://build.opensuse.org/request/show/1335631",
+      "accepted": true,
+      "date": "2026-03-02"
+    },
+    {
+      "project": "openSUSE:Factory",
+      "pkg": "karukan",
+      "number": 1342074,
+      "url": "https://build.opensuse.org/request/show/1342074",
+      "accepted": true,
+      "date": "2026-03-24"
+    },
+    {
+      "project": "X11:Utilities",
+      "pkg": "x11docker",
+      "number": 1371679,
+      "url": "https://build.opensuse.org/request/show/1371679",
+      "accepted": true,
+      "date": "2026-08-18"
+    },
+    {
+      "project": "openSUSE:Factory",
+      "pkg": "x11docker",
+      "number": 1375953,
+      "url": "https://build.opensuse.org/request/show/1375953",
+      "accepted": true,
+      "date": "2026-09-06"
+    },
+    {
+      "project": "devel:tools:scm",
+      "pkg": "ghq",
+      "number": 1375962,
+      "url": "https://build.opensuse.org/request/show/1375962",
+      "accepted": true,
+      "date": "2026-09-06"
+    },
+    {
+      "project": "openSUSE:Factory",
+      "pkg": "ghq",
+      "number": 1376020,
+      "url": "https://build.opensuse.org/request/show/1376020",
+      "accepted": true,
+      "date": "2026-09-06"
+    },
+    {
+      "project": "X11:XOrg",
+      "pkg": "Mesa",
+      "number": 1376056,
+      "url": "https://build.opensuse.org/request/show/1376056",
+      "accepted": true,
+      "date": "2026-09-07"
     }
   ],
   "posts": [

@@ -14,6 +14,16 @@ let feeds : Array[(String, String)] = [
 ]
 
 ///|
+/// GitLab instances whose merge requests count as upstream work. Their
+/// listing API is public, so no token is needed.
+let gitlab_instances : Array[String] = [
+  "https://invent.kde.org", "https://gitlab.freedesktop.org",
+]
+
+///|
+let obs_api_url : String = "https://api.opensuse.org"
+
+///|
 let user_agent : String = "gaato-profile-readme"
 
 ///|
@@ -69,6 +79,64 @@ async fn fetch_upstream(
 }
 
 ///|
+/// Pages through the MRs `login` opened on one GitLab instance within the
+/// upstream window.
+async fn fetch_merge_requests(
+  transport : @httpasync.AsyncTransport,
+  base_url : String,
+  now : Int64,
+) -> Array[@activity.UpstreamPullRequest] {
+  let from = @activity.utc_midnight_days_ago(now, upstream_days)
+  let prs : Array[@activity.UpstreamPullRequest] = []
+  for page = 1; ; page = page + 1 {
+    let url = base_url +
+      @activity.gitlab_merge_requests_path(login, from~, page~)
+    let response = transport.send(
+      @ghttp.Request::get(url).header("user-agent", user_agent),
+    )
+    if response.status != 200 {
+      fail("merge request listing \{url} failed with HTTP \{response.status}")
+    }
+    let data = response.json()
+    guard data is Array(nodes) else {
+      fail("unexpected merge request response from \{url}")
+    }
+    prs.append(@activity.parse_gitlab_merge_requests(data, login~))
+    if nodes.length() < @activity.gitlab_page_size {
+      break
+    }
+  }
+  prs
+}
+
+///|
+/// OBS needs credentials even for reading requests, so this uses the profile
+/// owner's account through HTTP Basic auth.
+async fn fetch_submit_requests(
+  transport : @httpasync.AsyncTransport,
+  password : String,
+  now : Int64,
+) -> Array[@activity.SubmitRequest] {
+  let credentials = @base64.encode(@utf8.encode("\{login}:\{password}"))
+  let response = transport.send(
+    @ghttp.Request::get(
+      obs_api_url + @activity.obs_submit_request_search(login),
+    )
+    .header("user-agent", user_agent)
+    .header("accept", "application/xml")
+    .header("authorization", "Basic \{credentials}"),
+  )
+  if response.status != 200 {
+    fail("OBS request search failed with HTTP \{response.status}")
+  }
+  @activity.parse_submit_requests(
+    response.text(),
+    from=@activity.utc_midnight_days_ago(now, upstream_days),
+    login~,
+  )
+}
+
+///|
 async fn fetch_feed(
   transport : @httpasync.AsyncTransport,
   url : String,
@@ -87,6 +155,10 @@ async fn build_activity() -> @activity.Activity {
   guard @env.get_env_var("GITHUB_TOKEN") is Some(token) && token != "" else {
     fail("GITHUB_TOKEN is not set")
   }
+  guard @env.get_env_var("OBS_PASSWORD") is Some(obs_password) &&
+    obs_password != "" else {
+    fail("OBS_PASSWORD is not set")
+  }
   let transport = @httpasync.AsyncTransport::new()
   let gh = @github.GitHub::new(
     transport,
@@ -97,6 +169,10 @@ async fn build_activity() -> @activity.Activity {
   let now = (@env.now() / 1000UL).reinterpret_as_int64()
   let repos = fetch_repositories(gh, now)
   let upstream = fetch_upstream(gh, now)
+  for base_url in gitlab_instances {
+    upstream.append(fetch_merge_requests(transport, base_url, now))
+  }
+  let packaging = fetch_submit_requests(transport, obs_password, now)
   let lists = []
   for feed in feeds {
     let (source, url) = feed
@@ -108,7 +184,8 @@ async fn build_activity() -> @activity.Activity {
     repo_days,
     upstream_days,
     repos,
-    upstream,
+    upstream: @activity.sort_upstream(upstream),
+    packaging,
     posts: @activity.latest_posts(lists, limit=3),
   }
 }

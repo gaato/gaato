@@ -8,9 +8,17 @@ import {
 // Values
 pub let contributions_query : String
 
+pub fn gitlab_merge_requests_path(String, from~ : String, page~ : Int) -> String
+
+pub let gitlab_page_size : Int
+
 pub fn jst_date(Int64) -> String
 
 pub fn latest_posts(Array[Array[Post]], limit~ : Int) -> Array[Post]
+
+pub fn obs_submit_request_search(String) -> String
+
+pub fn parse_gitlab_merge_requests(Json, login~ : String) -> Array[UpstreamPullRequest] raise
 
 pub fn parse_iso8601_utc(StringView) -> Int64?
 
@@ -22,15 +30,17 @@ pub fn parse_rfc2822(StringView) -> Int64?
 
 pub fn parse_rss(String, source~ : String) -> Array[Post]
 
+pub fn parse_submit_requests(String, from~ : String, login~ : String) -> Array[SubmitRequest] raise
+
 pub let pull_requests_query : String
 
-pub fn render_markdown(Activity, login~ : String, max_upstream? : Int) -> String
+pub fn render_markdown(Activity, login~ : String, max_upstream? : Int, max_packages? : Int) -> String
 
 pub fn sort_upstream(Array[UpstreamPullRequest]) -> Array[UpstreamPullRequest]
 
 pub fn unescape_xml(String) -> String
 
-pub fn update_readme(String, Activity, login~ : String, max_upstream? : Int) -> String raise
+pub fn update_readme(String, Activity, login~ : String, max_upstream? : Int, max_packages? : Int) -> String raise
 
 pub fn utc_midnight_days_ago(Int64, Int) -> String
 
@@ -45,6 +55,7 @@ pub(all) struct Activity {
   upstream_days : Int
   repos : Array[Repo]
   upstream : Array[UpstreamPullRequest]
+  packaging : Array[SubmitRequest]
   posts : Array[Post]
 } derive(ToJson, @json.FromJson)
 pub fn Activity::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
@@ -68,10 +79,22 @@ pub(all) struct Repo {
 pub fn Repo::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
 pub fn Repo::to_json(Self) -> Json
 
+pub(all) struct SubmitRequest {
+  project : String
+  pkg : String
+  number : Int
+  url : String
+  accepted : Bool
+  date : String
+} derive(ToJson, @json.FromJson)
+pub fn SubmitRequest::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub fn SubmitRequest::to_json(Self) -> Json
+
 pub(all) struct UpstreamPullRequest {
   owner : String
   repo : String
   number : Int
+  reference : String
   title : String
   url : String
   merged : Bool
