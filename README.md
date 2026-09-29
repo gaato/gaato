@@ -49,10 +49,10 @@ Commits, last 90 days.
 
 - [riscv-mbt](https://github.com/gaato/riscv-mbt) — 606 commits (MoonBit)
 - [discord.mbt](https://github.com/gaato/discord.mbt) — 294 commits (MoonBit)
-- [mbt-sdk](https://github.com/gaato/mbt-sdk) — 68 commits (MoonBit)
+- [mbt-sdk](https://github.com/gaato/mbt-sdk) — 69 commits (MoonBit)
 - [gaato.net](https://github.com/gaato/gaato.net) — 47 commits (TypeScript)
 - [cordnim](https://github.com/gaato/cordnim) — 34 commits (Nim)
-- [nekosama](https://github.com/gaato/nekosama) — 31 commits (MoonBit)
+- [nekosama](https://github.com/gaato/nekosama) — 32 commits (MoonBit)
 - [lab.gaato.net](https://github.com/gaato/lab.gaato.net) — 30 commits (TypeScript)
 - [dotfiles](https://github.com/gaato/dotfiles) — 27 commits (Emacs Lisp)
 - [moonbit-docker](https://github.com/gaato/moonbit-docker) — 26 commits (Python)
