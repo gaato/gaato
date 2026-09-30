@@ -1,5 +1,5 @@
 {
-  "generated_on": "2026-09-30",
+  "generated_on": "2026-10-01",
   "repo_days": 90,
   "upstream_days": 365,
   "repos": [
@@ -272,6 +272,22 @@
       "url": "https://build.opensuse.org/request/show/1376056",
       "accepted": true,
       "date": "2026-09-07"
+    },
+    {
+      "project": "devel:tools:scm",
+      "pkg": "ghq",
+      "number": 1381707,
+      "url": "https://build.opensuse.org/request/show/1381707",
+      "accepted": true,
+      "date": "2026-10-01"
+    },
+    {
+      "project": "openSUSE:Factory",
+      "pkg": "ghq",
+      "number": 1381708,
+      "url": "https://build.opensuse.org/request/show/1381708",
+      "accepted": false,
+      "date": "2026-10-01"
     }
   ],
   "posts": [
