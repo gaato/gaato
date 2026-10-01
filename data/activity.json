@@ -1,5 +1,5 @@
 {
-  "generated_on": "2026-10-01",
+  "generated_on": "2026-10-02",
   "repo_days": 90,
   "upstream_days": 365,
   "repos": [
@@ -11,7 +11,7 @@
     },
     {
       "name": "gaato/discord.mbt",
-      "commits": 294,
+      "commits": 311,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -286,7 +286,7 @@
       "pkg": "ghq",
       "number": 1381708,
       "url": "https://build.opensuse.org/request/show/1381708",
-      "accepted": false,
+      "accepted": true,
       "date": "2026-10-01"
     }
   ],
