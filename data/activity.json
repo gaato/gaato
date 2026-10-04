@@ -1,11 +1,11 @@
 {
-  "generated_on": "2026-10-04",
+  "generated_on": "2026-10-05",
   "repo_days": 90,
   "upstream_days": 365,
   "repos": [
     {
       "name": "gaato/riscv-mbt",
-      "commits": 507,
+      "commits": 342,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -17,7 +17,7 @@
     },
     {
       "name": "gaato/pyevp",
-      "commits": 93,
+      "commits": 153,
       "language": "Python",
       "color": "#3572A5"
     },
