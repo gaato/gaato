@@ -47,16 +47,16 @@ openSUSE packages submitted through [OBS](https://build.opensuse.org) in the las
 
 Commits, last 90 days.
 
-- [riscv-mbt](https://github.com/gaato/riscv-mbt) — 342 commits (MoonBit)
 - [discord.mbt](https://github.com/gaato/discord.mbt) — 311 commits (MoonBit)
 - [pyevp](https://github.com/gaato/pyevp) — 153 commits (Python)
 - [mbt-sdk](https://github.com/gaato/mbt-sdk) — 73 commits (MoonBit)
-- [gaato.net](https://github.com/gaato/gaato.net) — 47 commits (TypeScript)
+- [gaato.net](https://github.com/gaato/gaato.net) — 40 commits (TypeScript)
 - [cordnim](https://github.com/gaato/cordnim) — 34 commits (Nim)
 - [nekosama](https://github.com/gaato/nekosama) — 33 commits (MoonBit)
 - [lab.gaato.net](https://github.com/gaato/lab.gaato.net) — 30 commits (TypeScript)
 - [dotfiles](https://github.com/gaato/dotfiles) — 27 commits (Emacs Lisp)
 - [moonbit-docker](https://github.com/gaato/moonbit-docker) — 26 commits (Python)
+- [coderunbot](https://github.com/gaato/coderunbot) — 24 commits (TypeScript)
 
 ### Writing
 
@@ -64,6 +64,6 @@ Commits, last 90 days.
 - 2026-08-30 · [2019–2020年に作った数学の問題](https://gaato.net/articles/math-problems-2019-2020/) (gaato.net)
 - 2026-07-06 · [Ctrlが押しっぱなしになる犯人はマウスだった](https://gaato.net/articles/stuck-ctrl-was-the-mouse/) (gaato.net)
 
-Updated 2026-10-05
+Updated 2026-10-06
 
 <!-- activity:end -->
