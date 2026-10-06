@@ -631,7 +631,7 @@ test "packaging groups submit requests by package" {
   assert_true(
     markdown.contains(
       "### Packaging\n\nopenSUSE packages submitted through [OBS](https://build.opensuse.org) in the last 365 days, currently 🟣 accepted or 🟢 in review.\n\n" +
-      "- 🟢 2026-09-22 · [karukan](https://build.opensuse.org/package/show/openSUSE:Factory/karukan) — M17N [#10](https://build.opensuse.org/request/show/10) [#11](https://build.opensuse.org/request/show/11) → openSUSE:Factory [#12](https://build.opensuse.org/request/show/12)\n" +
+      "- 🟢 2026-09-22 · [karukan](https://build.opensuse.org/package/show/openSUSE:Factory/karukan) — M17N [#11](https://build.opensuse.org/request/show/11) → openSUSE:Factory [#12](https://build.opensuse.org/request/show/12) (+1 earlier)\n" +
       "- 🟣 2026-09-06 · [ghq](https://build.opensuse.org/package/show/openSUSE:Factory/ghq) — devel:tools:scm [#1](https://build.opensuse.org/request/show/1) → openSUSE:Factory [#3](https://build.opensuse.org/request/show/3)\n\n### Working on",
     ),
   )
@@ -642,6 +642,28 @@ test "packaging groups submit requests by package" {
   )
   assert_false(capped.contains("[ghq]"))
   assert_true(capped.contains("- …and 1 more\n\n### Working on"))
+}
+
+///|
+test "packaging shows the latest update round and counts earlier ones" {
+  let activity : @activity.Activity = {
+    ..upstream_activity([]),
+    packaging: [
+      submit_request("devel:tools:scm", "ghq", 1, "2026-09-06"),
+      submit_request("openSUSE:Factory", "ghq", 2, "2026-09-06"),
+      submit_request("devel:tools:scm", "ghq", 3, "2026-10-01"),
+      submit_request("openSUSE:Factory", "ghq", 4, "2026-10-01"),
+      submit_request("X11:XOrg", "Mesa", 5, "2026-08-01"),
+      submit_request("X11:XOrg", "Mesa", 6, "2026-09-07"),
+    ],
+  }
+  let markdown = @activity.render_markdown(activity, login="gaato")
+  assert_true(
+    markdown.contains(
+      "- 🟣 2026-10-01 · [ghq](https://build.opensuse.org/package/show/openSUSE:Factory/ghq) — devel:tools:scm [#3](https://build.opensuse.org/request/show/3) → openSUSE:Factory [#4](https://build.opensuse.org/request/show/4) (+1 earlier)\n" +
+      "- 🟣 2026-09-07 · [Mesa](https://build.opensuse.org/package/show/X11:XOrg/Mesa) — X11:XOrg [#6](https://build.opensuse.org/request/show/6) (+1 earlier)\n",
+    ),
+  )
 }
 
 ///|

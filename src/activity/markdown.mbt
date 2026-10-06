@@ -110,24 +110,45 @@ fn group_by_package(
 }
 
 ///|
-/// One package's line: its latest state and date, then each project it was
-/// submitted to, with consecutive requests to the same project sharing a name.
+/// Splits a package's requests, oldest first, into update rounds. An update
+/// moves through each project at most once, so a request to a project the
+/// current round already reached starts the next round.
+fn split_rounds(requests : Array[SubmitRequest]) -> Array[Array[SubmitRequest]] {
+  let rounds : Array[Array[SubmitRequest]] = []
+  let mut round : Array[SubmitRequest] = []
+  for request in requests {
+    if round.iter().any(r => r.project == request.project) {
+      rounds.push(round)
+      round = []
+    }
+    round.push(request)
+  }
+  if round.length() > 0 {
+    rounds.push(round)
+  }
+  rounds
+}
+
+///|
+/// One package's line: its latest state and date, then the path of its latest
+/// update round. Earlier rounds are only counted, so the line keeps its length
+/// however often the package is updated; the package page links their history.
 fn render_package(sb : StringBuilder, group : PackageSubmissions) -> Unit {
   let latest = group.requests[group.requests.length() - 1]
   let state = if latest.accepted { merged_marker } else { open_marker }
   let package_url = "\{obs_web_url}/package/show/\{latest.project}/\{group.pkg}"
   sb <+
     "- \{state} \{markdown_text(latest.date)} · \{markdown_link(group.pkg, package_url)} —"
-  let mut project = ""
-  for request in group.requests {
-    if request.project != project {
-      if project != "" {
-        sb <+ " →"
-      }
-      sb <+ " \{markdown_text(request.project)}"
-      project = request.project
+  let rounds = split_rounds(group.requests)
+  for i, request in rounds[rounds.length() - 1] {
+    if i > 0 {
+      sb <+ " →"
     }
-    sb <+ " \{markdown_link("#\{request.number}", request.url)}"
+    sb <+
+      " \{markdown_text(request.project)} \{markdown_link("#\{request.number}", request.url)}"
+  }
+  if rounds.length() > 1 {
+    sb <+ " (+\{rounds.length() - 1} earlier)"
   }
   sb <+ "\n"
 }
