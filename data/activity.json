@@ -11,7 +11,7 @@
     },
     {
       "name": "gaato/pyevp",
-      "commits": 153,
+      "commits": 156,
       "language": "Python",
       "color": "#3572A5"
     },
@@ -23,7 +23,7 @@
     },
     {
       "name": "gaato/gaato.net",
-      "commits": 40,
+      "commits": 46,
       "language": "TypeScript",
       "color": "#3178c6"
     },

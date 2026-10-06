@@ -38,7 +38,7 @@ PRs and merge requests created in the last 365 days, currently 🟣 merged or �
 
 openSUSE packages submitted through [OBS](https://build.opensuse.org) in the last 365 days, currently 🟣 accepted or 🟢 in review.
 
-- 🟣 2026-10-01 · [ghq](https://build.opensuse.org/package/show/openSUSE:Factory/ghq) — devel:tools:scm [#1375962](https://build.opensuse.org/request/show/1375962) → openSUSE:Factory [#1376020](https://build.opensuse.org/request/show/1376020) → devel:tools:scm [#1381707](https://build.opensuse.org/request/show/1381707) → openSUSE:Factory [#1381708](https://build.opensuse.org/request/show/1381708)
+- 🟣 2026-10-01 · [ghq](https://build.opensuse.org/package/show/openSUSE:Factory/ghq) — devel:tools:scm [#1381707](https://build.opensuse.org/request/show/1381707) → openSUSE:Factory [#1381708](https://build.opensuse.org/request/show/1381708) (+1 earlier)
 - 🟣 2026-09-07 · [Mesa](https://build.opensuse.org/package/show/X11:XOrg/Mesa) — X11:XOrg [#1376056](https://build.opensuse.org/request/show/1376056)
 - 🟣 2026-09-06 · [x11docker](https://build.opensuse.org/package/show/openSUSE:Factory/x11docker) — X11:Utilities [#1371679](https://build.opensuse.org/request/show/1371679) → openSUSE:Factory [#1375953](https://build.opensuse.org/request/show/1375953)
 - 🟣 2026-03-24 · [karukan](https://build.opensuse.org/package/show/openSUSE:Factory/karukan) — M17N [#1335631](https://build.opensuse.org/request/show/1335631) → openSUSE:Factory [#1342074](https://build.opensuse.org/request/show/1342074)
@@ -48,9 +48,9 @@ openSUSE packages submitted through [OBS](https://build.opensuse.org) in the las
 Commits, last 90 days.
 
 - [discord.mbt](https://github.com/gaato/discord.mbt) — 311 commits (MoonBit)
-- [pyevp](https://github.com/gaato/pyevp) — 153 commits (Python)
+- [pyevp](https://github.com/gaato/pyevp) — 156 commits (Python)
 - [mbt-sdk](https://github.com/gaato/mbt-sdk) — 73 commits (MoonBit)
-- [gaato.net](https://github.com/gaato/gaato.net) — 40 commits (TypeScript)
+- [gaato.net](https://github.com/gaato/gaato.net) — 46 commits (TypeScript)
 - [cordnim](https://github.com/gaato/cordnim) — 34 commits (Nim)
 - [nekosama](https://github.com/gaato/nekosama) — 33 commits (MoonBit)
 - [lab.gaato.net](https://github.com/gaato/lab.gaato.net) — 30 commits (TypeScript)
