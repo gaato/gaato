@@ -18,7 +18,7 @@
 
 PRs and merge requests created in the last 365 days, currently 🟣 merged or 🟢 open.
 
-- 🟢 2026-09-24 · [moonbitlang/async#636](https://github.com/moonbitlang/async/pull/636) — Only wake suspended coroutines
+- 🟣 2026-09-24 · [moonbitlang/async#636](https://github.com/moonbitlang/async/pull/636) — Only wake suspended coroutines
 - 🟣 2026-09-21 · [moonbitlang/async#628](https://github.com/moonbitlang/async/pull/628) — Make recursive mkdir succeed on an existing directory
 - 🟢 2026-09-18 · [systemd/systemd#43791](https://github.com/systemd/systemd/pull/43791) — boot: measure Type #1 DeviceTrees into PCR 12
 - 🟣 2026-09-18 · [moonbitlang/moon#2235](https://github.com/moonbitlang/moon/pull/2235) — fix(mooncake): prevent registry index pulls from hanging on large Git output
@@ -47,12 +47,12 @@ openSUSE packages submitted through [OBS](https://build.opensuse.org) in the las
 
 Commits, last 90 days.
 
-- [discord.mbt](https://github.com/gaato/discord.mbt) — 317 commits (MoonBit)
+- [discord.mbt](https://github.com/gaato/discord.mbt) — 319 commits (MoonBit)
 - [pyevp](https://github.com/gaato/pyevp) — 156 commits (Python)
 - [mbt-sdk](https://github.com/gaato/mbt-sdk) — 73 commits (MoonBit)
 - [gaato.net](https://github.com/gaato/gaato.net) — 46 commits (TypeScript)
+- [nekosama](https://github.com/gaato/nekosama) — 35 commits (MoonBit)
 - [cordnim](https://github.com/gaato/cordnim) — 34 commits (Nim)
-- [nekosama](https://github.com/gaato/nekosama) — 33 commits (MoonBit)
 - [lab.gaato.net](https://github.com/gaato/lab.gaato.net) — 30 commits (TypeScript)
 - [dotfiles](https://github.com/gaato/dotfiles) — 27 commits (Emacs Lisp)
 - [moonbit-docker](https://github.com/gaato/moonbit-docker) — 26 commits (Python)
@@ -64,6 +64,6 @@ Commits, last 90 days.
 - 2026-08-30 · [2019–2020年に作った数学の問題](https://gaato.net/articles/math-problems-2019-2020/) (gaato.net)
 - 2026-07-06 · [Ctrlが押しっぱなしになる犯人はマウスだった](https://gaato.net/articles/stuck-ctrl-was-the-mouse/) (gaato.net)
 
-Updated 2026-10-08
+Updated 2026-10-09
 
 <!-- activity:end -->
