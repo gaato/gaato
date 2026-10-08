@@ -47,7 +47,7 @@ openSUSE packages submitted through [OBS](https://build.opensuse.org) in the las
 
 Commits, last 90 days.
 
-- [discord.mbt](https://github.com/gaato/discord.mbt) — 311 commits (MoonBit)
+- [discord.mbt](https://github.com/gaato/discord.mbt) — 317 commits (MoonBit)
 - [pyevp](https://github.com/gaato/pyevp) — 156 commits (Python)
 - [mbt-sdk](https://github.com/gaato/mbt-sdk) — 73 commits (MoonBit)
 - [gaato.net](https://github.com/gaato/gaato.net) — 46 commits (TypeScript)
