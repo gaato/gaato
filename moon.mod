@@ -3,7 +3,7 @@ name = "gaato/profile-readme"
 version = "0.1.0"
 
 import {
-  "gaato/github@0.5.0",
+  "gaato/github@0.8.1",
   "gaato/http@0.1.0",
   "gaato/http-async@0.1.2",
   "gaato/sdk-runtime@0.2.1",
