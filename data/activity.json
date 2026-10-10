@@ -1,5 +1,5 @@
 {
-  "generated_on": "2026-10-10",
+  "generated_on": "2026-10-11",
   "repo_days": 90,
   "upstream_days": 365,
   "repos": [
@@ -35,7 +35,7 @@
     },
     {
       "name": "gaato/cordnim",
-      "commits": 34,
+      "commits": 32,
       "language": "Nim",
       "color": "#ffc200"
     },

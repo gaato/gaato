@@ -52,7 +52,7 @@ Commits, last 90 days.
 - [mbt-sdk](https://github.com/gaato/mbt-sdk) — 73 commits (MoonBit)
 - [gaato.net](https://github.com/gaato/gaato.net) — 46 commits (TypeScript)
 - [nekosama](https://github.com/gaato/nekosama) — 35 commits (MoonBit)
-- [cordnim](https://github.com/gaato/cordnim) — 34 commits (Nim)
+- [cordnim](https://github.com/gaato/cordnim) — 32 commits (Nim)
 - [lab.gaato.net](https://github.com/gaato/lab.gaato.net) — 30 commits (TypeScript)
 - [dotfiles](https://github.com/gaato/dotfiles) — 27 commits (Emacs Lisp)
 - [moonbit-docker](https://github.com/gaato/moonbit-docker) — 26 commits (Python)
@@ -64,6 +64,6 @@ Commits, last 90 days.
 - 2026-08-30 · [2019–2020年に作った数学の問題](https://gaato.net/articles/math-problems-2019-2020/) (gaato.net)
 - 2026-07-06 · [Ctrlが押しっぱなしになる犯人はマウスだった](https://gaato.net/articles/stuck-ctrl-was-the-mouse/) (gaato.net)
 
-Updated 2026-10-10
+Updated 2026-10-11
 
 <!-- activity:end -->
