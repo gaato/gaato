@@ -4,7 +4,7 @@ let jst_offset_seconds : Int64 = 9L * 3600L
 
 ///|
 /// Days since 1970-01-01 for a proleptic Gregorian date.
-fn days_from_civil(year : Int, month : Int, day : Int) -> Int64 {
+fn days_from_civil(year : Int32, month : Int32, day : Int32) -> Int64 {
   let y = if month <= 2 { year - 1 } else { year }
   let era = (if y >= 0 { y } else { y - 399 }) / 400
   let yoe = y - era * 400
@@ -16,7 +16,7 @@ fn days_from_civil(year : Int, month : Int, day : Int) -> Int64 {
 
 ///|
 /// Inverse of `days_from_civil`.
-fn civil_from_days(days : Int64) -> (Int, Int, Int) {
+fn civil_from_days(days : Int64) -> (Int32, Int32, Int32) {
   let z = days + 719468L
   let era = (if z >= 0L { z } else { z - 146096L }) / 146097L
   let doe = (z - era * 146097L).to_int()
@@ -30,7 +30,7 @@ fn civil_from_days(days : Int64) -> (Int, Int, Int) {
 }
 
 ///|
-fn two_digits(n : Int) -> String {
+fn two_digits(n : Int32) -> String {
   n.to_string().pad_start(2, '0')
 }
 
@@ -50,7 +50,7 @@ pub fn jst_date(unix_seconds : Int64) -> String {
 ///|
 /// ISO 8601 UTC timestamp for GraphQL, at midnight `days_ago` days before
 /// `unix_seconds`.
-pub fn utc_midnight_days_ago(unix_seconds : Int64, days_ago : Int) -> String {
+pub fn utc_midnight_days_ago(unix_seconds : Int64, days_ago : Int32) -> String {
   let days = unix_seconds / 86400L - days_ago.to_int64()
   let (y, m, d) = civil_from_days(days)
   "\{y}-\{two_digits(m)}-\{two_digits(d)}T00:00:00Z"
@@ -66,7 +66,7 @@ pub fn utc_timestamp(unix_seconds : Int64) -> String {
 }
 
 ///|
-fn month_number(name : String) -> Int? {
+fn month_number(name : String) -> Int32? {
   match name.to_lower() {
     "jan" => Some(1)
     "feb" => Some(2)
@@ -85,7 +85,7 @@ fn month_number(name : String) -> Int? {
 }
 
 ///|
-fn parse_number(text : StringView) -> Int? {
+fn parse_number(text : StringView) -> Int32? {
   if text.length() == 0 {
     return None
   }

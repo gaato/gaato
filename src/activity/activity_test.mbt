@@ -378,9 +378,9 @@ test "render Markdown activity and preserve README outside its markers" {
 ///|
 /// Builds an upstream PR whose fields only matter through `number`.
 fn upstream_pr(
-  number : Int,
-  merged? : Bool = true,
-  date? : String = "2026-09-22",
+  number : Int32,
+  merged~ : Bool = true,
+  date~ : String = "2026-09-22",
 ) -> @activity.UpstreamPullRequest {
   {
     owner: "openSUSE",
@@ -595,9 +595,9 @@ test "OBS submit requests are parsed by element path" {
 fn submit_request(
   project : String,
   pkg : String,
-  number : Int,
+  number : Int32,
   date : String,
-  accepted? : Bool = true,
+  accepted~ : Bool = true,
 ) -> @activity.SubmitRequest {
   {
     project,
@@ -685,10 +685,10 @@ test "parse_submit_requests rejects an unexpected response" {
 ///|
 /// One GitLab merge request as the listing API returns it.
 fn mr(
-  iid : Int,
+  iid : Int32,
   state : String,
   reference : String,
-  author? : String = "gaato",
+  author~ : String = "gaato",
 ) -> Json {
   {
     "iid": iid.to_double(),

@@ -2,10 +2,10 @@
 let login : String = "gaato"
 
 ///|
-let repo_days : Int = 90
+let repo_days : Int32 = 90
 
 ///|
-let upstream_days : Int = 365
+let upstream_days : Int32 = 365
 
 ///|
 let feeds : Array[(String, String)] = [

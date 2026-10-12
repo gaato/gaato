@@ -161,8 +161,8 @@ fn render_package(sb : StringBuilder, group : PackageSubmissions) -> Unit {
 pub fn render_markdown(
   activity : Activity,
   login~ : String,
-  max_upstream? : Int = 20,
-  max_packages? : Int = 10,
+  max_upstream~ : Int32 = 20,
+  max_packages~ : Int32 = 10,
 ) -> String {
   let sb = StringBuilder()
   sb <+ "## Recent activity\n\n"
@@ -231,8 +231,8 @@ pub fn update_readme(
   readme : String,
   activity : Activity,
   login~ : String,
-  max_upstream? : Int = 20,
-  max_packages? : Int = 10,
+  max_upstream~ : Int32 = 20,
+  max_packages~ : Int32 = 10,
 ) -> String raise {
   guard readme.find(activity_start) is Some(start) else {
     fail("README activity start marker is missing")

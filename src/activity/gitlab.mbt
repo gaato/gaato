@@ -1,6 +1,6 @@
 ///|
 /// Page size for the merge request listing; a shorter page is the last one.
-pub let gitlab_page_size : Int = 100
+pub let gitlab_page_size : Int32 = 100
 
 ///|
 /// Path and query for one page of merge requests authored by `login` and
@@ -8,7 +8,7 @@ pub let gitlab_page_size : Int = 100
 pub fn gitlab_merge_requests_path(
   login : String,
   from~ : String,
-  page~ : Int,
+  page~ : Int32,
 ) -> String {
   "/api/v4/merge_requests?scope=all&author_username=\{login}&created_after=\{from}&per_page=\{gitlab_page_size}&page=\{page}"
 }

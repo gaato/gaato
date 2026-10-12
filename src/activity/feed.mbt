@@ -50,7 +50,7 @@ pub fn parse_rss(xml : String, source~ : String) -> Array[Post] {
 
 ///|
 /// Merges post lists, newest first, keeping at most `limit` entries.
-pub fn latest_posts(lists : Array[Array[Post]], limit~ : Int) -> Array[Post] {
+pub fn latest_posts(lists : Array[Array[Post]], limit~ : Int32) -> Array[Post] {
   let all : Array[Post] = []
   for list in lists {
     for post in list {

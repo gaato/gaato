@@ -17,12 +17,12 @@ pub fn unescape_xml(text : String) -> String {
           "apos" => sb.write_char('\'')
           ['#', 'x', .. hex] =>
             match parse_hex(hex) {
-              Some(code) => sb.write_char(Int::unsafe_to_char(code))
+              Some(code) => sb.write_char(Int32::unsafe_to_char(code))
               None => sb.write_string(tail[:end + 1].to_owned())
             }
           ['#', .. dec] =>
             match parse_number(dec) {
-              Some(code) => sb.write_char(Int::unsafe_to_char(code))
+              Some(code) => sb.write_char(Int32::unsafe_to_char(code))
               None => sb.write_string(tail[:end + 1].to_owned())
             }
           _ => sb.write_string(tail[:end + 1].to_owned())
@@ -40,7 +40,7 @@ pub fn unescape_xml(text : String) -> String {
 }
 
 ///|
-fn parse_hex(text : StringView) -> Int? {
+fn parse_hex(text : StringView) -> Int32? {
   if text.length() == 0 {
     return None
   }

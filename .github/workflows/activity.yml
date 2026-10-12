@@ -29,7 +29,7 @@ jobs:
         with:
           sparse-checkout: moonbit-version
           sparse-checkout-cone-mode: false
-      # Image tags cannot contain "+": 0.10.14+7d59c7ec9 -> 0.10.14-7d59c7ec9
+      # Image tags cannot contain "+": 0.10.15+943464bfa -> 0.10.15-943464bfa
       - id: tag
         run: echo "tag=$(tr '+' '-' < moonbit-version)" >> "$GITHUB_OUTPUT"
 

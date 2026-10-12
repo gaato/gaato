@@ -2,7 +2,7 @@
 /// A repository the profile owner has committed to recently.
 pub(all) struct Repo {
   name : String
-  commits : Int
+  commits : Int32
   language : String
   color : String
 } derive(ToJson, FromJson)
@@ -13,7 +13,7 @@ pub(all) struct Repo {
 pub(all) struct UpstreamPullRequest {
   owner : String
   repo : String
-  number : Int
+  number : Int32
   /// How the forge itself writes the reference: `owner/repo#1` on GitHub,
   /// `group/project!1` on GitLab.
   reference : String
@@ -28,7 +28,7 @@ pub(all) struct UpstreamPullRequest {
 pub(all) struct SubmitRequest {
   project : String
   pkg : String
-  number : Int
+  number : Int32
   url : String
   accepted : Bool
   date : String
@@ -48,8 +48,8 @@ pub(all) struct Post {
 /// in JST calendar days.
 pub(all) struct Activity {
   generated_on : String
-  repo_days : Int
-  upstream_days : Int
+  repo_days : Int32
+  upstream_days : Int32
   repos : Array[Repo]
   upstream : Array[UpstreamPullRequest]
   packaging : Array[SubmitRequest]
