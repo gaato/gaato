@@ -5,7 +5,7 @@
   "repos": [
     {
       "name": "gaato/discord.mbt",
-      "commits": 227,
+      "commits": 219,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -17,7 +17,7 @@
     },
     {
       "name": "gaato/mbt-sdk",
-      "commits": 86,
+      "commits": 89,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -29,7 +29,7 @@
     },
     {
       "name": "gaato/nekosama",
-      "commits": 38,
+      "commits": 32,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -40,10 +40,10 @@
       "color": "#3178c6"
     },
     {
-      "name": "gaato/dotfiles",
-      "commits": 27,
-      "language": "Emacs Lisp",
-      "color": "#c065db"
+      "name": "gaato/gaato",
+      "commits": 26,
+      "language": "MoonBit",
+      "color": "#b92381"
     },
     {
       "name": "gaato/moonbit-docker",
@@ -52,16 +52,16 @@
       "color": "#3572A5"
     },
     {
-      "name": "gaato/gaato",
-      "commits": 24,
-      "language": "MoonBit",
-      "color": "#b92381"
-    },
-    {
       "name": "gaato/coderunbot",
       "commits": 24,
       "language": "TypeScript",
       "color": "#3178c6"
+    },
+    {
+      "name": "gaato/kbbi-mcp",
+      "commits": 21,
+      "language": "Python",
+      "color": "#3572A5"
     }
   ],
   "upstream": [
