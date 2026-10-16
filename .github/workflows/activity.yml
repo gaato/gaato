@@ -66,4 +66,6 @@ jobs:
             exit 0
           fi
           git commit -m "Update README activity"
+          # A queued run may start from an older SHA; replay on top and keep this run's snapshot.
+          git pull --rebase -X theirs origin main
           git push
