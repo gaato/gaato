@@ -47,16 +47,16 @@ openSUSE packages submitted through [OBS](https://build.opensuse.org) in the las
 
 Commits, last 90 days.
 
-- [discord.mbt](https://github.com/gaato/discord.mbt) — 220 commits (MoonBit)
+- [discord.mbt](https://github.com/gaato/discord.mbt) — 295 commits (MoonBit)
 - [pyevp](https://github.com/gaato/pyevp) — 156 commits (Python)
-- [mbt-sdk](https://github.com/gaato/mbt-sdk) — 90 commits (MoonBit)
+- [mbt-sdk](https://github.com/gaato/mbt-sdk) — 93 commits (MoonBit)
 - [gaato.net](https://github.com/gaato/gaato.net) — 47 commits (TypeScript)
 - [lab.gaato.net](https://github.com/gaato/lab.gaato.net) — 33 commits (TypeScript)
 - [nekosama](https://github.com/gaato/nekosama) — 32 commits (MoonBit)
 - [gaato](https://github.com/gaato/gaato) — 26 commits (MoonBit)
 - [moonbit-docker](https://github.com/gaato/moonbit-docker) — 26 commits (Python)
-- [coderunbot](https://github.com/gaato/coderunbot) — 24 commits (TypeScript)
 - [kbbi-mcp](https://github.com/gaato/kbbi-mcp) — 21 commits (Python)
+- [jmap-mcp](https://github.com/gaato/jmap-mcp) — 19 commits (Go)
 
 ### Writing
 
@@ -64,6 +64,6 @@ Commits, last 90 days.
 - 2026-08-30 · [2019–2020年に作った数学の問題](https://gaato.net/articles/math-problems-2019-2020/) (gaato.net)
 - 2026-07-06 · [Ctrlが押しっぱなしになる犯人はマウスだった](https://gaato.net/articles/stuck-ctrl-was-the-mouse/) (gaato.net)
 
-Updated 2026-10-17
+Updated 2026-10-18
 
 <!-- activity:end -->
