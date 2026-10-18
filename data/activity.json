@@ -1,11 +1,11 @@
 {
-  "generated_on": "2026-10-18",
+  "generated_on": "2026-10-19",
   "repo_days": 90,
   "upstream_days": 365,
   "repos": [
     {
       "name": "gaato/discord.mbt",
-      "commits": 295,
+      "commits": 373,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -17,7 +17,7 @@
     },
     {
       "name": "gaato/mbt-sdk",
-      "commits": 93,
+      "commits": 139,
       "language": "MoonBit",
       "color": "#b92381"
     },
