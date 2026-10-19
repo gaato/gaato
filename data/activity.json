@@ -5,7 +5,7 @@
   "repos": [
     {
       "name": "gaato/discord.mbt",
-      "commits": 377,
+      "commits": 381,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -17,7 +17,7 @@
     },
     {
       "name": "gaato/mbt-sdk",
-      "commits": 144,
+      "commits": 152,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -41,7 +41,13 @@
     },
     {
       "name": "gaato/gaato",
-      "commits": 27,
+      "commits": 28,
+      "language": "MoonBit",
+      "color": "#b92381"
+    },
+    {
+      "name": "gaato/requesto.mbt",
+      "commits": 28,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -50,12 +56,6 @@
       "commits": 26,
       "language": "Python",
       "color": "#3572A5"
-    },
-    {
-      "name": "gaato/requesto.mbt",
-      "commits": 25,
-      "language": "MoonBit",
-      "color": "#b92381"
     },
     {
       "name": "gaato/kbbi-mcp",

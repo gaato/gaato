@@ -47,15 +47,15 @@ openSUSE packages submitted through [OBS](https://build.opensuse.org) in the las
 
 Commits, last 90 days.
 
-- [discord.mbt](https://github.com/gaato/discord.mbt) — 377 commits (MoonBit)
+- [discord.mbt](https://github.com/gaato/discord.mbt) — 381 commits (MoonBit)
 - [pyevp](https://github.com/gaato/pyevp) — 156 commits (Python)
-- [mbt-sdk](https://github.com/gaato/mbt-sdk) — 144 commits (MoonBit)
+- [mbt-sdk](https://github.com/gaato/mbt-sdk) — 152 commits (MoonBit)
 - [gaato.net](https://github.com/gaato/gaato.net) — 47 commits (TypeScript)
 - [nekosama](https://github.com/gaato/nekosama) — 34 commits (MoonBit)
 - [lab.gaato.net](https://github.com/gaato/lab.gaato.net) — 33 commits (TypeScript)
-- [gaato](https://github.com/gaato/gaato) — 27 commits (MoonBit)
+- [gaato](https://github.com/gaato/gaato) — 28 commits (MoonBit)
+- [requesto.mbt](https://github.com/gaato/requesto.mbt) — 28 commits (MoonBit)
 - [moonbit-docker](https://github.com/gaato/moonbit-docker) — 26 commits (Python)
-- [requesto.mbt](https://github.com/gaato/requesto.mbt) — 25 commits (MoonBit)
 - [kbbi-mcp](https://github.com/gaato/kbbi-mcp) — 21 commits (Python)
 
 ### Writing
