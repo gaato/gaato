@@ -1,12 +1,10 @@
 import {
   "gaato/github",
-  "gaato/http" @ghttp,
   "gaato/http-async" @httpasync,
+  "gaato/requesto",
   "gaato/sdk-runtime" @runtime,
   "moonbitlang/async",
   "moonbitlang/async/fs",
-  "moonbitlang/core/encoding/base64",
-  "moonbitlang/core/encoding/utf8",
   "moonbitlang/core/env",
   "moonbitlang/core/json",
   "gaato/profile-readme/src/activity",

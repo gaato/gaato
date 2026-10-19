@@ -82,7 +82,7 @@ async fn fetch_upstream(
 /// Pages through the MRs `login` opened on one GitLab instance within the
 /// upstream window.
 async fn fetch_merge_requests(
-  transport : @httpasync.AsyncTransport,
+  client : @requesto.Client,
   base_url : String,
   now : Int64,
 ) -> Array[@activity.UpstreamPullRequest] {
@@ -91,13 +91,7 @@ async fn fetch_merge_requests(
   for page = 1; ; page = page + 1 {
     let url = base_url +
       @activity.gitlab_merge_requests_path(login, from~, page~)
-    let response = transport.send(
-      @ghttp.Request::get(url).header("user-agent", user_agent),
-    )
-    if response.status != 200 {
-      fail("merge request listing \{url} failed with HTTP \{response.status}")
-    }
-    let data = response.json()
+    let data = client.get(url).raise_for_status().json()
     guard data is Array(nodes) else {
       fail("unexpected merge request response from \{url}")
     }
@@ -110,44 +104,25 @@ async fn fetch_merge_requests(
 }
 
 ///|
-/// OBS needs credentials even for reading requests, so this uses the profile
-/// owner's account through HTTP Basic auth.
+/// OBS needs credentials even for reading requests, so `obs` carries the
+/// profile owner's account through HTTP Basic auth.
 async fn fetch_submit_requests(
-  transport : @httpasync.AsyncTransport,
-  password : String,
+  obs : @requesto.Client,
   now : Int64,
 ) -> Array[@activity.SubmitRequest] {
-  let credentials = @base64.encode(@utf8.encode("\{login}:\{password}"))
-  let response = transport.send(
-    @ghttp.Request::get(
-      obs_api_url + @activity.obs_submit_request_search(login),
-    )
-    .header("user-agent", user_agent)
-    .header("accept", "application/xml")
-    .header("authorization", "Basic \{credentials}"),
-  )
-  if response.status != 200 {
-    fail("OBS request search failed with HTTP \{response.status}")
-  }
   @activity.parse_submit_requests(
-    response.text(),
+    obs
+    .get(@activity.obs_submit_request_search(login))
+    .raise_for_status()
+    .text(),
     from=@activity.utc_midnight_days_ago(now, upstream_days),
     login~,
   )
 }
 
 ///|
-async fn fetch_feed(
-  transport : @httpasync.AsyncTransport,
-  url : String,
-) -> String {
-  let response = transport.send(
-    @ghttp.Request::get(url).header("user-agent", user_agent),
-  )
-  if response.status != 200 {
-    fail("feed request for \{url} failed with HTTP \{response.status}")
-  }
-  response.text()
+async fn fetch_feed(client : @requesto.Client, url : String) -> String {
+  client.get(url).raise_for_status().text()
 }
 
 ///|
@@ -166,17 +141,25 @@ async fn build_activity() -> @activity.Activity {
     token~,
     user_agent~,
   )
+  let client = @requesto.Client::new(headers=[("User-Agent", user_agent)])
+  defer client.close()
+  let obs = @requesto.Client::new(
+    base_url=obs_api_url,
+    headers=[("User-Agent", user_agent), ("Accept", "application/xml")],
+    auth=Basic(username=login, password=obs_password),
+  )
+  defer obs.close()
   let now = (@env.now() / 1000UL).reinterpret_as_int64()
   let repos = fetch_repositories(gh, now)
   let upstream = fetch_upstream(gh, now)
   for base_url in gitlab_instances {
-    upstream.append(fetch_merge_requests(transport, base_url, now))
+    upstream.append(fetch_merge_requests(client, base_url, now))
   }
-  let packaging = fetch_submit_requests(transport, obs_password, now)
+  let packaging = fetch_submit_requests(obs, now)
   let lists = []
   for feed in feeds {
     let (source, url) = feed
-    lists.push(@activity.parse_rss(fetch_feed(transport, url), source~))
+    lists.push(@activity.parse_rss(fetch_feed(client, url), source~))
   }
   transport.close()
   {
