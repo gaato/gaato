@@ -55,8 +55,8 @@ Commits, last 90 days.
 - [lab.gaato.net](https://github.com/gaato/lab.gaato.net) — 33 commits (TypeScript)
 - [gaato](https://github.com/gaato/gaato) — 30 commits (MoonBit)
 - [requesto.mbt](https://github.com/gaato/requesto.mbt) — 28 commits (MoonBit)
+- [moonrun-js](https://github.com/gaato/moonrun-js) — 26 commits (TypeScript)
 - [moonbit-docker](https://github.com/gaato/moonbit-docker) — 26 commits (Python)
-- [kbbi-mcp](https://github.com/gaato/kbbi-mcp) — 21 commits (Python)
 
 ### Writing
 
@@ -64,6 +64,6 @@ Commits, last 90 days.
 - 2026-08-30 · [2019–2020年に作った数学の問題](https://gaato.net/articles/math-problems-2019-2020/) (gaato.net)
 - 2026-07-06 · [Ctrlが押しっぱなしになる犯人はマウスだった](https://gaato.net/articles/stuck-ctrl-was-the-mouse/) (gaato.net)
 
-Updated 2026-10-19
+Updated 2026-10-20
 
 <!-- activity:end -->

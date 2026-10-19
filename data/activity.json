@@ -1,5 +1,5 @@
 {
-  "generated_on": "2026-10-19",
+  "generated_on": "2026-10-20",
   "repo_days": 90,
   "upstream_days": 365,
   "repos": [
@@ -52,14 +52,14 @@
       "color": "#b92381"
     },
     {
-      "name": "gaato/moonbit-docker",
+      "name": "gaato/moonrun-js",
       "commits": 26,
-      "language": "Python",
-      "color": "#3572A5"
+      "language": "TypeScript",
+      "color": "#3178c6"
     },
     {
-      "name": "gaato/kbbi-mcp",
-      "commits": 21,
+      "name": "gaato/moonbit-docker",
+      "commits": 26,
       "language": "Python",
       "color": "#3572A5"
     }
