@@ -33,8 +33,8 @@ let data_path : String = "data/activity.json"
 let readme_path : String = "README.md"
 
 ///|
-/// Reports a parser failure the way the SDK reports one, so a query and a
-/// paginator page fail alike. The body stays empty: the payload that failed is
+/// Reports a parser failure the way the SDK reports one, so a bad payload and
+/// a failed query fail alike. The body stays empty: the payload that failed is
 /// already in the message, and there are no GraphQL errors to read back.
 fn[T] decoded(parse : () -> T raise) -> T raise @runtime.SdkError {
   parse() catch {
@@ -57,24 +57,33 @@ async fn fetch_repositories(
 }
 
 ///|
-/// The paginator stops where `parse_pull_request_page` returns no cursor, which
-/// is the 365-day cutoff or the end of the connection, whichever comes first.
+/// Follows the cursor until `parse_pull_request_page` returns none, which is
+/// the 365-day cutoff or the end of the connection, whichever comes first.
+/// A page can hold no upstream PR at all when the profile owner's own
+/// repositories fill it, so pagination does not stop at an empty page the way
+/// `graphql_paginator` does.
 async fn fetch_upstream(
   gh : @github.GitHub,
   now : Int64,
 ) -> Array[@activity.UpstreamPullRequest] raise @runtime.SdkError {
   let from = @activity.utc_midnight_days_ago(now, upstream_days)
   let prs : Array[@activity.UpstreamPullRequest] = []
-  gh
-  .graphql_paginator(
-    data => {
-      decoded(() => @activity.parse_pull_request_page(data, from~, login~))
-    },
-    query=@activity.pull_requests_query,
-    variables={ "login": login },
-    cursor_variable="cursor",
-  )
-  .each(pr => prs.push(pr))
+  let mut cursor : String? = None
+  for ;; {
+    let data = gh.graphql(query=@activity.pull_requests_query, variables={
+      "login": login,
+      "cursor": match cursor {
+        Some(cursor) => Json::string(cursor)
+        None => Json::null()
+      },
+    })
+    let (page, next) = decoded(() => {
+      @activity.parse_pull_request_page(data, from~, login~)
+    })
+    prs.append(page)
+    guard next is Some(_) else { break }
+    cursor = next
+  }
   @activity.sort_upstream(prs)
 }
 
