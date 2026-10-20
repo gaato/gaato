@@ -1,11 +1,11 @@
 {
-  "generated_on": "2026-10-20",
+  "generated_on": "2026-10-21",
   "repo_days": 90,
   "upstream_days": 365,
   "repos": [
     {
       "name": "gaato/discord.mbt",
-      "commits": 381,
+      "commits": 386,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -28,6 +28,12 @@
       "color": "#3178c6"
     },
     {
+      "name": "gaato/moonrun-js",
+      "commits": 40,
+      "language": "TypeScript",
+      "color": "#3178c6"
+    },
+    {
       "name": "gaato/nekosama",
       "commits": 35,
       "language": "MoonBit",
@@ -40,28 +46,22 @@
       "color": "#3178c6"
     },
     {
+      "name": "gaato/mooncakes-graph",
+      "commits": 33,
+      "language": "MoonBit",
+      "color": "#b92381"
+    },
+    {
+      "name": "gaato/codecs.mbt",
+      "commits": 32,
+      "language": "MoonBit",
+      "color": "#b92381"
+    },
+    {
       "name": "gaato/gaato",
       "commits": 30,
       "language": "MoonBit",
       "color": "#b92381"
-    },
-    {
-      "name": "gaato/requesto.mbt",
-      "commits": 28,
-      "language": "MoonBit",
-      "color": "#b92381"
-    },
-    {
-      "name": "gaato/moonrun-js",
-      "commits": 26,
-      "language": "TypeScript",
-      "color": "#3178c6"
-    },
-    {
-      "name": "gaato/moonbit-docker",
-      "commits": 26,
-      "language": "Python",
-      "color": "#3572A5"
     }
   ],
   "upstream": [
