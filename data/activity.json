@@ -1,5 +1,5 @@
 {
-  "generated_on": "2026-10-21",
+  "generated_on": "2026-10-22",
   "repo_days": 90,
   "upstream_days": 365,
   "repos": [
@@ -28,8 +28,14 @@
       "color": "#3178c6"
     },
     {
+      "name": "gaato/codecs.mbt",
+      "commits": 47,
+      "language": "MoonBit",
+      "color": "#b92381"
+    },
+    {
       "name": "gaato/moonrun-js",
-      "commits": 40,
+      "commits": 41,
       "language": "TypeScript",
       "color": "#3178c6"
     },
@@ -48,12 +54,6 @@
     {
       "name": "gaato/mooncakes-graph",
       "commits": 33,
-      "language": "MoonBit",
-      "color": "#b92381"
-    },
-    {
-      "name": "gaato/codecs.mbt",
-      "commits": 32,
       "language": "MoonBit",
       "color": "#b92381"
     },
