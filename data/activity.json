@@ -5,7 +5,13 @@
   "repos": [
     {
       "name": "gaato/discord.mbt",
-      "commits": 386,
+      "commits": 392,
+      "language": "MoonBit",
+      "color": "#b92381"
+    },
+    {
+      "name": "gaato/mbt-sdk",
+      "commits": 174,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -16,8 +22,8 @@
       "color": "#3572A5"
     },
     {
-      "name": "gaato/mbt-sdk",
-      "commits": 152,
+      "name": "gaato/codecs.mbt",
+      "commits": 61,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -28,20 +34,20 @@
       "color": "#3178c6"
     },
     {
-      "name": "gaato/codecs.mbt",
-      "commits": 47,
-      "language": "MoonBit",
-      "color": "#b92381"
-    },
-    {
       "name": "gaato/moonrun-js",
-      "commits": 41,
+      "commits": 44,
       "language": "TypeScript",
       "color": "#3178c6"
     },
     {
       "name": "gaato/nekosama",
-      "commits": 35,
+      "commits": 37,
+      "language": "MoonBit",
+      "color": "#b92381"
+    },
+    {
+      "name": "gaato/mooncakes-graph",
+      "commits": 36,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -52,19 +58,43 @@
       "color": "#3178c6"
     },
     {
-      "name": "gaato/mooncakes-graph",
-      "commits": 33,
-      "language": "MoonBit",
-      "color": "#b92381"
-    },
-    {
       "name": "gaato/gaato",
-      "commits": 30,
+      "commits": 32,
       "language": "MoonBit",
       "color": "#b92381"
     }
   ],
   "upstream": [
+    {
+      "owner": "pyside",
+      "repo": "pyside-setup",
+      "number": 782975,
+      "reference": "pyside/pyside-setup~782975",
+      "title": "metaobjectdump: Fix crash on relative imports without a module name",
+      "url": "https://codereview.qt-project.org/c/pyside/pyside-setup/+/782975",
+      "merged": false,
+      "date": "2026-10-22"
+    },
+    {
+      "owner": "bobzhang",
+      "repo": "html_parser",
+      "number": 138,
+      "reference": "bobzhang/html_parser#138",
+      "title": "Look up semicolon named references in a sorted table",
+      "url": "https://github.com/bobzhang/html_parser/pull/138",
+      "merged": false,
+      "date": "2026-10-22"
+    },
+    {
+      "owner": "pyside",
+      "repo": "pyside-setup",
+      "number": 779831,
+      "reference": "pyside/pyside-setup~779831",
+      "title": "PySide6: Add missing EglFsKmsGbmSupport library to the QtGui wheel files",
+      "url": "https://codereview.qt-project.org/c/pyside/pyside-setup/+/779831",
+      "merged": true,
+      "date": "2026-10-13"
+    },
     {
       "owner": "moonbitlang",
       "repo": "async",

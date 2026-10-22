@@ -16,8 +16,11 @@
 
 ### Upstream
 
-PRs and merge requests created in the last 365 days, currently 🟣 merged or 🟢 open.
+PRs, merge requests and Gerrit changes created in the last 365 days, currently 🟣 merged or 🟢 open.
 
+- 🟢 2026-10-22 · [pyside/pyside-setup\~782975](https://codereview.qt-project.org/c/pyside/pyside-setup/+/782975) — metaobjectdump: Fix crash on relative imports without a module name
+- 🟢 2026-10-22 · [bobzhang/html\_parser#138](https://github.com/bobzhang/html_parser/pull/138) — Look up semicolon named references in a sorted table
+- 🟣 2026-10-13 · [pyside/pyside-setup\~779831](https://codereview.qt-project.org/c/pyside/pyside-setup/+/779831) — PySide6: Add missing EglFsKmsGbmSupport library to the QtGui wheel files
 - 🟣 2026-09-24 · [moonbitlang/async#636](https://github.com/moonbitlang/async/pull/636) — Only wake suspended coroutines
 - 🟣 2026-09-21 · [moonbitlang/async#628](https://github.com/moonbitlang/async/pull/628) — Make recursive mkdir succeed on an existing directory
 - 🟢 2026-09-18 · [systemd/systemd#43791](https://github.com/systemd/systemd/pull/43791) — boot: measure Type #1 DeviceTrees into PCR 12
@@ -47,16 +50,16 @@ openSUSE packages submitted through [OBS](https://build.opensuse.org) in the las
 
 Commits, last 90 days.
 
-- [discord.mbt](https://github.com/gaato/discord.mbt) — 386 commits (MoonBit)
+- [discord.mbt](https://github.com/gaato/discord.mbt) — 392 commits (MoonBit)
+- [mbt-sdk](https://github.com/gaato/mbt-sdk) — 174 commits (MoonBit)
 - [pyevp](https://github.com/gaato/pyevp) — 156 commits (Python)
-- [mbt-sdk](https://github.com/gaato/mbt-sdk) — 152 commits (MoonBit)
+- [codecs.mbt](https://github.com/gaato/codecs.mbt) — 61 commits (MoonBit)
 - [gaato.net](https://github.com/gaato/gaato.net) — 47 commits (TypeScript)
-- [codecs.mbt](https://github.com/gaato/codecs.mbt) — 47 commits (MoonBit)
-- [moonrun-js](https://github.com/gaato/moonrun-js) — 41 commits (TypeScript)
-- [nekosama](https://github.com/gaato/nekosama) — 35 commits (MoonBit)
+- [moonrun-js](https://github.com/gaato/moonrun-js) — 44 commits (TypeScript)
+- [nekosama](https://github.com/gaato/nekosama) — 37 commits (MoonBit)
+- [mooncakes-graph](https://github.com/gaato/mooncakes-graph) — 36 commits (MoonBit)
 - [lab.gaato.net](https://github.com/gaato/lab.gaato.net) — 33 commits (TypeScript)
-- [mooncakes-graph](https://github.com/gaato/mooncakes-graph) — 33 commits (MoonBit)
-- [gaato](https://github.com/gaato/gaato) — 30 commits (MoonBit)
+- [gaato](https://github.com/gaato/gaato) — 32 commits (MoonBit)
 
 ### Writing
 
