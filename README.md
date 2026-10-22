@@ -20,6 +20,9 @@ PRs, merge requests and Gerrit changes created in the last 365 days, currently �
 
 - 🟢 2026-10-22 · [pyside/pyside-setup\~782975](https://codereview.qt-project.org/c/pyside/pyside-setup/+/782975) — metaobjectdump: Fix crash on relative imports without a module name
 - 🟢 2026-10-22 · [bobzhang/html\_parser#138](https://github.com/bobzhang/html_parser/pull/138) — Look up semicolon named references in a sorted table
+- 🟢 2026-10-22 · [moonbitlang/core#4447](https://github.com/moonbitlang/core/pull/4447) — fix(math): restore the fdlibm correction term in pow
+- 🟢 2026-10-22 · [moonbitlang/async#678](https://github.com/moonbitlang/async/pull/678) — Ignore malformed Set-Cookie lines and Max-Age values
+- 🟢 2026-10-22 · [moonbitlang/async#677](https://github.com/moonbitlang/async/pull/677) — Connect to IPv6 address literals in HTTP URLs
 - 🟣 2026-10-13 · [pyside/pyside-setup\~779831](https://codereview.qt-project.org/c/pyside/pyside-setup/+/779831) — PySide6: Add missing EglFsKmsGbmSupport library to the QtGui wheel files
 - 🟣 2026-09-24 · [moonbitlang/async#636](https://github.com/moonbitlang/async/pull/636) — Only wake suspended coroutines
 - 🟣 2026-09-21 · [moonbitlang/async#628](https://github.com/moonbitlang/async/pull/628) — Make recursive mkdir succeed on an existing directory
@@ -35,7 +38,7 @@ PRs, merge requests and Gerrit changes created in the last 365 days, currently �
 - 🟣 2026-04-28 · [aquaproj/aqua-registry#52789](https://github.com/aquaproj/aqua-registry/pull/52789) — fix lychee release asset layouts
 - 🟣 2026-02-19 · [nim-lang/packages#3237](https://github.com/nim-lang/packages/pull/3237) — Add package dimslash
 - 🟣 2026-02-02 · [frameworks/kholidays\!147](https://invent.kde.org/frameworks/kholidays/-/merge_requests/147) — Update Japanese holidays for 2027
-- 🟣 2025-12-29 · [frameworks/kholidays\!142](https://invent.kde.org/frameworks/kholidays/-/merge_requests/142) — Update Japanese holidays for 2024-2026
+- …and 1 more
 
 ### Packaging
 
@@ -53,7 +56,7 @@ Commits, last 90 days.
 - [discord.mbt](https://github.com/gaato/discord.mbt) — 392 commits (MoonBit)
 - [mbt-sdk](https://github.com/gaato/mbt-sdk) — 174 commits (MoonBit)
 - [pyevp](https://github.com/gaato/pyevp) — 156 commits (Python)
-- [codecs.mbt](https://github.com/gaato/codecs.mbt) — 61 commits (MoonBit)
+- [codecs.mbt](https://github.com/gaato/codecs.mbt) — 62 commits (MoonBit)
 - [gaato.net](https://github.com/gaato/gaato.net) — 47 commits (TypeScript)
 - [moonrun-js](https://github.com/gaato/moonrun-js) — 44 commits (TypeScript)
 - [nekosama](https://github.com/gaato/nekosama) — 37 commits (MoonBit)
@@ -67,6 +70,6 @@ Commits, last 90 days.
 - 2026-08-30 · [2019–2020年に作った数学の問題](https://gaato.net/articles/math-problems-2019-2020/) (gaato.net)
 - 2026-07-06 · [Ctrlが押しっぱなしになる犯人はマウスだった](https://gaato.net/articles/stuck-ctrl-was-the-mouse/) (gaato.net)
 
-Updated 2026-10-22
+Updated 2026-10-23
 
 <!-- activity:end -->

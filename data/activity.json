@@ -1,5 +1,5 @@
 {
-  "generated_on": "2026-10-22",
+  "generated_on": "2026-10-23",
   "repo_days": 90,
   "upstream_days": 365,
   "repos": [
@@ -23,7 +23,7 @@
     },
     {
       "name": "gaato/codecs.mbt",
-      "commits": 61,
+      "commits": 62,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -82,6 +82,36 @@
       "reference": "bobzhang/html_parser#138",
       "title": "Look up semicolon named references in a sorted table",
       "url": "https://github.com/bobzhang/html_parser/pull/138",
+      "merged": false,
+      "date": "2026-10-22"
+    },
+    {
+      "owner": "moonbitlang",
+      "repo": "core",
+      "number": 4447,
+      "reference": "moonbitlang/core#4447",
+      "title": "fix(math): restore the fdlibm correction term in pow",
+      "url": "https://github.com/moonbitlang/core/pull/4447",
+      "merged": false,
+      "date": "2026-10-22"
+    },
+    {
+      "owner": "moonbitlang",
+      "repo": "async",
+      "number": 678,
+      "reference": "moonbitlang/async#678",
+      "title": "Ignore malformed Set-Cookie lines and Max-Age values",
+      "url": "https://github.com/moonbitlang/async/pull/678",
+      "merged": false,
+      "date": "2026-10-22"
+    },
+    {
+      "owner": "moonbitlang",
+      "repo": "async",
+      "number": 677,
+      "reference": "moonbitlang/async#677",
+      "title": "Connect to IPv6 address literals in HTTP URLs",
+      "url": "https://github.com/moonbitlang/async/pull/677",
       "merged": false,
       "date": "2026-10-22"
     },
