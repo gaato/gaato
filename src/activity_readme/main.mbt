@@ -21,6 +21,11 @@ let gitlab_instances : Array[String] = [
 ]
 
 ///|
+/// Gerrit instances whose changes count as upstream work. Their query API is
+/// public, so no account is needed.
+let gerrit_instances : Array[String] = ["https://codereview.qt-project.org"]
+
+///|
 let obs_api_url : String = "https://api.opensuse.org"
 
 ///|
@@ -113,6 +118,31 @@ async fn fetch_merge_requests(
 }
 
 ///|
+/// Pages through the changes `login` uploaded to one Gerrit instance within
+/// the upstream window.
+async fn fetch_changes(
+  client : @requesto.Client,
+  base_url : String,
+  now : Int64,
+) -> Array[@activity.UpstreamPullRequest] {
+  // Gerrit's `after:` takes a date, so the window's start is cut to its day.
+  let from = @activity.utc_midnight_days_ago(now, upstream_days)[:10].to_owned()
+  let prs : Array[@activity.UpstreamPullRequest] = []
+  for start = 0; ; start = start + @activity.gerrit_page_size {
+    let url = base_url + @activity.gerrit_changes_path(login, from~, start~)
+    let data = @activity.parse_gerrit_response(
+      client.get(url).raise_for_status().text(),
+    )
+    let (page, more) = @activity.parse_gerrit_changes(data, base_url~)
+    prs.append(page)
+    if !more {
+      break
+    }
+  }
+  prs
+}
+
+///|
 /// OBS needs credentials even for reading requests, so `obs` carries the
 /// profile owner's account through HTTP Basic auth.
 async fn fetch_submit_requests(
@@ -163,6 +193,9 @@ async fn build_activity() -> @activity.Activity {
   let upstream = fetch_upstream(gh, now)
   for base_url in gitlab_instances {
     upstream.append(fetch_merge_requests(client, base_url, now))
+  }
+  for base_url in gerrit_instances {
+    upstream.append(fetch_changes(client, base_url, now))
   }
   let packaging = fetch_submit_requests(obs, now)
   let lists = []

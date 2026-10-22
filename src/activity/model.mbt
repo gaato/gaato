@@ -8,14 +8,15 @@ pub(all) struct Repo {
 } derive(ToJson, FromJson)
 
 ///|
-/// A pull request sent to a repository owned by someone else, on GitHub or on a
-/// GitLab instance, where it is called a merge request.
+/// A pull request sent to a repository owned by someone else, on GitHub, on a
+/// GitLab instance, where it is called a merge request, or on a Gerrit
+/// instance, where it is called a change.
 pub(all) struct UpstreamPullRequest {
   owner : String
   repo : String
   number : Int32
   /// How the forge itself writes the reference: `owner/repo#1` on GitHub,
-  /// `group/project!1` on GitLab.
+  /// `group/project!1` on GitLab, `group/project~1` on Gerrit.
   reference : String
   title : String
   url : String

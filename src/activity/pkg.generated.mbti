@@ -8,6 +8,10 @@ import {
 // Values
 pub let contributions_query : String
 
+pub fn gerrit_changes_path(String, from~ : String, start~ : Int32) -> String
+
+pub let gerrit_page_size : Int32
+
 pub fn gitlab_merge_requests_path(String, from~ : String, page~ : Int32) -> String
 
 pub let gitlab_page_size : Int32
@@ -17,6 +21,10 @@ pub fn jst_date(Int64) -> String
 pub fn latest_posts(Array[Array[Post]], limit~ : Int32) -> Array[Post]
 
 pub fn obs_submit_request_search(String) -> String
+
+pub fn parse_gerrit_changes(Json, base_url~ : String) -> (Array[UpstreamPullRequest], Bool) raise
+
+pub fn parse_gerrit_response(String) -> Json raise
 
 pub fn parse_gitlab_merge_requests(Json, login~ : String) -> Array[UpstreamPullRequest] raise
 

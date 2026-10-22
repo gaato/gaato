@@ -9,7 +9,7 @@ fn markdown_text(value : String) -> String {
   let sb = StringBuilder()
   for c in value {
     match c {
-      '\\' | '`' | '*' | '_' | '[' | ']' | '!' | '|' | '<' | '>' => {
+      '\\' | '`' | '*' | '_' | '~' | '[' | ']' | '!' | '|' | '<' | '>' => {
         sb.write_char('\\')
         sb.write_char(c)
       }
@@ -168,7 +168,7 @@ pub fn render_markdown(
   sb <+ "## Recent activity\n\n"
   sb <+ "### Upstream\n\n"
   sb <+
-    "PRs and merge requests created in the last \{activity.upstream_days} days, currently \{merged_marker} merged or \{open_marker} open.\n\n"
+    "PRs, merge requests and Gerrit changes created in the last \{activity.upstream_days} days, currently \{merged_marker} merged or \{open_marker} open.\n\n"
   if activity.upstream.length() == 0 {
     sb <+ "- Nothing yet.\n"
   }

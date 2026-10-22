@@ -475,7 +475,7 @@ test "empty activity and invalid README markers" {
   )
   assert_true(
     rendered.contains(
-      "### Upstream\n\nPRs and merge requests created in the last 365 days, currently 🟣 merged or 🟢 open.\n\n- Nothing yet.",
+      "### Upstream\n\nPRs, merge requests and Gerrit changes created in the last 365 days, currently 🟣 merged or 🟢 open.\n\n- Nothing yet.",
     ),
   )
   assert_true(rendered.contains("### Packaging\n\nopenSUSE packages"))
@@ -752,4 +752,96 @@ test "KDE merge requests become upstream entries" {
       "- 🟣 2026-02-02 · [frameworks/kholidays\\!147](https://invent.kde.org/frameworks/kholidays!147) — MR 147\n",
     ),
   )
+}
+
+///|
+/// One Gerrit change as the query API returns it.
+fn change(number : Int32, status : String, project : String) -> Json {
+  {
+    "_number": number.to_double(),
+    "project": project,
+    "branch": "dev",
+    "subject": "Change \{number}",
+    "status": status,
+    "created": "2026-10-13 06:23:42.000000000",
+  }
+}
+
+///|
+test "Gerrit changes become upstream entries" {
+  inspect(
+    @activity.gerrit_changes_path("gaato", from="2025-10-22", start=100),
+    content="/changes/?q=owner:gaato+after:2025-10-22&n=100&S=100",
+  )
+  let data = @activity.parse_gerrit_response(
+    ")]}'\n" +
+    Json::array([
+      change(779831, "MERGED", "pyside/pyside-setup"),
+      change(782975, "NEW", "qt/qtbase"),
+      change(3, "ABANDONED", "pyside/pyside-setup"),
+      {
+        "_number": 4.0,
+        "project": "toplevel",
+        "subject": "Change 4",
+        "status": "MERGED",
+        "created": "2026-10-13 16:00:00.000000000",
+        "_more_changes": true,
+      },
+    ]).stringify(),
+  )
+  let (prs, more) = @activity.parse_gerrit_changes(
+    data,
+    base_url="https://codereview.qt-project.org",
+  )
+  assert_true(more)
+  json_inspect(prs, content=[
+    {
+      "owner": "pyside",
+      "repo": "pyside-setup",
+      "number": 779831,
+      "reference": "pyside/pyside-setup~779831",
+      "title": "Change 779831",
+      "url": "https://codereview.qt-project.org/c/pyside/pyside-setup/+/779831",
+      "merged": true,
+      "date": "2026-10-13",
+    },
+    {
+      "owner": "qt",
+      "repo": "qtbase",
+      "number": 782975,
+      "reference": "qt/qtbase~782975",
+      "title": "Change 782975",
+      "url": "https://codereview.qt-project.org/c/qt/qtbase/+/782975",
+      "merged": false,
+      "date": "2026-10-13",
+    },
+    {
+      "owner": "",
+      "repo": "toplevel",
+      "number": 4,
+      "reference": "toplevel~4",
+      "title": "Change 4",
+      "url": "https://codereview.qt-project.org/c/toplevel/+/4",
+      "merged": true,
+      "date": "2026-10-14",
+    },
+  ])
+  let markdown = @activity.render_markdown(
+    upstream_activity(prs),
+    login="gaato",
+  )
+  assert_true(
+    markdown.contains(
+      "- 🟣 2026-10-13 · [pyside/pyside-setup\\~779831](https://codereview.qt-project.org/c/pyside/pyside-setup/+/779831) — Change 779831\n",
+    ),
+  )
+}
+
+///|
+test "a Gerrit response without the XSSI prefix is rejected" {
+  try @activity.parse_gerrit_response("[]") catch {
+    _ => ()
+  } noraise {
+    _ => fail("expected to fail")
+  }
 }
