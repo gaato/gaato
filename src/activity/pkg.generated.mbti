@@ -8,13 +8,13 @@ import {
 // Values
 pub let contributions_query : String
 
-pub fn gitlab_merge_requests_path(String, from~ : String, page~ : Int) -> String
+pub fn gitlab_merge_requests_path(String, from~ : String, page~ : Int32) -> String
 
-pub let gitlab_page_size : Int
+pub let gitlab_page_size : Int32
 
 pub fn jst_date(Int64) -> String
 
-pub fn latest_posts(Array[Array[Post]], limit~ : Int) -> Array[Post]
+pub fn latest_posts(Array[Array[Post]], limit~ : Int32) -> Array[Post]
 
 pub fn obs_submit_request_search(String) -> String
 
@@ -24,7 +24,7 @@ pub fn parse_iso8601_utc(StringView) -> Int64?
 
 pub fn parse_pull_request_page(Json, from~ : String, login~ : String) -> (Array[UpstreamPullRequest], String?) raise
 
-pub fn parse_repositories(Json, max_repos? : Int) -> Array[Repo] raise
+pub fn parse_repositories(Json, max_repos? : Int32) -> Array[Repo] raise
 
 pub fn parse_rfc2822(StringView) -> Int64?
 
@@ -34,15 +34,15 @@ pub fn parse_submit_requests(String, from~ : String, login~ : String) -> Array[S
 
 pub let pull_requests_query : String
 
-pub fn render_markdown(Activity, login~ : String, max_upstream? : Int, max_packages? : Int) -> String
+pub fn render_markdown(Activity, login~ : String, max_upstream? : Int32, max_packages? : Int32) -> String
 
 pub fn sort_upstream(Array[UpstreamPullRequest]) -> Array[UpstreamPullRequest]
 
 pub fn unescape_xml(String) -> String
 
-pub fn update_readme(String, Activity, login~ : String, max_upstream? : Int, max_packages? : Int) -> String raise
+pub fn update_readme(String, Activity, login~ : String, max_upstream? : Int32, max_packages? : Int32) -> String raise
 
-pub fn utc_midnight_days_ago(Int64, Int) -> String
+pub fn utc_midnight_days_ago(Int64, Int32) -> String
 
 pub fn utc_timestamp(Int64) -> String
 
@@ -51,8 +51,8 @@ pub fn utc_timestamp(Int64) -> String
 // Types and methods
 pub(all) struct Activity {
   generated_on : String
-  repo_days : Int
-  upstream_days : Int
+  repo_days : Int32
+  upstream_days : Int32
   repos : Array[Repo]
   upstream : Array[UpstreamPullRequest]
   packaging : Array[SubmitRequest]
@@ -72,7 +72,7 @@ pub fn Post::to_json(Self) -> Json
 
 pub(all) struct Repo {
   name : String
-  commits : Int
+  commits : Int32
   language : String
   color : String
 } derive(ToJson, @json.FromJson)
@@ -82,7 +82,7 @@ pub fn Repo::to_json(Self) -> Json
 pub(all) struct SubmitRequest {
   project : String
   pkg : String
-  number : Int
+  number : Int32
   url : String
   accepted : Bool
   date : String
@@ -93,7 +93,7 @@ pub fn SubmitRequest::to_json(Self) -> Json
 pub(all) struct UpstreamPullRequest {
   owner : String
   repo : String
-  number : Int
+  number : Int32
   reference : String
   title : String
   url : String
