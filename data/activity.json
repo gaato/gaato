@@ -1,11 +1,11 @@
 {
-  "generated_on": "2026-10-23",
+  "generated_on": "2026-10-24",
   "repo_days": 90,
   "upstream_days": 365,
   "repos": [
     {
       "name": "gaato/discord.mbt",
-      "commits": 392,
+      "commits": 393,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -17,25 +17,25 @@
     },
     {
       "name": "gaato/pyevp",
-      "commits": 156,
+      "commits": 157,
       "language": "Python",
       "color": "#3572A5"
     },
     {
       "name": "gaato/codecs.mbt",
-      "commits": 62,
+      "commits": 68,
       "language": "MoonBit",
       "color": "#b92381"
     },
     {
       "name": "gaato/gaato.net",
-      "commits": 47,
+      "commits": 48,
       "language": "TypeScript",
       "color": "#3178c6"
     },
     {
       "name": "gaato/moonrun-js",
-      "commits": 44,
+      "commits": 45,
       "language": "TypeScript",
       "color": "#3178c6"
     },
@@ -53,7 +53,7 @@
     },
     {
       "name": "gaato/lab.gaato.net",
-      "commits": 33,
+      "commits": 34,
       "language": "TypeScript",
       "color": "#3178c6"
     },
@@ -66,13 +66,63 @@
   ],
   "upstream": [
     {
+      "owner": "moonbitlang",
+      "repo": "core",
+      "number": 4466,
+      "reference": "moonbitlang/core#4466",
+      "title": "fix(async/http): ignore malformed Set-Cookie values",
+      "url": "https://github.com/moonbitlang/core/pull/4466",
+      "merged": false,
+      "date": "2026-10-23"
+    },
+    {
+      "owner": "moonbitlang",
+      "repo": "core",
+      "number": 4465,
+      "reference": "moonbitlang/core#4465",
+      "title": "fix(async/http): handle IPv6 literals correctly",
+      "url": "https://github.com/moonbitlang/core/pull/4465",
+      "merged": false,
+      "date": "2026-10-23"
+    },
+    {
+      "owner": "moonbitlang",
+      "repo": "core",
+      "number": 4450,
+      "reference": "moonbitlang/core#4450",
+      "title": "fix(math): return x from tanh for |x| < 2^-28",
+      "url": "https://github.com/moonbitlang/core/pull/4450",
+      "merged": true,
+      "date": "2026-10-23"
+    },
+    {
+      "owner": "moonbitlang",
+      "repo": "core",
+      "number": 4449,
+      "reference": "moonbitlang/core#4449",
+      "title": "fix(math): restore pi_lo in atan2f for x < 0",
+      "url": "https://github.com/moonbitlang/core/pull/4449",
+      "merged": true,
+      "date": "2026-10-23"
+    },
+    {
+      "owner": "moonbitlang",
+      "repo": "core",
+      "number": 4448,
+      "reference": "moonbitlang/core#4448",
+      "title": "fix(math): clear the low bits of df in acosf",
+      "url": "https://github.com/moonbitlang/core/pull/4448",
+      "merged": true,
+      "date": "2026-10-23"
+    },
+    {
       "owner": "pyside",
       "repo": "pyside-setup",
       "number": 782975,
       "reference": "pyside/pyside-setup~782975",
       "title": "metaobjectdump: Fix crash on relative imports without a module name",
       "url": "https://codereview.qt-project.org/c/pyside/pyside-setup/+/782975",
-      "merged": false,
+      "merged": true,
       "date": "2026-10-22"
     },
     {
@@ -92,7 +142,7 @@
       "reference": "moonbitlang/core#4447",
       "title": "fix(math): restore the fdlibm correction term in pow",
       "url": "https://github.com/moonbitlang/core/pull/4447",
-      "merged": false,
+      "merged": true,
       "date": "2026-10-22"
     },
     {
