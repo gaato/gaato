@@ -18,6 +18,7 @@
 
 PRs, merge requests and Gerrit changes created in the last 365 days, currently 🟣 merged or 🟢 open.
 
+- 🟢 2026-10-24 · [moonbitlang/core#4477](https://github.com/moonbitlang/core/pull/4477) — fix(async/http): set Host from CONNECT and absolute-form targets
 - 🟢 2026-10-23 · [moonbitlang/core#4466](https://github.com/moonbitlang/core/pull/4466) — fix(async/http): ignore malformed Set-Cookie values
 - 🟢 2026-10-23 · [moonbitlang/core#4465](https://github.com/moonbitlang/core/pull/4465) — fix(async/http): handle IPv6 literals correctly
 - 🟣 2026-10-23 · [moonbitlang/core#4450](https://github.com/moonbitlang/core/pull/4450) — fix(math): return x from tanh for \|x\| \< 2^-28
@@ -37,8 +38,7 @@ PRs, merge requests and Gerrit changes created in the last 365 days, currently �
 - 🟢 2026-09-06 · [togatoga/karukan#118](https://github.com/togatoga/karukan/pull/118) — docs: パッケージからのインストール手順を追加（openSUSE / AUR / FreeBSD）
 - 🟣 2026-08-29 · [openSUSE/opi#223](https://github.com/openSUSE/opi/pull/223) — Add ChatGPT desktop app plugin
 - 🟣 2026-08-27 · [moonbitlang/async#579](https://github.com/moonbitlang/async/pull/579) — Handle pre-aborted signals in Promise::from\_async
-- 🟣 2026-08-27 · [moonbitlang/async#578](https://github.com/moonbitlang/async/pull/578) — Fix empty JavaScript HTTP response bodies
-- …and 6 more
+- …and 7 more
 
 ### Packaging
 
@@ -53,16 +53,16 @@ openSUSE packages submitted through [OBS](https://build.opensuse.org) in the las
 
 Commits, last 90 days.
 
-- [discord.mbt](https://github.com/gaato/discord.mbt) — 393 commits (MoonBit)
-- [mbt-sdk](https://github.com/gaato/mbt-sdk) — 174 commits (MoonBit)
+- [discord.mbt](https://github.com/gaato/discord.mbt) — 394 commits (MoonBit)
+- [mbt-sdk](https://github.com/gaato/mbt-sdk) — 175 commits (MoonBit)
 - [pyevp](https://github.com/gaato/pyevp) — 157 commits (Python)
-- [codecs.mbt](https://github.com/gaato/codecs.mbt) — 68 commits (MoonBit)
+- [codecs.mbt](https://github.com/gaato/codecs.mbt) — 69 commits (MoonBit)
 - [gaato.net](https://github.com/gaato/gaato.net) — 48 commits (TypeScript)
-- [moonrun-js](https://github.com/gaato/moonrun-js) — 45 commits (TypeScript)
-- [nekosama](https://github.com/gaato/nekosama) — 37 commits (MoonBit)
-- [mooncakes-graph](https://github.com/gaato/mooncakes-graph) — 36 commits (MoonBit)
+- [moonrun-js](https://github.com/gaato/moonrun-js) — 47 commits (TypeScript)
+- [nekosama](https://github.com/gaato/nekosama) — 38 commits (MoonBit)
+- [mooncakes-graph](https://github.com/gaato/mooncakes-graph) — 37 commits (MoonBit)
 - [lab.gaato.net](https://github.com/gaato/lab.gaato.net) — 34 commits (TypeScript)
-- [gaato](https://github.com/gaato/gaato) — 32 commits (MoonBit)
+- [gaato](https://github.com/gaato/gaato) — 33 commits (MoonBit)
 
 ### Writing
 

@@ -5,13 +5,13 @@
   "repos": [
     {
       "name": "gaato/discord.mbt",
-      "commits": 393,
+      "commits": 394,
       "language": "MoonBit",
       "color": "#b92381"
     },
     {
       "name": "gaato/mbt-sdk",
-      "commits": 174,
+      "commits": 175,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -23,7 +23,7 @@
     },
     {
       "name": "gaato/codecs.mbt",
-      "commits": 68,
+      "commits": 69,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -35,19 +35,19 @@
     },
     {
       "name": "gaato/moonrun-js",
-      "commits": 45,
+      "commits": 47,
       "language": "TypeScript",
       "color": "#3178c6"
     },
     {
       "name": "gaato/nekosama",
-      "commits": 37,
+      "commits": 38,
       "language": "MoonBit",
       "color": "#b92381"
     },
     {
       "name": "gaato/mooncakes-graph",
-      "commits": 36,
+      "commits": 37,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -59,12 +59,22 @@
     },
     {
       "name": "gaato/gaato",
-      "commits": 32,
+      "commits": 33,
       "language": "MoonBit",
       "color": "#b92381"
     }
   ],
   "upstream": [
+    {
+      "owner": "moonbitlang",
+      "repo": "core",
+      "number": 4477,
+      "reference": "moonbitlang/core#4477",
+      "title": "fix(async/http): set Host from CONNECT and absolute-form targets",
+      "url": "https://github.com/moonbitlang/core/pull/4477",
+      "merged": false,
+      "date": "2026-10-24"
+    },
     {
       "owner": "moonbitlang",
       "repo": "core",
