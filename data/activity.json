@@ -1,5 +1,5 @@
 {
-  "generated_on": "2026-10-29",
+  "generated_on": "2026-11-07",
   "repo_days": 90,
   "upstream_days": 365,
   "repos": [
@@ -29,7 +29,7 @@
     },
     {
       "name": "gaato/gaato.net",
-      "commits": 48,
+      "commits": 50,
       "language": "TypeScript",
       "color": "#3178c6"
     },
@@ -52,16 +52,16 @@
       "color": "#b92381"
     },
     {
+      "name": "gaato/gaato",
+      "commits": 35,
+      "language": "MoonBit",
+      "color": "#b92381"
+    },
+    {
       "name": "gaato/lab.gaato.net",
       "commits": 34,
       "language": "TypeScript",
       "color": "#3178c6"
-    },
-    {
-      "name": "gaato/gaato",
-      "commits": 33,
-      "language": "MoonBit",
-      "color": "#b92381"
     }
   ],
   "upstream": [
@@ -74,26 +74,6 @@
       "url": "https://github.com/moonbitlang/core/pull/4477",
       "merged": false,
       "date": "2026-10-24"
-    },
-    {
-      "owner": "moonbitlang",
-      "repo": "core",
-      "number": 4466,
-      "reference": "moonbitlang/core#4466",
-      "title": "fix(async/http): ignore malformed Set-Cookie values",
-      "url": "https://github.com/moonbitlang/core/pull/4466",
-      "merged": false,
-      "date": "2026-10-23"
-    },
-    {
-      "owner": "moonbitlang",
-      "repo": "core",
-      "number": 4465,
-      "reference": "moonbitlang/core#4465",
-      "title": "fix(async/http): handle IPv6 literals correctly",
-      "url": "https://github.com/moonbitlang/core/pull/4465",
-      "merged": false,
-      "date": "2026-10-23"
     },
     {
       "owner": "moonbitlang",
@@ -162,7 +142,7 @@
       "reference": "moonbitlang/async#678",
       "title": "Ignore malformed Set-Cookie lines and Max-Age values",
       "url": "https://github.com/moonbitlang/async/pull/678",
-      "merged": false,
+      "merged": true,
       "date": "2026-10-22"
     },
     {
@@ -172,7 +152,7 @@
       "reference": "moonbitlang/async#677",
       "title": "Connect to IPv6 address literals in HTTP URLs",
       "url": "https://github.com/moonbitlang/async/pull/677",
-      "merged": false,
+      "merged": true,
       "date": "2026-10-22"
     },
     {
