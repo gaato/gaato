@@ -22,23 +22,25 @@ pub fn latest_posts(Array[Array[Post]], limit~ : Int32) -> Array[Post]
 
 pub fn obs_submit_request_search(String) -> String
 
-pub fn parse_gerrit_changes(Json, base_url~ : String) -> (Array[UpstreamPullRequest], Bool) raise
+pub fn parse_gerrit_changes(@json.Json, base_url~ : String) -> (Array[UpstreamPullRequest], Bool) raise
 
-pub fn parse_gerrit_response(String) -> Json raise
+pub fn parse_gerrit_response(String) -> @json.Json raise
 
-pub fn parse_gitlab_merge_requests(Json, login~ : String) -> Array[UpstreamPullRequest] raise
+pub fn parse_gitlab_merge_requests(@json.Json, login~ : String) -> Array[UpstreamPullRequest] raise
 
 pub fn parse_iso8601_utc(StringView) -> Int64?
 
-pub fn parse_pull_request_page(Json, from~ : String, login~ : String) -> (Array[UpstreamPullRequest], String?) raise
+pub fn parse_pull_request_page(@json.Json, from~ : String, login~ : String) -> (Array[UpstreamPullRequest], String?) raise
 
-pub fn parse_repositories(Json, max_repos? : Int32) -> Array[Repo] raise
+pub fn parse_repositories(@json.Json, max_repos? : Int32) -> Array[Repo] raise
 
 pub fn parse_rfc2822(StringView) -> Int64?
 
 pub fn parse_rss(String, source~ : String) -> Array[Post]
 
 pub fn parse_submit_requests(String, from~ : String, login~ : String) -> Array[SubmitRequest] raise
+
+pub fn posts_from(Array[Post], String) -> Array[Post]
 
 pub let pull_requests_query : String
 
@@ -50,13 +52,18 @@ pub fn unescape_xml(String) -> String
 
 pub fn update_readme(String, Activity, login~ : String, max_upstream? : Int32, max_packages? : Int32) -> String raise
 
+pub fn upstream_from(Array[UpstreamPullRequest], String) -> Array[UpstreamPullRequest]
+
 pub fn utc_midnight_days_ago(Int64, Int32) -> String
 
 pub fn utc_timestamp(Int64) -> String
 
+pub fn warning_command(String, String) -> String
+
 // Errors
 
 // Types and methods
+#derive(@json.FromJson, @json.ToJson)
 pub(all) struct Activity {
   generated_on : String
   repo_days : Int32
@@ -65,28 +72,31 @@ pub(all) struct Activity {
   upstream : Array[UpstreamPullRequest]
   packaging : Array[SubmitRequest]
   posts : Array[Post]
-} derive(ToJson, @json.FromJson)
-pub fn Activity::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
-pub fn Activity::to_json(Self) -> Json
+}
+pub fn Activity::from_json(@json.Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub fn Activity::to_json(Self) -> @json.Json
 
+#derive(@json.FromJson, @json.ToJson)
 pub(all) struct Post {
   title : String
   url : String
   date : String
   source : String
-} derive(ToJson, @json.FromJson)
-pub fn Post::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
-pub fn Post::to_json(Self) -> Json
+}
+pub fn Post::from_json(@json.Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub fn Post::to_json(Self) -> @json.Json
 
+#derive(@json.FromJson, @json.ToJson)
 pub(all) struct Repo {
   name : String
   commits : Int32
   language : String
   color : String
-} derive(ToJson, @json.FromJson)
-pub fn Repo::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
-pub fn Repo::to_json(Self) -> Json
+}
+pub fn Repo::from_json(@json.Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub fn Repo::to_json(Self) -> @json.Json
 
+#derive(@json.FromJson, @json.ToJson)
 pub(all) struct SubmitRequest {
   project : String
   pkg : String
@@ -94,10 +104,11 @@ pub(all) struct SubmitRequest {
   url : String
   accepted : Bool
   date : String
-} derive(ToJson, @json.FromJson)
-pub fn SubmitRequest::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
-pub fn SubmitRequest::to_json(Self) -> Json
+}
+pub fn SubmitRequest::from_json(@json.Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub fn SubmitRequest::to_json(Self) -> @json.Json
 
+#derive(@json.FromJson, @json.ToJson)
 pub(all) struct UpstreamPullRequest {
   owner : String
   repo : String
@@ -107,9 +118,9 @@ pub(all) struct UpstreamPullRequest {
   url : String
   merged : Bool
   date : String
-} derive(ToJson, @json.FromJson)
-pub fn UpstreamPullRequest::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
-pub fn UpstreamPullRequest::to_json(Self) -> Json
+}
+pub fn UpstreamPullRequest::from_json(@json.Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub fn UpstreamPullRequest::to_json(Self) -> @json.Json
 
 // Type aliases
 

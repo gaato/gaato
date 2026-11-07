@@ -1,16 +1,18 @@
 ///|
 /// A repository the profile owner has committed to recently.
+#derive(ToJson, FromJson)
 pub(all) struct Repo {
   name : String
   commits : Int32
   language : String
   color : String
-} derive(ToJson, FromJson)
+}
 
 ///|
 /// A pull request sent to a repository owned by someone else, on GitHub, on a
 /// GitLab instance, where it is called a merge request, or on a Gerrit
 /// instance, where it is called a change.
+#derive(ToJson, FromJson)
 pub(all) struct UpstreamPullRequest {
   owner : String
   repo : String
@@ -22,10 +24,11 @@ pub(all) struct UpstreamPullRequest {
   url : String
   merged : Bool
   date : String
-} derive(ToJson, FromJson)
+}
 
 ///|
 /// An OBS submit request to a project outside the profile owner's home.
+#derive(ToJson, FromJson)
 pub(all) struct SubmitRequest {
   project : String
   pkg : String
@@ -33,20 +36,22 @@ pub(all) struct SubmitRequest {
   url : String
   accepted : Bool
   date : String
-} derive(ToJson, FromJson)
+}
 
 ///|
 /// A published article.
+#derive(ToJson, FromJson)
 pub(all) struct Post {
   title : String
   url : String
   date : String
   source : String
-} derive(ToJson, FromJson)
+}
 
 ///|
 /// Everything the README activity section shows. `generated_on` and the two windows are
 /// in JST calendar days.
+#derive(ToJson, FromJson)
 pub(all) struct Activity {
   generated_on : String
   repo_days : Int32
@@ -55,7 +60,7 @@ pub(all) struct Activity {
   upstream : Array[UpstreamPullRequest]
   packaging : Array[SubmitRequest]
   posts : Array[Post]
-} derive(ToJson, FromJson)
+}
 
 ///|
 pub extend Repo with ToJson::{to_json}
