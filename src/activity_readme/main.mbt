@@ -165,6 +165,41 @@ async fn fetch_feed(client : @requesto.Client, url : String) -> String {
 }
 
 ///|
+/// Runs one source's fetch. A failure is reported as a workflow warning and
+/// the source keeps its entries from the last run, so one source being down
+/// neither aborts the others nor makes its items vanish from the README.
+async fn[T] fetch_or_keep(
+  source : String,
+  previous : Array[T],
+  fetch : async () -> Array[T],
+) -> Array[T] {
+  fetch() catch {
+    error => {
+      println(@activity.warning_command(source, error.to_string()))
+      previous
+    }
+  }
+}
+
+///|
+/// The last saved activity, or an empty one when there is none yet or it no
+/// longer parses; either way every source then simply starts from nothing.
+async fn load_previous() -> @activity.Activity {
+  @json.from_json(@json.parse(@fs.read_file(data_path).text())) catch {
+    _ =>
+      {
+        generated_on: "",
+        repo_days,
+        upstream_days,
+        repos: [],
+        upstream: [],
+        packaging: [],
+        posts: [],
+      }
+  }
+}
+
+///|
 async fn build_activity() -> @activity.Activity {
   guard @env.get_env_var("GITHUB_TOKEN") is Some(token) && token != "" else {
     fail("GITHUB_TOKEN is not set")
@@ -173,6 +208,7 @@ async fn build_activity() -> @activity.Activity {
     obs_password != "" else {
     fail("OBS_PASSWORD is not set")
   }
+  let previous = load_previous()
   let transport = @httpasync.AsyncTransport::new()
   let gh = @github.GitHub::new(
     transport,
@@ -189,19 +225,43 @@ async fn build_activity() -> @activity.Activity {
   )
   defer obs.close()
   let now = (@env.now() / 1000UL).reinterpret_as_int64()
-  let repos = fetch_repositories(gh, now)
-  let upstream = fetch_upstream(gh, now)
+  let repos = fetch_or_keep("GitHub repositories", previous.repos, () => {
+    fetch_repositories(gh, now)
+  })
+  let upstream = fetch_or_keep(
+    "GitHub pull requests",
+    @activity.upstream_from(previous.upstream, "https://github.com"),
+    () => fetch_upstream(gh, now),
+  )
   for base_url in gitlab_instances {
-    upstream.append(fetch_merge_requests(client, base_url, now))
+    upstream.append(
+      fetch_or_keep(
+        base_url,
+        @activity.upstream_from(previous.upstream, base_url),
+        () => fetch_merge_requests(client, base_url, now),
+      ),
+    )
   }
   for base_url in gerrit_instances {
-    upstream.append(fetch_changes(client, base_url, now))
+    upstream.append(
+      fetch_or_keep(
+        base_url,
+        @activity.upstream_from(previous.upstream, base_url),
+        () => fetch_changes(client, base_url, now),
+      ),
+    )
   }
-  let packaging = fetch_submit_requests(obs, now)
+  let packaging = fetch_or_keep("OBS", previous.packaging, () => {
+    fetch_submit_requests(obs, now)
+  })
   let lists = []
   for feed in feeds {
     let (source, url) = feed
-    lists.push(@activity.parse_rss(fetch_feed(client, url), source~))
+    lists.push(
+      fetch_or_keep(source, @activity.posts_from(previous.posts, source), () => {
+        @activity.parse_rss(fetch_feed(client, url), source~)
+      }),
+    )
   }
   transport.close()
   {

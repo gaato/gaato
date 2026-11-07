@@ -845,3 +845,53 @@ test "a Gerrit response without the XSSI prefix is rejected" {
     _ => fail("expected to fail")
   }
 }
+
+///|
+test "a failed source keeps only its own saved entries" {
+  let previous = [
+    pr("https://github.com/a/b/pull/1"),
+    pr("https://codereview.qt-project.org/c/qt/qtbase/+/2"),
+    pr("https://invent.kde.org/g/p/-/merge_requests/3"),
+  ]
+  json_inspect(
+    @activity.upstream_from(previous, "https://codereview.qt-project.org").map(p => {
+      p.url
+    }),
+    content=["https://codereview.qt-project.org/c/qt/qtbase/+/2"],
+  )
+  // A base URL is matched as a whole prefix, not as a string that merely
+  // starts the same way.
+  inspect(
+    @activity.upstream_from(previous, "https://invent.kde").length(),
+    content="0",
+  )
+  let posts : Array[@activity.Post] = [
+    { title: "A", url: "u1", date: "2026-11-01", source: "Zenn", },
+    { title: "B", url: "u2", date: "2026-11-02", source: "gaato.net", },
+  ]
+  json_inspect(@activity.posts_from(posts, "Zenn").map(p => p.title), content=[
+    "A",
+  ])
+}
+
+///|
+test "the warning is one workflow command line" {
+  inspect(
+    @activity.warning_command("Qt", "client error 403\nfor GET /changes/ 100%"),
+    content="::warning title=Qt unavailable::Qt could not be fetched; keeping the previous entries. client error 403%0Afor GET /changes/ 100%25",
+  )
+}
+
+///|
+fn pr(url : String) -> @activity.UpstreamPullRequest {
+  {
+    owner: "o",
+    repo: "r",
+    number: 1,
+    reference: "o/r#1",
+    title: "t",
+    url,
+    merged: true,
+    date: "2026-11-01",
+  }
+}
