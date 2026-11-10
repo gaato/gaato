@@ -1,17 +1,23 @@
 {
-  "generated_on": "2026-11-10",
+  "generated_on": "2026-11-11",
   "repo_days": 90,
   "upstream_days": 365,
   "repos": [
     {
       "name": "gaato/discord.mbt",
-      "commits": 408,
+      "commits": 410,
       "language": "MoonBit",
       "color": "#b92381"
     },
     {
       "name": "gaato/mbt-sdk",
-      "commits": 188,
+      "commits": 189,
+      "language": "MoonBit",
+      "color": "#b92381"
+    },
+    {
+      "name": "gaato/mttp",
+      "commits": 157,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -22,14 +28,8 @@
       "color": "#3572A5"
     },
     {
-      "name": "gaato/mttp",
-      "commits": 154,
-      "language": "MoonBit",
-      "color": "#b92381"
-    },
-    {
       "name": "gaato/codecs.mbt",
-      "commits": 73,
+      "commits": 75,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -47,19 +47,19 @@
     },
     {
       "name": "gaato/mooncakes-graph",
-      "commits": 40,
+      "commits": 41,
       "language": "MoonBit",
       "color": "#b92381"
     },
     {
       "name": "gaato/nekosama",
-      "commits": 39,
+      "commits": 40,
       "language": "MoonBit",
       "color": "#b92381"
     },
     {
-      "name": "gaato/gaato",
-      "commits": 36,
+      "name": "gaato/requesto.mbt",
+      "commits": 37,
       "language": "MoonBit",
       "color": "#b92381"
     }
