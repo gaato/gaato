@@ -1,11 +1,17 @@
 import {
   "gaato/github",
-  "gaato/http-async" @httpasync,
-  "gaato/requesto",
-  "gaato/sdk-runtime" @runtime,
-  "moonbitlang/async",
-  "moonbitlang/async/fs",
+  "gaato/http",
+  "gaato/http/rt",
+  "gaato/http-async/backend",
+  "gaato/http-async/runtime",
+  "gaato/mttp/client",
+  "gaato/mttp/client/cookies",
+  "gaato/mttp/cookie",
+  "moonbitlang/core/async",
+  "moonbitlang/core/async/fs",
   "moonbitlang/core/env",
+  "moonbitlang/core/encoding/base64",
+  "moonbitlang/core/encoding/utf8",
   "moonbitlang/core/json",
   "gaato/profile-readme/src/activity",
 }
@@ -13,3 +19,10 @@ import {
 pkgtype(kind: "executable")
 
 supported_targets = "native + wasm"
+
+options(
+  "allow-experimental-packages": [
+    "moonbitlang/core/async",
+    "moonbitlang/core/async/fs",
+  ],
+)

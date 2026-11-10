@@ -38,13 +38,14 @@ let data_path : String = "data/activity.json"
 let readme_path : String = "README.md"
 
 ///|
-/// Reports a parser failure the way the SDK reports one, so a bad payload and
-/// a failed query fail alike. The body stays empty: the payload that failed is
-/// already in the message, and there are no GraphQL errors to read back.
-fn[T] decoded(parse : () -> T raise) -> T raise @runtime.SdkError {
-  parse() catch {
-    error =>
-      raise @runtime.Decode(message=error.to_string(), body=Bytes::new(0))
+/// A received GitHub failure follows the same source fallback as a parser or
+/// transport failure; transport errors themselves keep their identity.
+fn github_data(result : Result[Json, @github.GitHubFailure]) -> Json raise {
+  match result {
+    Ok(data) => data
+    Err(GraphqlFailure(_, message~, ..)) => fail(message)
+    Err(Http(error)) => fail("GitHub HTTP \{error.head().status}")
+    Err(Validation(message)) => fail(message)
   }
 }
 
@@ -52,13 +53,15 @@ fn[T] decoded(parse : () -> T raise) -> T raise @runtime.SdkError {
 async fn fetch_repositories(
   gh : @github.GitHub,
   now : Int64,
-) -> Array[@activity.Repo] raise @runtime.SdkError {
-  let data = gh.graphql(query=@activity.contributions_query, variables={
-    "login": login,
-    "recentFrom": @activity.utc_midnight_days_ago(now, repo_days),
-    "to": @activity.utc_timestamp(now),
-  })
-  decoded(() => @activity.parse_repositories(data))
+) -> Array[@activity.Repo] {
+  let data = github_data(
+    gh.graphql(query=@activity.contributions_query, variables={
+      "login": login,
+      "recentFrom": @activity.utc_midnight_days_ago(now, repo_days),
+      "to": @activity.utc_timestamp(now),
+    }),
+  )
+  @activity.parse_repositories(data)
 }
 
 ///|
@@ -70,21 +73,21 @@ async fn fetch_repositories(
 async fn fetch_upstream(
   gh : @github.GitHub,
   now : Int64,
-) -> Array[@activity.UpstreamPullRequest] raise @runtime.SdkError {
+) -> Array[@activity.UpstreamPullRequest] {
   let from = @activity.utc_midnight_days_ago(now, upstream_days)
   let prs : Array[@activity.UpstreamPullRequest] = []
   let mut cursor : String? = None
   for ;; {
-    let data = gh.graphql(query=@activity.pull_requests_query, variables={
-      "login": login,
-      "cursor": match cursor {
-        Some(cursor) => Json::string(cursor)
-        None => Json::null()
-      },
-    })
-    let (page, next) = decoded(() => {
-      @activity.parse_pull_request_page(data, from~, login~)
-    })
+    let data = github_data(
+      gh.graphql(query=@activity.pull_requests_query, variables={
+        "login": login,
+        "cursor": match cursor {
+          Some(cursor) => Json::string(cursor)
+          None => Json::null()
+        },
+      }),
+    )
+    let (page, next) = @activity.parse_pull_request_page(data, from~, login~)
     prs.append(page)
     guard next is Some(_) else { break }
     cursor = next
@@ -96,7 +99,7 @@ async fn fetch_upstream(
 /// Pages through the MRs `login` opened on one GitLab instance within the
 /// upstream window.
 async fn fetch_merge_requests(
-  client : @requesto.Client,
+  client : @client.Client,
   base_url : String,
   now : Int64,
 ) -> Array[@activity.UpstreamPullRequest] {
@@ -105,7 +108,7 @@ async fn fetch_merge_requests(
   for page = 1; ; page = page + 1 {
     let url = base_url +
       @activity.gitlab_merge_requests_path(login, from~, page~)
-    let data = client.get(url).raise_for_status().json()
+    let data = @json.parse(fetch_text(client, url))
     guard data is Array(nodes) else {
       fail("unexpected merge request response from \{url}")
     }
@@ -121,7 +124,7 @@ async fn fetch_merge_requests(
 /// Pages through the changes `login` uploaded to one Gerrit instance within
 /// the upstream window.
 async fn fetch_changes(
-  client : @requesto.Client,
+  client : @client.Client,
   base_url : String,
   now : Int64,
 ) -> Array[@activity.UpstreamPullRequest] {
@@ -130,9 +133,7 @@ async fn fetch_changes(
   let prs : Array[@activity.UpstreamPullRequest] = []
   for start = 0; ; start = start + @activity.gerrit_page_size {
     let url = base_url + @activity.gerrit_changes_path(login, from~, start~)
-    let data = @activity.parse_gerrit_response(
-      client.get(url).raise_for_status().text(),
-    )
+    let data = @activity.parse_gerrit_response(fetch_text(client, url))
     let (page, more) = @activity.parse_gerrit_changes(data, base_url~)
     prs.append(page)
     if !more {
@@ -146,22 +147,19 @@ async fn fetch_changes(
 /// OBS needs credentials even for reading requests, so `obs` carries the
 /// profile owner's account through HTTP Basic auth.
 async fn fetch_submit_requests(
-  obs : @requesto.Client,
+  obs : @client.Client,
   now : Int64,
 ) -> Array[@activity.SubmitRequest] {
   @activity.parse_submit_requests(
-    obs
-    .get(@activity.obs_submit_request_search(login))
-    .raise_for_status()
-    .text(),
+    fetch_text(obs, @activity.obs_submit_request_search(login)),
     from=@activity.utc_midnight_days_ago(now, upstream_days),
     login~,
   )
 }
 
 ///|
-async fn fetch_feed(client : @requesto.Client, url : String) -> String {
-  client.get(url).raise_for_status().text()
+async fn fetch_feed(client : @client.Client, url : String) -> String {
+  fetch_text(client, url)
 }
 
 ///|
@@ -185,7 +183,7 @@ async fn[T] fetch_or_keep(
 /// The last saved activity, or an empty one when there is none yet or it no
 /// longer parses; either way every source then simply starts from nothing.
 async fn load_previous() -> @activity.Activity {
-  @json.from_json(@json.parse(@fs.read_file(data_path).text())) catch {
+  @json.from_json(@json.parse(@fs.read_text(data_path))) catch {
     _ =>
       {
         generated_on: "",
@@ -209,19 +207,21 @@ async fn build_activity() -> @activity.Activity {
     fail("OBS_PASSWORD is not set")
   }
   let previous = load_previous()
-  let transport = @httpasync.AsyncTransport::new()
-  let gh = @github.GitHub::new(
-    transport,
-    @httpasync.AsyncClock::new(),
-    token~,
-    user_agent~,
+  let backend = @backend.AsyncBackend::new()
+  defer backend.close()
+  let clock = @runtime.AsyncClock::new()
+  let gh = @github.GitHub::new(backend, clock, token~, user_agent~)
+  let client = source_client(
+    @backend.AsyncBackend::new(),
+    clock,
+    headers=@http.Headers::of([("User-Agent", user_agent)]),
   )
-  let client = @requesto.Client::new(headers=[("User-Agent", user_agent)])
   defer client.close()
-  let obs = @requesto.Client::new(
+  let obs = source_client(
+    @backend.AsyncBackend::new(),
+    clock,
     base_url=obs_api_url,
-    headers=[("User-Agent", user_agent), ("Accept", "application/xml")],
-    auth=Basic(username=login, password=obs_password),
+    headers=obs_headers(obs_password),
   )
   defer obs.close()
   let now = (@env.now() / 1000UL).reinterpret_as_int64()
@@ -263,7 +263,6 @@ async fn build_activity() -> @activity.Activity {
       }),
     )
   }
-  transport.close()
   {
     generated_on: @activity.jst_date(now),
     repo_days,
@@ -277,10 +276,10 @@ async fn build_activity() -> @activity.Activity {
 
 ///|
 async fn write_readme(activity : @activity.Activity) -> Unit {
-  let readme = @fs.read_file(readme_path).text()
+  let readme = @fs.read_text(readme_path)
   let updated = @activity.update_readme(readme, activity, login~)
   if updated != readme {
-    @fs.write_file(readme_path, updated)
+    @fs.write_text(readme_path, updated)
   }
 }
 
@@ -291,12 +290,12 @@ async fn write_readme(activity : @activity.Activity) -> Unit {
 async fn main {
   let args = @env.args()
   if args.length() > 1 && args[1] == "render" {
-    let saved = @json.parse(@fs.read_file(data_path).text())
+    let saved = @json.parse(@fs.read_text(data_path))
     write_readme(@json.from_json(saved))
     println("rendered \{readme_path} from \{data_path}")
   } else {
     let activity = build_activity()
-    @fs.write_file(data_path, activity.to_json().stringify(indent=2) + "\n")
+    @fs.write_text(data_path, activity.to_json().stringify(indent=2) + "\n")
     write_readme(activity)
     println("wrote \{data_path} and \{readme_path}")
   }
