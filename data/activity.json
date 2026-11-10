@@ -5,13 +5,13 @@
   "repos": [
     {
       "name": "gaato/discord.mbt",
-      "commits": 404,
+      "commits": 408,
       "language": "MoonBit",
       "color": "#b92381"
     },
     {
       "name": "gaato/mbt-sdk",
-      "commits": 183,
+      "commits": 188,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -23,7 +23,7 @@
     },
     {
       "name": "gaato/mttp",
-      "commits": 148,
+      "commits": 154,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -59,7 +59,7 @@
     },
     {
       "name": "gaato/gaato",
-      "commits": 35,
+      "commits": 36,
       "language": "MoonBit",
       "color": "#b92381"
     }

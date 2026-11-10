@@ -53,16 +53,16 @@ openSUSE packages submitted through [OBS](https://build.opensuse.org) in the las
 
 Commits, last 90 days.
 
-- [discord.mbt](https://github.com/gaato/discord.mbt) — 404 commits (MoonBit)
-- [mbt-sdk](https://github.com/gaato/mbt-sdk) — 183 commits (MoonBit)
+- [discord.mbt](https://github.com/gaato/discord.mbt) — 408 commits (MoonBit)
+- [mbt-sdk](https://github.com/gaato/mbt-sdk) — 188 commits (MoonBit)
 - [pyevp](https://github.com/gaato/pyevp) — 157 commits (Python)
-- [mttp](https://github.com/gaato/mttp) — 148 commits (MoonBit)
+- [mttp](https://github.com/gaato/mttp) — 154 commits (MoonBit)
 - [codecs.mbt](https://github.com/gaato/codecs.mbt) — 73 commits (MoonBit)
 - [moonrun-js](https://github.com/gaato/moonrun-js) — 54 commits (TypeScript)
 - [gaato.net](https://github.com/gaato/gaato.net) — 52 commits (TypeScript)
 - [mooncakes-graph](https://github.com/gaato/mooncakes-graph) — 40 commits (MoonBit)
 - [nekosama](https://github.com/gaato/nekosama) — 39 commits (MoonBit)
-- [gaato](https://github.com/gaato/gaato) — 35 commits (MoonBit)
+- [gaato](https://github.com/gaato/gaato) — 36 commits (MoonBit)
 
 ### Writing
 
