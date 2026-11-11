@@ -8,11 +8,10 @@ fn source_client(
   base_url? : String,
 ) -> @client.Client {
   @client.Client::new(
-    @client.FollowRedirects::new(
-      @cookies.Cookies::new(backend, @cookie.CookieJar::new(clock)),
-    ),
+    backend,
     clock,
     base_url?,
+    cookies=@cookie.CookieJar::new(clock),
     headers~,
     timeout_ms=30_000,
     total_ms=150_000,
