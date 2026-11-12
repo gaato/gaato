@@ -18,6 +18,8 @@
 
 PRs, merge requests and Gerrit changes created in the last 365 days, currently 🟣 merged or 🟢 open.
 
+- 🟢 2026-11-13 · [moonbitlang/core#4839](https://github.com/moonbitlang/core/pull/4839) — fix(builtin): fall back to Math.random when the JS hash seed is refused
+- 🟢 2026-11-12 · [moonbitlang/core#4835](https://github.com/moonbitlang/core/pull/4835) — fix(async/tls): raise the transport error instead of spinning on WANT\_WRITE
 - 🟢 2026-10-24 · [moonbitlang/core#4477](https://github.com/moonbitlang/core/pull/4477) — fix(async/http): set Host from CONNECT and absolute-form targets
 - 🟣 2026-10-23 · [moonbitlang/core#4450](https://github.com/moonbitlang/core/pull/4450) — fix(math): return x from tanh for \|x\| \< 2^-28
 - 🟣 2026-10-23 · [moonbitlang/core#4449](https://github.com/moonbitlang/core/pull/4449) — fix(math): restore pi\_lo in atan2f for x \< 0
@@ -36,9 +38,7 @@ PRs, merge requests and Gerrit changes created in the last 365 days, currently �
 - 🟢 2026-09-06 · [togatoga/karukan#118](https://github.com/togatoga/karukan/pull/118) — docs: パッケージからのインストール手順を追加（openSUSE / AUR / FreeBSD）
 - 🟣 2026-08-29 · [openSUSE/opi#223](https://github.com/openSUSE/opi/pull/223) — Add ChatGPT desktop app plugin
 - 🟣 2026-08-27 · [moonbitlang/async#579](https://github.com/moonbitlang/async/pull/579) — Handle pre-aborted signals in Promise::from\_async
-- 🟣 2026-08-27 · [moonbitlang/async#578](https://github.com/moonbitlang/async/pull/578) — Fix empty JavaScript HTTP response bodies
-- 🟣 2026-07-15 · [moonbitlang/async#500](https://github.com/moonbitlang/async/pull/500) — fix(js): keep scheduling rounds after Promise::from\_async
-- …and 5 more
+- …and 7 more
 
 ### Packaging
 
@@ -54,7 +54,7 @@ openSUSE packages submitted through [OBS](https://build.opensuse.org) in the las
 Commits, last 90 days.
 
 - [discord.mbt](https://github.com/gaato/discord.mbt) — 419 commits (MoonBit)
-- [mttp](https://github.com/gaato/mttp) — 269 commits (MoonBit)
+- [mttp](https://github.com/gaato/mttp) — 273 commits (MoonBit)
 - [mbt-sdk](https://github.com/gaato/mbt-sdk) — 194 commits (MoonBit)
 - [pyevp](https://github.com/gaato/pyevp) — 158 commits (Python)
 - [codecs.mbt](https://github.com/gaato/codecs.mbt) — 75 commits (MoonBit)
@@ -70,6 +70,6 @@ Commits, last 90 days.
 - 2026-08-30 · [2019–2020年に作った数学の問題](https://gaato.net/articles/math-problems-2019-2020/) (gaato.net)
 - 2026-07-06 · [Ctrlが押しっぱなしになる犯人はマウスだった](https://gaato.net/articles/stuck-ctrl-was-the-mouse/) (gaato.net)
 
-Updated 2026-11-12
+Updated 2026-11-13
 
 <!-- activity:end -->

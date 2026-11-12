@@ -1,5 +1,5 @@
 {
-  "generated_on": "2026-11-12",
+  "generated_on": "2026-11-13",
   "repo_days": 90,
   "upstream_days": 365,
   "repos": [
@@ -11,7 +11,7 @@
     },
     {
       "name": "gaato/mttp",
-      "commits": 269,
+      "commits": 273,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -65,6 +65,26 @@
     }
   ],
   "upstream": [
+    {
+      "owner": "moonbitlang",
+      "repo": "core",
+      "number": 4839,
+      "reference": "moonbitlang/core#4839",
+      "title": "fix(builtin): fall back to Math.random when the JS hash seed is refused",
+      "url": "https://github.com/moonbitlang/core/pull/4839",
+      "merged": false,
+      "date": "2026-11-13"
+    },
+    {
+      "owner": "moonbitlang",
+      "repo": "core",
+      "number": 4835,
+      "reference": "moonbitlang/core#4835",
+      "title": "fix(async/tls): raise the transport error instead of spinning on WANT_WRITE",
+      "url": "https://github.com/moonbitlang/core/pull/4835",
+      "merged": false,
+      "date": "2026-11-12"
+    },
     {
       "owner": "moonbitlang",
       "repo": "core",
