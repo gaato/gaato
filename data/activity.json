@@ -5,25 +5,25 @@
   "repos": [
     {
       "name": "gaato/discord.mbt",
-      "commits": 410,
-      "language": "MoonBit",
-      "color": "#b92381"
-    },
-    {
-      "name": "gaato/mbt-sdk",
-      "commits": 189,
+      "commits": 411,
       "language": "MoonBit",
       "color": "#b92381"
     },
     {
       "name": "gaato/mttp",
-      "commits": 181,
+      "commits": 241,
+      "language": "MoonBit",
+      "color": "#b92381"
+    },
+    {
+      "name": "gaato/mbt-sdk",
+      "commits": 191,
       "language": "MoonBit",
       "color": "#b92381"
     },
     {
       "name": "gaato/pyevp",
-      "commits": 157,
+      "commits": 158,
       "language": "Python",
       "color": "#3572A5"
     },
@@ -35,15 +35,21 @@
     },
     {
       "name": "gaato/moonrun-js",
-      "commits": 54,
+      "commits": 55,
       "language": "TypeScript",
       "color": "#3178c6"
     },
     {
       "name": "gaato/gaato.net",
-      "commits": 52,
+      "commits": 53,
       "language": "TypeScript",
       "color": "#3178c6"
+    },
+    {
+      "name": "gaato/nekosama",
+      "commits": 41,
+      "language": "MoonBit",
+      "color": "#b92381"
     },
     {
       "name": "gaato/mooncakes-graph",
@@ -52,13 +58,7 @@
       "color": "#b92381"
     },
     {
-      "name": "gaato/nekosama",
-      "commits": 40,
-      "language": "MoonBit",
-      "color": "#b92381"
-    },
-    {
-      "name": "gaato/requesto.mbt",
+      "name": "gaato/gaato",
       "commits": 37,
       "language": "MoonBit",
       "color": "#b92381"
@@ -388,6 +388,14 @@
       "url": "https://build.opensuse.org/request/show/1381708",
       "accepted": true,
       "date": "2026-10-01"
+    },
+    {
+      "project": "openSUSE:Factory",
+      "pkg": "ghq",
+      "number": 1396972,
+      "url": "https://build.opensuse.org/request/show/1396972",
+      "accepted": false,
+      "date": "2026-11-12"
     }
   ],
   "posts": [

@@ -44,7 +44,7 @@ PRs, merge requests and Gerrit changes created in the last 365 days, currently �
 
 openSUSE packages submitted through [OBS](https://build.opensuse.org) in the last 365 days, currently 🟣 accepted or 🟢 in review.
 
-- 🟣 2026-10-01 · [ghq](https://build.opensuse.org/package/show/openSUSE:Factory/ghq) — devel:tools:scm [#1381707](https://build.opensuse.org/request/show/1381707) → openSUSE:Factory [#1381708](https://build.opensuse.org/request/show/1381708) (+1 earlier)
+- 🟢 2026-11-12 · [ghq](https://build.opensuse.org/package/show/openSUSE:Factory/ghq) — openSUSE:Factory [#1396972](https://build.opensuse.org/request/show/1396972) (+2 earlier)
 - 🟣 2026-09-07 · [Mesa](https://build.opensuse.org/package/show/X11:XOrg/Mesa) — X11:XOrg [#1376056](https://build.opensuse.org/request/show/1376056)
 - 🟣 2026-09-06 · [x11docker](https://build.opensuse.org/package/show/openSUSE:Factory/x11docker) — X11:Utilities [#1371679](https://build.opensuse.org/request/show/1371679) → openSUSE:Factory [#1375953](https://build.opensuse.org/request/show/1375953)
 - 🟣 2026-03-24 · [karukan](https://build.opensuse.org/package/show/openSUSE:Factory/karukan) — M17N [#1335631](https://build.opensuse.org/request/show/1335631) → openSUSE:Factory [#1342074](https://build.opensuse.org/request/show/1342074)
@@ -53,16 +53,16 @@ openSUSE packages submitted through [OBS](https://build.opensuse.org) in the las
 
 Commits, last 90 days.
 
-- [discord.mbt](https://github.com/gaato/discord.mbt) — 410 commits (MoonBit)
-- [mbt-sdk](https://github.com/gaato/mbt-sdk) — 189 commits (MoonBit)
-- [mttp](https://github.com/gaato/mttp) — 181 commits (MoonBit)
-- [pyevp](https://github.com/gaato/pyevp) — 157 commits (Python)
+- [discord.mbt](https://github.com/gaato/discord.mbt) — 411 commits (MoonBit)
+- [mttp](https://github.com/gaato/mttp) — 241 commits (MoonBit)
+- [mbt-sdk](https://github.com/gaato/mbt-sdk) — 191 commits (MoonBit)
+- [pyevp](https://github.com/gaato/pyevp) — 158 commits (Python)
 - [codecs.mbt](https://github.com/gaato/codecs.mbt) — 75 commits (MoonBit)
-- [moonrun-js](https://github.com/gaato/moonrun-js) — 54 commits (TypeScript)
-- [gaato.net](https://github.com/gaato/gaato.net) — 52 commits (TypeScript)
+- [moonrun-js](https://github.com/gaato/moonrun-js) — 55 commits (TypeScript)
+- [gaato.net](https://github.com/gaato/gaato.net) — 53 commits (TypeScript)
+- [nekosama](https://github.com/gaato/nekosama) — 41 commits (MoonBit)
 - [mooncakes-graph](https://github.com/gaato/mooncakes-graph) — 41 commits (MoonBit)
-- [nekosama](https://github.com/gaato/nekosama) — 40 commits (MoonBit)
-- [requesto.mbt](https://github.com/gaato/requesto.mbt) — 37 commits (MoonBit)
+- [gaato](https://github.com/gaato/gaato) — 37 commits (MoonBit)
 
 ### Writing
 
