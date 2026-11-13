@@ -1,35 +1,35 @@
 {
-  "generated_on": "2026-11-13",
+  "generated_on": "2026-11-14",
   "repo_days": 90,
   "upstream_days": 365,
   "repos": [
     {
       "name": "gaato/discord.mbt",
-      "commits": 419,
+      "commits": 421,
       "language": "MoonBit",
       "color": "#b92381"
     },
     {
       "name": "gaato/mttp",
-      "commits": 273,
+      "commits": 278,
       "language": "MoonBit",
       "color": "#b92381"
     },
     {
       "name": "gaato/mbt-sdk",
-      "commits": 194,
+      "commits": 198,
       "language": "MoonBit",
       "color": "#b92381"
     },
     {
       "name": "gaato/pyevp",
-      "commits": 158,
+      "commits": 162,
       "language": "Python",
       "color": "#3572A5"
     },
     {
       "name": "gaato/codecs.mbt",
-      "commits": 75,
+      "commits": 79,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -47,13 +47,13 @@
     },
     {
       "name": "gaato/nekosama",
-      "commits": 43,
+      "commits": 44,
       "language": "MoonBit",
       "color": "#b92381"
     },
     {
       "name": "gaato/mooncakes-graph",
-      "commits": 41,
+      "commits": 42,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -65,6 +65,16 @@
     }
   ],
   "upstream": [
+    {
+      "owner": "moonbitlang",
+      "repo": "core",
+      "number": 4840,
+      "reference": "moonbitlang/core#4840",
+      "title": "fix(archive/zip): read classic archives with exactly 65535 entries",
+      "url": "https://github.com/moonbitlang/core/pull/4840",
+      "merged": false,
+      "date": "2026-11-13"
+    },
     {
       "owner": "moonbitlang",
       "repo": "core",
@@ -84,16 +94,6 @@
       "url": "https://github.com/moonbitlang/core/pull/4835",
       "merged": false,
       "date": "2026-11-12"
-    },
-    {
-      "owner": "moonbitlang",
-      "repo": "core",
-      "number": 4477,
-      "reference": "moonbitlang/core#4477",
-      "title": "fix(async/http): set Host from CONNECT and absolute-form targets",
-      "url": "https://github.com/moonbitlang/core/pull/4477",
-      "merged": false,
-      "date": "2026-10-24"
     },
     {
       "owner": "moonbitlang",
@@ -414,7 +414,7 @@
       "pkg": "ghq",
       "number": 1396972,
       "url": "https://build.opensuse.org/request/show/1396972",
-      "accepted": false,
+      "accepted": true,
       "date": "2026-11-12"
     }
   ],
