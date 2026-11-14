@@ -1,5 +1,5 @@
 {
-  "generated_on": "2026-11-14",
+  "generated_on": "2026-11-15",
   "repo_days": 90,
   "upstream_days": 365,
   "repos": [
@@ -29,7 +29,7 @@
     },
     {
       "name": "gaato/codecs.mbt",
-      "commits": 79,
+      "commits": 106,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -72,7 +72,7 @@
       "reference": "moonbitlang/core#4840",
       "title": "fix(archive/zip): read classic archives with exactly 65535 entries",
       "url": "https://github.com/moonbitlang/core/pull/4840",
-      "merged": false,
+      "merged": true,
       "date": "2026-11-13"
     },
     {
@@ -82,7 +82,7 @@
       "reference": "moonbitlang/core#4839",
       "title": "fix(builtin): fall back to Math.random when the JS hash seed is refused",
       "url": "https://github.com/moonbitlang/core/pull/4839",
-      "merged": false,
+      "merged": true,
       "date": "2026-11-13"
     },
     {
