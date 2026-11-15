@@ -53,13 +53,13 @@ openSUSE packages submitted through [OBS](https://build.opensuse.org) in the las
 
 Commits, last 90 days.
 
-- [discord.mbt](https://github.com/gaato/discord.mbt) — 421 commits (MoonBit)
-- [mttp](https://github.com/gaato/mttp) — 278 commits (MoonBit)
-- [mbt-sdk](https://github.com/gaato/mbt-sdk) — 198 commits (MoonBit)
+- [discord.mbt](https://github.com/gaato/discord.mbt) — 422 commits (MoonBit)
+- [mttp](https://github.com/gaato/mttp) — 296 commits (MoonBit)
+- [mbt-sdk](https://github.com/gaato/mbt-sdk) — 205 commits (MoonBit)
 - [pyevp](https://github.com/gaato/pyevp) — 162 commits (Python)
-- [codecs.mbt](https://github.com/gaato/codecs.mbt) — 106 commits (MoonBit)
+- [codecs.mbt](https://github.com/gaato/codecs.mbt) — 135 commits (MoonBit)
+- [gaato.net](https://github.com/gaato/gaato.net) — 55 commits (TypeScript)
 - [moonrun-js](https://github.com/gaato/moonrun-js) — 55 commits (TypeScript)
-- [gaato.net](https://github.com/gaato/gaato.net) — 53 commits (TypeScript)
 - [nekosama](https://github.com/gaato/nekosama) — 44 commits (MoonBit)
 - [mooncakes-graph](https://github.com/gaato/mooncakes-graph) — 42 commits (MoonBit)
 - [gaato](https://github.com/gaato/gaato) — 38 commits (MoonBit)
@@ -70,6 +70,6 @@ Commits, last 90 days.
 - 2026-08-30 · [2019–2020年に作った数学の問題](https://gaato.net/articles/math-problems-2019-2020/) (gaato.net)
 - 2026-07-06 · [Ctrlが押しっぱなしになる犯人はマウスだった](https://gaato.net/articles/stuck-ctrl-was-the-mouse/) (gaato.net)
 
-Updated 2026-11-15
+Updated 2026-11-16
 
 <!-- activity:end -->
