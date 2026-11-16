@@ -1,5 +1,5 @@
 {
-  "generated_on": "2026-11-16",
+  "generated_on": "2026-11-17",
   "repo_days": 90,
   "upstream_days": 365,
   "repos": [
@@ -11,13 +11,13 @@
     },
     {
       "name": "gaato/mttp",
-      "commits": 296,
+      "commits": 347,
       "language": "MoonBit",
       "color": "#b92381"
     },
     {
-      "name": "gaato/mbt-sdk",
-      "commits": 205,
+      "name": "gaato/moonbit-sdks",
+      "commits": 210,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -29,7 +29,7 @@
     },
     {
       "name": "gaato/codecs.mbt",
-      "commits": 135,
+      "commits": 144,
       "language": "MoonBit",
       "color": "#b92381"
     },
@@ -92,7 +92,7 @@
       "reference": "moonbitlang/core#4835",
       "title": "fix(async/tls): raise the transport error instead of spinning on WANT_WRITE",
       "url": "https://github.com/moonbitlang/core/pull/4835",
-      "merged": false,
+      "merged": true,
       "date": "2026-11-12"
     },
     {
