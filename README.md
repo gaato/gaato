@@ -8,6 +8,8 @@
   <a href="https://zenn.dev/gaato">Zenn</a>
   ·
   <a href="https://qiita.com/gaato">Qiita</a>
+  ·
+  <a href="https://github.com/sponsors/gaato">Sponsor</a>
 </p>
 
 <!-- activity:start -->
