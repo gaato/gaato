@@ -64,7 +64,7 @@ Commits, last 90 days.
 - [moonrun-js](https://github.com/gaato/moonrun-js) — 55 commits (TypeScript)
 - [mooncakes-graph](https://github.com/gaato/mooncakes-graph) — 51 commits (MoonBit)
 - [requesto.mbt](https://github.com/gaato/requesto.mbt) — 50 commits (MoonBit)
-- [nekosama](https://github.com/gaato/nekosama) — 44 commits (MoonBit)
+- [nekosama](https://github.com/gaato/nekosama) — 45 commits (MoonBit)
 
 ### Writing
 
