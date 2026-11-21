@@ -6,7 +6,6 @@ import {
   "gaato/mttp/runtime",
   "gaato/mttp_core/client",
   "gaato/mttp_core/cookie",
-  "moonbitlang/core/async",
   "moonbitlang/core/async/fs",
   "moonbitlang/core/env",
   "moonbitlang/core/encoding/base64",
@@ -14,6 +13,10 @@ import {
   "moonbitlang/core/json",
   "gaato/profile-readme/src/activity",
 }
+
+import {
+  "moonbitlang/core/async",
+} for "wbtest"
 
 pkgtype(kind: "executable")
 

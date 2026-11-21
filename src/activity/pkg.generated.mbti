@@ -73,7 +73,7 @@ pub(all) struct Activity {
   packaging : Array[SubmitRequest]
   posts : Array[Post]
 }
-pub fn Activity::from_json(@json.Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub fn Activity::from_json(@json.Json, @json.DecodeContext) -> Self raise @json.JsonDecodeError
 pub fn Activity::to_json(Self) -> @json.Json
 
 #derive(@json.FromJson, @json.ToJson)
@@ -83,7 +83,7 @@ pub(all) struct Post {
   date : String
   source : String
 }
-pub fn Post::from_json(@json.Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub fn Post::from_json(@json.Json, @json.DecodeContext) -> Self raise @json.JsonDecodeError
 pub fn Post::to_json(Self) -> @json.Json
 
 #derive(@json.FromJson, @json.ToJson)
@@ -93,7 +93,7 @@ pub(all) struct Repo {
   language : String
   color : String
 }
-pub fn Repo::from_json(@json.Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub fn Repo::from_json(@json.Json, @json.DecodeContext) -> Self raise @json.JsonDecodeError
 pub fn Repo::to_json(Self) -> @json.Json
 
 #derive(@json.FromJson, @json.ToJson)
@@ -105,7 +105,7 @@ pub(all) struct SubmitRequest {
   accepted : Bool
   date : String
 }
-pub fn SubmitRequest::from_json(@json.Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub fn SubmitRequest::from_json(@json.Json, @json.DecodeContext) -> Self raise @json.JsonDecodeError
 pub fn SubmitRequest::to_json(Self) -> @json.Json
 
 #derive(@json.FromJson, @json.ToJson)
@@ -119,7 +119,7 @@ pub(all) struct UpstreamPullRequest {
   merged : Bool
   date : String
 }
-pub fn UpstreamPullRequest::from_json(@json.Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub fn UpstreamPullRequest::from_json(@json.Json, @json.DecodeContext) -> Self raise @json.JsonDecodeError
 pub fn UpstreamPullRequest::to_json(Self) -> @json.Json
 
 // Type aliases
