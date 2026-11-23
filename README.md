@@ -55,7 +55,7 @@ openSUSE packages submitted through [OBS](https://build.opensuse.org) in the las
 
 Commits, last 90 days.
 
-- [mttp](https://github.com/gaato/mttp) — 460 commits (MoonBit)
+- [mttp](https://github.com/gaato/mttp) — 462 commits (MoonBit)
 - [discord.mbt](https://github.com/gaato/discord.mbt) — 449 commits (MoonBit)
 - [moonbit-sdks](https://github.com/gaato/moonbit-sdks) — 233 commits (MoonBit)
 - [codecs.mbt](https://github.com/gaato/codecs.mbt) — 188 commits (MoonBit)
@@ -72,6 +72,6 @@ Commits, last 90 days.
 - 2026-08-30 · [2019–2020年に作った数学の問題](https://gaato.net/articles/math-problems-2019-2020/) (gaato.net)
 - 2026-07-06 · [Ctrlが押しっぱなしになる犯人はマウスだった](https://gaato.net/articles/stuck-ctrl-was-the-mouse/) (gaato.net)
 
-Updated 2026-11-23
+Updated 2026-11-24
 
 <!-- activity:end -->
