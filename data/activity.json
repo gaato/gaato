@@ -1,5 +1,5 @@
 {
-  "generated_on": "2026-11-24",
+  "generated_on": "2026-11-25",
   "repo_days": 90,
   "upstream_days": 365,
   "repos": [
@@ -212,7 +212,7 @@
       "reference": "systemd/systemd#43791",
       "title": "boot: measure Type #1 DeviceTrees into PCR 12",
       "url": "https://github.com/systemd/systemd/pull/43791",
-      "merged": false,
+      "merged": true,
       "date": "2026-09-18"
     },
     {

@@ -34,7 +34,7 @@ PRs, merge requests and Gerrit changes created in the last 365 days, currently �
 - 🟣 2026-10-13 · [pyside/pyside-setup\~779831](https://codereview.qt-project.org/c/pyside/pyside-setup/+/779831) — PySide6: Add missing EglFsKmsGbmSupport library to the QtGui wheel files
 - 🟣 2026-09-24 · [moonbitlang/async#636](https://github.com/moonbitlang/async/pull/636) — Only wake suspended coroutines
 - 🟣 2026-09-21 · [moonbitlang/async#628](https://github.com/moonbitlang/async/pull/628) — Make recursive mkdir succeed on an existing directory
-- 🟢 2026-09-18 · [systemd/systemd#43791](https://github.com/systemd/systemd/pull/43791) — boot: measure Type #1 DeviceTrees into PCR 12
+- 🟣 2026-09-18 · [systemd/systemd#43791](https://github.com/systemd/systemd/pull/43791) — boot: measure Type #1 DeviceTrees into PCR 12
 - 🟣 2026-09-18 · [moonbitlang/moon#2235](https://github.com/moonbitlang/moon/pull/2235) — fix(mooncake): prevent registry index pulls from hanging on large Git output
 - 🟣 2026-09-06 · [repology/repology-rules#1235](https://github.com/repology/repology-rules/pull/1235) — karukan: merge
 - 🟢 2026-09-06 · [togatoga/karukan#118](https://github.com/togatoga/karukan/pull/118) — docs: パッケージからのインストール手順を追加（openSUSE / AUR / FreeBSD）
@@ -72,6 +72,6 @@ Commits, last 90 days.
 - 2026-08-30 · [2019–2020年に作った数学の問題](https://gaato.net/articles/math-problems-2019-2020/) (gaato.net)
 - 2026-07-06 · [Ctrlが押しっぱなしになる犯人はマウスだった](https://gaato.net/articles/stuck-ctrl-was-the-mouse/) (gaato.net)
 
-Updated 2026-11-24
+Updated 2026-11-25
 
 <!-- activity:end -->
